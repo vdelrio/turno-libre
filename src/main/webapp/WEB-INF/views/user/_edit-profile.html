@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="edit-profile">
+
+    <form class="form-horizontal" role="form" th:action="@{/user/update-profile}" th:object="${usuario}" method="post">
+        <div class="form-group">
+            <label for="nombre" class="col-md-3 control-label" th:text="#{nombre.completo}">Nombre completo</label>
+            <div class="col-md-9">
+                <input type="text" th:field="*{nombre}" class="form-control" required autofocus>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.nombre}">Introduce tu nombre real para que los prestadores de servicios te reconozcan.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-md-3 control-label" th:text="#{correo.electronico}">Correo electrónico</label>
+            <div class="col-md-9">
+                <input type="email" th:field="*{email}" class="form-control" required>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.correo.electronico}">Introduce tu correo electrónico para que los prestadores de servicios puedan comunicarse contigo.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telefono" class="col-md-3 control-label" th:text="#{telefono}">Teléfono</label>
+            <div class="col-md-9">
+                <input type="text" th:field="*{telefono}" class="form-control">
+                <span class="help-block" th:text="#{editar.perfil.ayuda.telefono}">Introduce tu teléfono para que los prestadores de servicios puedan comunicarse contigo.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="hidden-xs btn btn-primary" th:text="#{editar.perfil.guardar.cambios}">Guardar cambios</button>
+                <button type="submit" class="visible-xs btn btn-primary btn-lg btn-block" th:text="#{editar.perfil.guardar.cambios}">Guardar cambios</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

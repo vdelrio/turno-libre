@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turnolibre.business.turno" default-access="field">
+
+	<class name="Horario" table="horarios">
+
+		<id name="id">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="agenda" column="agenda_id" class="com.turnolibre.business.agenda.Agenda" unique-key="HORARIO_BUSINESS_KEY" not-null="true" foreign-key="FK_HORARIO_AGENDA" />
+
+		<property name="intervalo" type="org.jadira.usertype.dateandtime.joda.PersistentInterval">
+			<column name="inicio_intervalo" unique-key="HORARIO_BUSINESS_KEY" not-null="true" />
+			<column name="fin_intervalo" unique-key="HORARIO_BUSINESS_KEY" not-null="true" />
+		</property>
+
+		<property name="comentarioDelEstado" column="comentario_del_estado" />
+		
+		<set name="turnos" sort="natural" cascade="all,delete-orphan" inverse="true">
+			<key column="horario_id" />
+			<one-to-many class="Turno" />
+		</set>
+
+	</class>
+
+</hibernate-mapping>

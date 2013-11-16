@@ -1,0 +1,99 @@
+<!doctype html>
+<html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="#{titulo.pagina.perfil}">Editar perfil</title>
+</head>
+<body>
+
+	<div layout:fragment="child-content" class="row margin-top-20">
+
+		<!-- Menu principal -->
+		<div class="col-lg-offset-1 col-md-3 col-sm-4">
+
+			<!-- List group -->
+			<div id="profile-menu" class="list-group hidden-xs">
+				<a id="edit-profile-tab" href="#" class="list-group-item active">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					<span th:text="#{perfil}">Perfil</span>
+				</a>
+				<a id="edit-password-tab" href="#" class="list-group-item">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					<span th:text="#{contraseña}">Contraseña</span>
+				</a>
+			</div>
+
+			<!-- Collapse (xs) -->
+            <div class="panel-group visible-xs" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" th:text="#{perfil}">
+                                Perfil
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body" th:include="user/_edit-profile :: edit-profile">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" th:text="#{contraseña}">
+                                Contraseña
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body" th:include="user/_edit-password :: edit-password">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+		</div>
+
+		<div id="menu-content" class="col-lg-7 col-md-9 col-sm-8 hidden-xs">
+
+			<!-- Profile content -->
+			<div id="profile-menu-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading" th:text="#{perfil}">
+                        Perfil
+                    </div>
+                    <div class="panel-body" th:include="user/_edit-profile :: edit-profile">
+
+                    </div>
+                </div>
+			</div>
+
+			<!-- Change password content -->
+			<div id="password-menu-content" class="hidden">
+                <div class="panel panel-default">
+                    <div class="panel-heading" th:text="#{contraseña}">
+                        Contraseña
+                    </div>
+                    <div class="panel-body" th:include="user/_edit-password :: edit-password">
+
+                    </div>
+                </div>
+			</div>
+		</div>
+
+		<script th:src="@{/resources/application/js/edit-password.js}"></script>
+		<script>
+
+			$(document).ready(function() {
+				$("#edit-profile-tab").changeTabOnClick("profile-menu", "profile-menu-content", "menu-content");
+				$("#edit-password-tab").changeTabOnClick("profile-menu", "password-menu-content", "menu-content");
+			});
+
+		</script>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turnolibre.business.turno" default-access="field">
+
+	<class name="Turno" table="turnos">
+
+		<id name="id">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="horario" column="horario_id" class="Horario" unique-key="TURNO_BUSINESS_KEY" not-null="true" foreign-key="FK_TURNO_HORARIO" />
+		<property name="numero" unique-key="TURNO_BUSINESS_KEY" not-null="true" />
+
+        <property name="estado" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.turnolibre.business.turno.EstadoDeTurno</param>
+            </type>
+        </property>
+
+        <property name="comentarioDelEstado" column="comentario_del_estado" />
+        
+		<many-to-one name="cliente" column="cliente_id" class="com.turnolibre.business.usuario.Cliente" foreign-key="FK_TURNO_CLIENTE" />
+
+    </class>
+</hibernate-mapping>

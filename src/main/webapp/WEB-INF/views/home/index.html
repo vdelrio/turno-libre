@@ -1,0 +1,15 @@
+<!doctype html>
+<html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="#{titulo.pagina.inicio}">Inicio</title>
+</head>
+<body>
+
+	<div layout:fragment="child-content" class="row margin-top-20">
+
+		<div th:replace="shared/_pagina-construccion :: pagina-construccion"></div>
+
+	</div>
+
+</body>
+</html>
