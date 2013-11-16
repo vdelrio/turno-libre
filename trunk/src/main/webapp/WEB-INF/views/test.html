@@ -1,0 +1,31 @@
+<!doctype html>
+<html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="#{titulo.pagina.perfil}">Editar perfil</title>
+</head>
+<body>
+
+	<div layout:fragment="child-content" class="row margin-top-20">
+
+		<div class="feedback-msg-container alert alert-warning">
+			<button type="button" class="close close-alert">&times;</button>
+			<span class="feedback-msg">Ojo al parche!!</span>
+		</div>
+
+
+		<script>
+
+			$(document).ready(function() {
+
+				$(".close-alert").click(function() {
+					$(this).parent().addClass("hidden");
+				});
+
+			});
+
+		</script>
+
+	</div>
+
+</body>
+</html>

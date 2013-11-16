@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="navbar" class="navbar navbar-inverse navbar-fixed-top">
+
+	<div class="container">
+
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" th:href="@{/}" th:text="#{nombre.producto}">TurnoLibre</a>
+		</div>
+
+		<div th:unless="${#authorization.expression('isAuthenticated()')}" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/test}"><strong>TEST</strong></a></li>
+				<li><a th:href="@{/user/login}" th:text="#{iniciar.sesion}">Iniciar sessión</a></li>
+			</ul>
+		</div>
+
+		<div th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/user/turnos}" th:text="#{turnos}">Turnos</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span th:text="${#authentication.principal.nombre}">Pepe Argento</span> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/user/profile}" th:text="#{editar.perfil}">Editar perfil</a></li>
+						<li class="divider"></li>
+						<li><a th:href="@{/j_spring_security_logout}" th:text="#{cerrar.sesion}">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>

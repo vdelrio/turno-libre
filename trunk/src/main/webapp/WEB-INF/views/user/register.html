@@ -1,0 +1,43 @@
+<!doctype html>
+<html layout:decorator="layouts/clean-layout" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title th:text="#{titulo.pagina.registracion}">Crear una cuenta</title>
+</head>
+<body>
+
+<div layout:fragment="child-content" class="row">
+
+	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{nuevo.en.turno.libre.registrate}">
+				¿Eres nuevo en TurnoLibre? Regístrate
+			</div>
+			<div class="panel-body">
+				<form role="form" th:action="@{/user/register}" th:object="${usuario}" method="post">
+					<div class="form-group">
+						<label for="nombre" th:text="#{nombre.completo}">Nombre completo</label>
+						<input type="text" th:field="*{nombre}" class="form-control" required autofocus>
+					</div>
+					<div class="form-group">
+						<label for="email" th:text="#{correo.electronico}">Correo electrónico</label>
+						<input type="email" th:field="*{email}" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="password" th:text="#{contraseña}">Contraseña</label>
+						<input type="password" th:field="*{password}" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="telefono" th:text="#{telefono}">Teléfono</label>
+						<input type="text" th:field="*{telefono}" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg btn-block" th:text="#{crear.mi.cuenta}">Crear mi cuenta</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

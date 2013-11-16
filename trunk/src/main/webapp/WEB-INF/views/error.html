@@ -1,0 +1,20 @@
+<!doctype html>
+<html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="#{titulo.pagina.error}">Ha ocurrido un error</title>
+</head>
+<body>
+
+	<div layout:fragment="child-content" class="row margin-top-20">
+
+		<div th:fragment="pagina-construccion" class="jumbotron">
+			<div class="container">
+				<h1 th:text="#{mensaje.error.titulo}">Lo sentimos, ha ocurrido un error</h1>
+				<p th:text="#{mensaje.error.cuerpo}">Gracias por darte cuenta, vamos a arreglarlo y todo volverá a la normalidad pronto.</p>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

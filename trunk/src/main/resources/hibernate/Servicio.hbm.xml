@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turnolibre.business.prestador" default-access="field">
+	
+    <class name="Servicio" table="servicios">
+    
+		<id name="id">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="prestadorDeServicios" column="prestador_de_servicios_id" class="PrestadorDeServicios" unique-key="SERVICIO_BUSINESS_KEY" not-null="true" foreign-key="FK_SERVICIO_PRESTADOR" />
+		<property name="nombre" unique-key="SERVICIO_BUSINESS_KEY" not-null="true" />
+
+		<set name="agendas" table="servicios_agendas">
+			<key column="servicio_id" foreign-key="FK_SERVICIO_AGENDA_SERVICIO" />
+			<many-to-many column="agenda_id" class="com.turnolibre.business.agenda.Agenda" foreign-key="FK_SERVICIO_AGENDA_AGENDA" />
+		</set>
+        
+    </class>
+    
+</hibernate-mapping>
