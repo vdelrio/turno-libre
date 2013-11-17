@@ -1,6 +1,7 @@
 package com.turnolibre.business.usuario;
 
 import com.turnolibre.business.turno.Turno;
+import com.turnolibre.business.ubicacion.Ciudad;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -14,6 +15,7 @@ public class Cliente extends Rol {
 
 	public static String NOMBRE_DE_ROL = "cliente";
 	
+	private Ciudad ciudad;
 	private SortedSet<Turno> turnos = new TreeSet<Turno>();
 	
 	@Override
