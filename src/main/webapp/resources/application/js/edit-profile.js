@@ -1,12 +1,12 @@
 /**
- * Comportamiento para el template de edit-password.
+ * Comportamiento para el template de edit-profile.
  *
  * User: Victor Del Rio
  */
 
 $(document).ready(function() {
 
-	$(".change-password-form").submit(function(event) {
+	$(".edit-profile-form").submit(function(event) {
 
 		var $form = $(this);
 
@@ -15,9 +15,7 @@ $(document).ready(function() {
 			url: $form.attr("action"),
 			data: $form.serialize(),
 			success: function(data, textStatus) {
-
 				showSuccessFeedback(data);
-				$form.resetFields();
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				showErrorFeedback(XMLHttpRequest.responseText);

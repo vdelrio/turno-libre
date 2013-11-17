@@ -4,7 +4,9 @@
 
 <div th:fragment="edit-profile">
 
-    <form class="form-horizontal" role="form" th:action="@{/user/update-profile}" th:object="${usuario}" method="post">
+	<div th:replace="shared/_feedback-panel :: feedback-panel"></div>
+
+	<form class="edit-profile-form form-horizontal" role="form" th:action="@{/user/update-profile}" th:object="${usuario}" method="post">
         <div class="form-group">
             <label for="nombre" class="col-md-3 control-label" th:text="#{nombre.completo}">Nombre completo</label>
             <div class="col-md-9">
