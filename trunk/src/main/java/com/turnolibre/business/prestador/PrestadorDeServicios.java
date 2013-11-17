@@ -1,6 +1,7 @@
 package com.turnolibre.business.prestador;
 
 import com.turnolibre.business.agenda.Agenda;
+import com.turnolibre.business.ubicacion.Ubicacion;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +22,9 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	private Set<Servicio> servicios = new TreeSet<Servicio>();
 	private Set<Agenda> agendas = new HashSet<Agenda>();
 	private SortedSet<Noticia> noticias = new TreeSet<Noticia>();
-	
+
+	private Ubicacion ubicacion;
+
 	private String nombre;
 	private String imagen;
 	private String direccion;
