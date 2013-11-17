@@ -79,16 +79,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "update-profile", method = RequestMethod.POST)
-	public String updateProfile(Usuario usuario, BindingResult bindingResult, SessionStatus sessionStatus) {
-
-		if (bindingResult.hasErrors()) {
-			return "user/profile";
-		}
+	@ResponseBody
+	public String updateProfile(Usuario usuario, BindingResult bindingResult, SessionStatus sessionStatus, Locale locale) {
 
 		this.sharedService.update(usuario);
 		sessionStatus.setComplete();
 
-		return "redirect:/user/profile";
+		return messageSource.getMessage("edicion.perfil.exitosa", null, locale);
 	}
 
 	@RequestMapping(value = "change-password", method = RequestMethod.POST)

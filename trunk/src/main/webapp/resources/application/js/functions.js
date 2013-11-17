@@ -2,8 +2,6 @@
  * Custom jQuery functions.
  *
  * User: Victor Del Rio
- * Date: 04/11/13
- * Time: 20:19
  */
 
 (function($){

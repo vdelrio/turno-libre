@@ -2,8 +2,6 @@
  * Comportamiento para el feedback-panel.
  *
  * User: Victor Del Rio
- * Date: 16/11/13
- * Time: 14:47
  */
 
 $(document).ready(function() {
