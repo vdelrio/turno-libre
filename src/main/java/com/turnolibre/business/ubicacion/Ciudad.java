@@ -1,7 +1,7 @@
 package com.turnolibre.business.ubicacion;
 
 /**
- *
+ * Representa la ciudad en la que se encuentra un prestador de servicios o donde vive un cliente.
  *
  * @author Victor Del Rio
  */
