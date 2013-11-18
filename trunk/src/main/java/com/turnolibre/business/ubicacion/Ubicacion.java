@@ -1,7 +1,7 @@
 package com.turnolibre.business.ubicacion;
 
 /**
- *
+ * Representa a la ubicación de un prestador de servicios.
  *
  * @author Victor Del Rio
  */
