@@ -113,6 +113,10 @@
 
     <beans profile="prod">
 
+        <jdbc:initialize-database data-source="dataSource">
+            <jdbc:script location="classpath:environments/prod/initialize-database.sql"/>
+        </jdbc:initialize-database>
+
         <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
             <property name="locations">
                 <list>
