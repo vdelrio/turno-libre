@@ -14,7 +14,10 @@
 				¿Eres nuevo en TurnoLibre? Regístrate
 			</div>
 			<div class="panel-body">
-				<form role="form" th:action="@{/user/register}" th:object="${usuario}" method="post">
+
+				<div th:replace="shared/_feedback-panel :: feedback-panel"></div>
+
+				<form class="register-form" role="form" th:action="@{/user/register}" th:object="${usuario}" method="post">
 					<div class="form-group">
 						<label for="nombre" th:text="#{nombre.completo}">Nombre completo</label>
 						<input type="text" th:field="*{nombre}" class="form-control" required autofocus>
@@ -36,6 +39,8 @@
 			</div>
 		</div>
 	</div>
+
+	<script th:src="@{/resources/application/js/register.js}"></script>
 
 </div>
 

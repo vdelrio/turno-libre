@@ -209,7 +209,7 @@ public abstract class JornadaLaboral {
 				new Notificacion(
 						new MensajeLocalizable(
 							"notificacion.cancelacion.turno.por.cambio.duracion.turnos",
-							Arrays.asList(fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda)
+							fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda
 						)
 				)
 		);
@@ -226,7 +226,7 @@ public abstract class JornadaLaboral {
 				new Notificacion(
 					new MensajeLocalizable(
 							"notificacion.cambio.duracion.turno",
-							Arrays.asList(fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda, duracionDeLosTurnos)
+							fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda, duracionDeLosTurnos
 					)
 				)
 		);

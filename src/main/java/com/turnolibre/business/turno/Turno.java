@@ -7,7 +7,6 @@ import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Notificacion;
 
-import java.util.Arrays;
 import java.util.SortedSet;
 
 /**
@@ -161,7 +160,7 @@ public class Turno implements Comparable<Turno> {
 				new Notificacion(
 					new MensajeLocalizable(
 							"notificacion.cancelacion.por.prestador",
-							Arrays.asList(fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda, motivo)
+							fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda, motivo
 					)
 				)
 		);
@@ -178,7 +177,7 @@ public class Turno implements Comparable<Turno> {
 					new Notificacion(
 							new MensajeLocalizable(
 									"notificacion.cancelacion.por.cliente",
-									Arrays.asList(fechaDelTurno, nombreDeLaAgenda, nombreDelCliente)
+									fechaDelTurno, nombreDeLaAgenda, nombreDelCliente
 							)
 					)
 			);
@@ -195,7 +194,7 @@ public class Turno implements Comparable<Turno> {
 				new Notificacion(
 						new MensajeLocalizable(
 							"notificacion.deshabilitacion.por.prestador",
-							Arrays.asList(fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda, motivo)
+							fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda, motivo
 						)
 				)
 		);
@@ -211,7 +210,7 @@ public class Turno implements Comparable<Turno> {
 				new Notificacion(
 						new MensajeLocalizable(
 							"notificacion.habilitacion.por.prestador",
-							Arrays.asList(fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda)
+							fechaDelTurno, nombreDelPrestador, nombreDeLaAgenda
 						)
 				)
 		);

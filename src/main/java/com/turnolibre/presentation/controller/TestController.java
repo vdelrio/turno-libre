@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Locale;
 
 @Controller
@@ -29,7 +28,7 @@ public class TestController {
 	public void ajaxAction() throws ExcepcionDeReglaDelNegocio {
 
 		if (true) {
-			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("notificacion.habilitacion.por.prestador", Arrays.asList("lunes 10 de octubre", "Futbol 5 mentarios", "Cancha 2")));
+			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("notificacion.habilitacion.por.prestador", "lunes 10 de octubre", "Futbol 5 mentarios", "Cancha 2"));
 		}
 
 
@@ -41,7 +40,7 @@ public class TestController {
 	public String handleExcepcionDeReglaDelNegocio(ExcepcionDeReglaDelNegocio ex, Locale locale) {
 
 		MensajeLocalizable msjLocalizable = ex.getMensaje();
-		return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos().toArray(), locale);
+		return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos(), locale);
 	}
 
 }
