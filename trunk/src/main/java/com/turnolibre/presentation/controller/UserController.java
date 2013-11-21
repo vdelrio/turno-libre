@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -51,24 +50,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String register(Usuario usuario, BindingResult bindingResult, SessionStatus sessionStatus) {
+	@ResponseBody
+	public String register(Usuario usuario, SessionStatus sessionStatus) throws ExcepcionDeReglaDelNegocio {
 
-		if (bindingResult.hasErrors()) {
-			return "user/register";
-		}
+		this.usuarioService.registrarUsuario(usuario);
+		sessionStatus.setComplete();
 
-		try {
-
-			this.usuarioService.registrarUsuario(usuario);
-			sessionStatus.setComplete();
-
-		} catch (ExcepcionDeReglaDelNegocio e) {
-
-			// TODO agregar un error que sepa mostrar la vista
-			return "user/register";
-		}
-
-		return "redirect:/";
+		return "/";
 	}
 
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
@@ -80,7 +68,7 @@ public class UserController {
 
 	@RequestMapping(value = "update-profile", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateProfile(Usuario usuario, BindingResult bindingResult, SessionStatus sessionStatus, Locale locale) {
+	public String updateProfile(Usuario usuario, SessionStatus sessionStatus, Locale locale) {
 
 		this.sharedService.update(usuario);
 		sessionStatus.setComplete();
@@ -109,13 +97,8 @@ public class UserController {
 	public String handleExcepcionDeReglaDelNegocio(ExcepcionDeReglaDelNegocio ex, Locale locale) {
 
 		MensajeLocalizable msjLocalizable = ex.getMensaje();
-		return messageSource.getMessage(msjLocalizable.getCodigo(), null, locale);
-
-		// TODO hacer que sirva con o sin args
-//		return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos().toArray(), locale);
+		return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos(), locale);
 	}
-
-
 
 	private UsuarioDeSesion getUsuarioDeSesion() {
 		return (UsuarioDeSesion) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

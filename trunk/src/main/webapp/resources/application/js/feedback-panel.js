@@ -12,6 +12,31 @@ $(document).ready(function() {
 
 });
 
+function bindFormToFeedback(formClass, reset) {
+
+	$("." + formClass).submit(function(event) {
+
+		var $form = $(this);
+
+		$.ajax({
+			type: $form.attr("method"),
+			url: $form.attr("action"),
+			data: $form.serialize(),
+			success: function(data, textStatus) {
+
+				showSuccessFeedback(data);
+				if (reset) {
+					$form.resetFields();
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				showErrorFeedback(XMLHttpRequest.responseText);
+			}
+		});
+		event.preventDefault();
+	});
+}
+
 function showSuccessFeedback(msg) {
 
 	$(".feedback-msg").html(msg);

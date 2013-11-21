@@ -22,6 +22,10 @@ public class UsuarioDao {
 		return (Usuario) query.uniqueResult();
 	}
 
+	public boolean emailExists(String email) {
+		return this.findByUsername(email) != null;
+	}
+
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}

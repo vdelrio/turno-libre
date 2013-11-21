@@ -12,7 +12,6 @@ import com.turnolibre.security.UsuarioDeSesion;
 import com.turnolibre.service.UsuarioService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +20,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.SortedSet;
 
 @Service
 @Transactional
@@ -75,18 +77,17 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	@Override
 	@Transactional
 	public void registrarUsuario(Usuario usuario) throws ExcepcionDeReglaDelNegocio {
-		try {
 
-			usuario.agregarRol(new Cliente());
-			usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-			sharedDao.saveOrUpdate(usuario);
+		if (usuarioDao.emailExists(usuario.getEmail()))
+			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("excepcion.crear.usuario.email.repetido", usuario.getEmail()));
 
-		} catch (DataIntegrityViolationException e) {
-			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("excepcion.crear.usuario.email.repetido", Arrays.asList(usuario.getEmail())));
-		}
+		usuario.agregarRol(new Cliente());
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+		sharedDao.saveOrUpdate(usuario);
 	}
 
 	@Override
+	@Transactional
 	public void changePassword(Long usuarioId, String currentPassword, String newPassword) throws ExcepcionDeReglaDelNegocio {
 
 		Usuario usuario = sharedDao.load(Usuario.class, usuarioId);
