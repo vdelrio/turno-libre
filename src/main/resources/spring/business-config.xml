@@ -31,6 +31,8 @@
         <property name="mappingResources">
             <list>
                 <value>hibernate/Agenda.hbm.xml</value>
+                <value>hibernate/Barrio.hbm.xml</value>
+                <value>hibernate/Ciudad.hbm.xml</value>
                 <value>hibernate/DiaNoLaboral.hbm.xml</value>
                 <value>hibernate/Horario.hbm.xml</value>
                 <value>hibernate/JornadaLaboral.hbm.xml</value>
@@ -83,9 +85,9 @@
 
     <beans profile="dev">
 
-		<jdbc:initialize-database data-source="dataSource">
-			<jdbc:script location="classpath:environments/dev/initialize-database.sql"/>
-		</jdbc:initialize-database>
+		<!--<jdbc:initialize-database data-source="dataSource">-->
+			<!--<jdbc:script location="classpath:environments/dev/initialize-database.sql"/>-->
+		<!--</jdbc:initialize-database>-->
 
         <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
             <property name="locations">

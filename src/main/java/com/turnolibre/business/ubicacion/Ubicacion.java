@@ -8,8 +8,9 @@ package com.turnolibre.business.ubicacion;
 public class Ubicacion {
 
 	private Ciudad ciudad;
-	private Barrio barrio;
 	private String direccion;
+
+	private Barrio barrio;
 
 
 	/*------------------------------------ Constructors ------------------------------------*/
@@ -18,16 +19,16 @@ public class Ubicacion {
 		super();
 	}
 
+	public Ubicacion(Ciudad ciudad, String direccion) {
+
+		this.ciudad = ciudad;
+		this.direccion = direccion;
+	}
+
 	public Ubicacion(Ciudad ciudad, Barrio barrio, String direccion) {
 
 		this.ciudad = ciudad;
 		this.barrio = barrio;
-		this.direccion = direccion;
-	}
-
-	public Ubicacion(Ciudad ciudad, String direccion) {
-
-		this.ciudad = ciudad;
 		this.direccion = direccion;
 	}
 
@@ -42,20 +43,20 @@ public class Ubicacion {
 		this.ciudad = ciudad;
 	}
 
-	public Barrio getBarrio() {
-		return barrio;
-	}
-
-	public void setBarrio(Barrio barrio) {
-		this.barrio = barrio;
-	}
-
 	public String getDireccion() {
 		return direccion;
 	}
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public Barrio getBarrio() {
+		return barrio;
+	}
+
+	public void setBarrio(Barrio barrio) {
+		this.barrio = barrio;
 	}
 
 	/*--------------------------------------------------------------------------------------*/
@@ -69,9 +70,9 @@ public class Ubicacion {
 
 		Ubicacion otraUbicacion = (Ubicacion) o;
 
-		if (this.getBarrio() != null ? !this.getBarrio().equals(otraUbicacion.getBarrio()) : otraUbicacion.getBarrio() != null) return false;
 		if (!this.getCiudad().equals(otraUbicacion.getCiudad())) return false;
 		if (!this.getDireccion().equals(otraUbicacion.getDireccion())) return false;
+		if (this.getBarrio() != null ? !this.getBarrio().equals(otraUbicacion.getBarrio()) : otraUbicacion.getBarrio() != null) return false;
 
 		return true;
 	}
@@ -79,8 +80,8 @@ public class Ubicacion {
 	@Override
 	public int hashCode() {
 		int result = this.getCiudad().hashCode();
-		result = 31 * result + (this.getBarrio() != null ? this.getBarrio().hashCode() : 0);
 		result = 31 * result + this.getDireccion().hashCode();
+		result = 31 * result + (this.getBarrio() != null ? this.getBarrio().hashCode() : 0);
 		return result;
 	}
 

@@ -15,10 +15,15 @@
 
 		<property name="nombre" unique-key="PRESTADOR_BUSINESS_KEY" not-null="true" />
 		<property name="imagen" />
-		<property name="direccion" not-null="true" />
 		<property name="telefono" not-null="true" />
 		<property name="acercaDe" column="acerca_de" />
-		
+
+		<component name="ubicacion" class="com.turnolibre.business.ubicacion.Ubicacion">
+			<many-to-one name="ciudad" column="ciudad_id" class="com.turnolibre.business.ubicacion.Ciudad" unique-key="UBICACION_BUSINESS_KEY" not-null="true" foreign-key="FK_UBICACION_CIUDAD" insert="false" update="false" />
+			<property name="direccion" unique-key="UBICACION_BUSINESS_KEY" not-null="true"/>
+			<many-to-one name="barrio" column="barrio_id" class="com.turnolibre.business.ubicacion.Barrio" foreign-key="FK_UBICACION_BARRIO" insert="false" update="false" />
+		</component>
+
 		<set name="agendas" cascade="all,delete-orphan" inverse="true">
 			<key column="prestador_de_servicios_id" />
 			<one-to-many class="com.turnolibre.business.agenda.Agenda" />
