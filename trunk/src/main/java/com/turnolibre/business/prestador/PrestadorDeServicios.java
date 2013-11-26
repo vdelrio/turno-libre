@@ -1,6 +1,7 @@
 package com.turnolibre.business.prestador;
 
 import com.turnolibre.business.agenda.Agenda;
+import com.turnolibre.business.ubicacion.Ubicacion;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,15 +19,16 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	private Long id;
 	private Rubro rubro;
 	
+	private String nombre;
+	private String imagen;
+	private String telefono;
+	private String acercaDe;
+
+	private Ubicacion ubicacion;
+
 	private Set<Servicio> servicios = new TreeSet<Servicio>();
 	private Set<Agenda> agendas = new HashSet<Agenda>();
 	private SortedSet<Noticia> noticias = new TreeSet<Noticia>();
-
-	private String nombre;
-	private String imagen;
-	private String direccion;
-	private String telefono;
-	private String acercaDe;
 
 	
 	/*------------------------------------ Constructors ------------------------------------*/
@@ -35,20 +37,19 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		super();
 	}
 	
-	public PrestadorDeServicios(String nombre, String direccion, String telefono) {
+	public PrestadorDeServicios(String nombre, String telefono) {
 		super();
 		this.nombre = nombre;
-		this.direccion = direccion;
 		this.telefono = telefono;
 	}
 	
-	public PrestadorDeServicios(String nombre, String direccion, String telefono, String imagen) {
-		this(nombre, direccion, telefono);
+	public PrestadorDeServicios(String nombre, String telefono, String imagen) {
+		this(nombre, telefono);
 		this.imagen = imagen;
 	}
 	
-	public PrestadorDeServicios(Rubro rubro, String nombre, String imagen, String direccion, String telefono, String acercaDe) {
-		this(nombre, direccion, telefono, imagen);
+	public PrestadorDeServicios(Rubro rubro, String nombre, String imagen, String telefono, String acercaDe) {
+		this(nombre, telefono, imagen);
 		this.rubro = rubro;
 		this.acercaDe = acercaDe;
 	}
@@ -90,6 +91,14 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		return id;
 	}
 
+	public Rubro getRubro() {
+		return rubro;
+	}
+
+	protected void setRubro(Rubro rubro) {
+		this.rubro = rubro;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -104,14 +113,6 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
 	}
 
 	public String getTelefono() {
@@ -130,12 +131,12 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		this.acercaDe = acercaDe;
 	}
 
-	public Rubro getRubro() {
-		return rubro;
+	public Ubicacion getUbicacion() {
+		return ubicacion;
 	}
 
-	protected void setRubro(Rubro rubro) {
-		this.rubro = rubro;
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 	public Set<Servicio> getServicios() {

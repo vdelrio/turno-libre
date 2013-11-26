@@ -97,7 +97,7 @@ public class PopuladorDeDatosDeTest {
 
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
-		popularPrestador("Consultorio medico sur", "Aguilar 2547", "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("Consultorios medicos"));
+		popularPrestador("Consultorio medico sur", "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("Consultorios medicos"));
 	}
 
 	private void popularAgendas() throws ExcepcionDeReglaDelNegocio {
@@ -162,9 +162,9 @@ public class PopuladorDeDatosDeTest {
 		storedObjects.put(nombre, rubro);
 	}
 
-	private void popularPrestador(String nombre, String direccion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
+	private void popularPrestador(String nombre, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
 
-		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, direccion, telefono, imagen);
+		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, telefono, imagen);
 		rubro.agregarPrestadorDeServicios(prestador);
 
 		sharedService.save(prestador);
