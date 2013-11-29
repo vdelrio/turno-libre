@@ -8,6 +8,7 @@ import com.turnolibre.business.joda.time.DayOfWeekTime;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
 import com.turnolibre.business.prestador.Servicio;
+import com.turnolibre.business.ubicacion.Ciudad;
 import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
@@ -49,6 +50,8 @@ public class PopuladorDeDatos {
 		
 		inicializarDaos(APPLICATION_CONTEXT, SECURITY_CONTEXT);
 
+		popularCiudades();
+
 		popularUsuarios();
 		asignarRolesAdmin();
 
@@ -67,6 +70,13 @@ public class PopuladorDeDatos {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(contexts);
 		sharedService = (SharedService) ctx.getBean("sharedServiceImpl");
 		passwordEncoder = (PasswordEncoder) ctx.getBean("passwordEncoder");
+	}
+
+	private void popularCiudades() {
+
+		popularCiudad("11 DE SEPTIEMBRE", "1657", "BUENOS AIRES");
+		popularCiudad("12 DE AGOSTO", "2701", "BUENOS AIRES");
+		popularCiudad("12 DE OCTUBRE", "6501", "BUENOS AIRES");
 	}
 	
 	private void popularUsuarios() throws ExcepcionDeReglaDelNegocio {
@@ -144,6 +154,14 @@ public class PopuladorDeDatos {
 	}
 	
 	/*------------------------------------- Populadores ------------------------------------*/
+
+	private void popularCiudad(String nombre, String codigoPostal, String provincia) {
+
+		Ciudad ciudad = new Ciudad(nombre, codigoPostal, provincia);
+
+		sharedService.save(ciudad);
+		storedObjects.put(nombre, ciudad);
+	}
 
 	private void popularUsuario(String nombre, String email, String password) throws ExcepcionDeReglaDelNegocio {
 		
