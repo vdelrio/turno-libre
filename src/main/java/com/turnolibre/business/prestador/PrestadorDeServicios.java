@@ -37,21 +37,20 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		super();
 	}
 	
-	public PrestadorDeServicios(String nombre, String telefono) {
+	public PrestadorDeServicios(String nombre) {
 		super();
 		this.nombre = nombre;
+	}
+
+	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono) {
+		this(nombre);
+		this.ubicacion = ubicacion;
 		this.telefono = telefono;
 	}
-	
-	public PrestadorDeServicios(String nombre, String telefono, String imagen) {
-		this(nombre, telefono);
+
+	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono, String imagen) {
+		this(nombre, ubicacion, telefono);
 		this.imagen = imagen;
-	}
-	
-	public PrestadorDeServicios(Rubro rubro, String nombre, String imagen, String telefono, String acercaDe) {
-		this(nombre, telefono, imagen);
-		this.rubro = rubro;
-		this.acercaDe = acercaDe;
 	}
 
 	/*--------------------------------------------------------------------------------------*/

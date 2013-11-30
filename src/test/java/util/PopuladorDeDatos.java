@@ -8,7 +8,9 @@ import com.turnolibre.business.joda.time.DayOfWeekTime;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
 import com.turnolibre.business.prestador.Servicio;
+import com.turnolibre.business.ubicacion.Barrio;
 import com.turnolibre.business.ubicacion.Ciudad;
+import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
@@ -51,6 +53,7 @@ public class PopuladorDeDatos {
 		inicializarDaos(APPLICATION_CONTEXT, SECURITY_CONTEXT);
 
 		popularCiudades();
+		popularBarrios();
 
 		popularUsuarios();
 		asignarRolesAdmin();
@@ -74,9 +77,14 @@ public class PopuladorDeDatos {
 
 	private void popularCiudades() {
 
+		popularCiudad("CIUDAD AUTONOMA DE BUENOS AIRES", null, null);
 		popularCiudad("11 DE SEPTIEMBRE", "1657", "BUENOS AIRES");
 		popularCiudad("12 DE AGOSTO", "2701", "BUENOS AIRES");
 		popularCiudad("12 DE OCTUBRE", "6501", "BUENOS AIRES");
+	}
+
+	private void popularBarrios() {
+		popularBarrio("Colegiales", (Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES"));
 	}
 	
 	private void popularUsuarios() throws ExcepcionDeReglaDelNegocio {
@@ -107,50 +115,52 @@ public class PopuladorDeDatos {
 
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
-		Rubro rubroSalud = (Rubro) storedObjects.get("Salud");
-		popularPrestador("Consultorio medico sur", "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
+		Rubro rubroSalud = (Rubro) storedObjects.get("rubro - Salud");
+		Ubicacion ubicacionPrestador1 = new Ubicacion((Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES"), (Barrio) storedObjects.get("barrio - Colegiales"), "Aguilar 2547");
+		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
 
-		Rubro rubroDeportes = (Rubro) storedObjects.get("Deportes");
-		popularPrestador("Futbol 5 Mentarios", "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
+		Rubro rubroDeportes = (Rubro) storedObjects.get("rubro - Deportes");
+		Ubicacion ubicacionPrestador2 = new Ubicacion((Ciudad) storedObjects.get("ciudad - 11 DE SEPTIEMBRE"), "61 3476");
+		popularPrestador("Futbol 5 Mentarios", ubicacionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
 	}
 	
 	private void popularAgendas() throws ExcepcionDeReglaDelNegocio {
 		
-		popularAgenda((PrestadorDeServicios) storedObjects.get("Consultorio medico sur"), "Dr. Ramirez", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("German Ramirez")));
-		popularAgenda((PrestadorDeServicios) storedObjects.get("Consultorio medico sur"), "Dra. Lopez", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("Alejandra Lopez")));
-		popularAgenda((PrestadorDeServicios) storedObjects.get("Consultorio medico sur"), "Dr. Del Rio", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("Carlos Del Rio")));
-		popularAgenda((PrestadorDeServicios) storedObjects.get("Futbol 5 Mentarios"), "Canchas", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("Victor Del Rio")));
+		popularAgenda((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Dr. Ramirez", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("usuario - German Ramirez")));
+		popularAgenda((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Dra. Lopez", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("usuario - Alejandra Lopez")));
+		popularAgenda((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Dr. Del Rio", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("usuario - Carlos Del Rio")));
+		popularAgenda((PrestadorDeServicios) storedObjects.get("prestador - Futbol 5 Mentarios"), "Canchas", ANTELACION_60_DIAS, Arrays.asList((Usuario) storedObjects.get("usuario - Victor Del Rio")));
 	}
 
 	private void popularServicios() {
 
-		popularServicio((PrestadorDeServicios) storedObjects.get("Consultorio medico sur"), "Oftalmología", Arrays.asList((Agenda)storedObjects.get("Dr. Ramirez"), (Agenda)storedObjects.get("Dra. Lopez"), (Agenda)storedObjects.get("Dr. Del Rio")));
-		popularServicio((PrestadorDeServicios) storedObjects.get("Consultorio medico sur"), "Cardiología", Arrays.asList((Agenda)storedObjects.get("Dra. Lopez")));
-		popularServicio((PrestadorDeServicios) storedObjects.get("Futbol 5 Mentarios"), "Canchas de futbol", Arrays.asList((Agenda)storedObjects.get("Canchas")));
+		popularServicio((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Oftalmología", Arrays.asList((Agenda)storedObjects.get("agenda - Dr. Ramirez"), (Agenda)storedObjects.get("agenda - Dra. Lopez"), (Agenda)storedObjects.get("agenda - Dr. Del Rio")));
+		popularServicio((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Cardiología", Arrays.asList((Agenda)storedObjects.get("agenda - Dra. Lopez")));
+		popularServicio((PrestadorDeServicios) storedObjects.get("prestador - Futbol 5 Mentarios"), "Canchas de futbol", Arrays.asList((Agenda)storedObjects.get("agenda - Canchas")));
 	}
 	
 	private void popularJornadasHabituales() throws ExcepcionDeReglaDelNegocio {
 		
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Ramirez"), "lunes10a18_1", LUNES_A_LAS_10, LUNES_A_LAS_18, _1_HORA, _2_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Ramirez"), "lunes10a18_1", LUNES_A_LAS_10, LUNES_A_LAS_18, _1_HORA, _2_TURNOS);
 		
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "lunes10a18_2", LUNES_A_LAS_10, LUNES_A_LAS_18, _1_HORA, _2_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "martes930a1130", MARTES_A_LAS_10, MARTES_A_LAS_12, _20_MINUTOS, _1_TURNO);
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "martes1430a1130", MARTES_A_LAS_14_30, MARTES_A_LAS_20_30, _1_30_HORAS, _2_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "miercoles10a18", MIERCOLES_A_LAS_10, MIERCOLES_A_LAS_18, _1_HORA, _1_TURNO);
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "jueves10a18", JUEVES_A_LAS_10, JUEVES_A_LAS_18, _1_HORA, _1_TURNO);
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "viernes10a18", VIERNES_A_LAS_10, VIERNES_A_LAS_18, _1_HORA, _2_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Dr. Del Rio"), "sabados10a15", SABADO_A_LAS_10, SABADO_A_LAS_15, _1_HORA, _1_TURNO);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "lunes10a18_2", LUNES_A_LAS_10, LUNES_A_LAS_18, _1_HORA, _2_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "martes930a1130", MARTES_A_LAS_10, MARTES_A_LAS_12, _20_MINUTOS, _1_TURNO);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "martes1430a1130", MARTES_A_LAS_14_30, MARTES_A_LAS_20_30, _1_30_HORAS, _2_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "miercoles10a18", MIERCOLES_A_LAS_10, MIERCOLES_A_LAS_18, _1_HORA, _1_TURNO);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "jueves10a18", JUEVES_A_LAS_10, JUEVES_A_LAS_18, _1_HORA, _1_TURNO);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "viernes10a18", VIERNES_A_LAS_10, VIERNES_A_LAS_18, _1_HORA, _2_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "sabados10a15", SABADO_A_LAS_10, SABADO_A_LAS_15, _1_HORA, _1_TURNO);
 		
-		popularJornadaHabitual((Agenda)storedObjects.get("Canchas"), "lunes9a18", LUNES_A_LAS_09, LUNES_A_LAS_18, _1_HORA, _3_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Canchas"), "martes9a18", MARTES_A_LAS_09, MARTES_A_LAS_18, _1_HORA, _3_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Canchas"), "miercoles9a18", MIERCOLES_A_LAS_09, MIERCOLES_A_LAS_18, _1_HORA, _3_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Canchas"), "jueves9a18", JUEVES_A_LAS_09, JUEVES_A_LAS_18, _1_HORA, _3_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Canchas"), "viernes9a18", VIERNES_A_LAS_09, VIERNES_A_LAS_18, _1_HORA, _3_TURNOS);
-		popularJornadaHabitual((Agenda)storedObjects.get("Canchas"), "sabado9a13", SABADO_A_LAS_09, SABADO_A_LAS_13, _1_HORA, _3_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Canchas"), "lunes9a18", LUNES_A_LAS_09, LUNES_A_LAS_18, _1_HORA, _3_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Canchas"), "martes9a18", MARTES_A_LAS_09, MARTES_A_LAS_18, _1_HORA, _3_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Canchas"), "miercoles9a18", MIERCOLES_A_LAS_09, MIERCOLES_A_LAS_18, _1_HORA, _3_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Canchas"), "jueves9a18", JUEVES_A_LAS_09, JUEVES_A_LAS_18, _1_HORA, _3_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Canchas"), "viernes9a18", VIERNES_A_LAS_09, VIERNES_A_LAS_18, _1_HORA, _3_TURNOS);
+		popularJornadaHabitual((Agenda)storedObjects.get("agenda - Canchas"), "sabado9a13", SABADO_A_LAS_09, SABADO_A_LAS_13, _1_HORA, _3_TURNOS);
 	}
 	
 	private void popularDiasNoLaborales() throws ExcepcionDeReglaDelNegocio {
-		popularDiaNoLaboral((Agenda)storedObjects.get("Dr. Del Rio"), "diaConferencia", _29_DE_OCTUBRE_DEL_2013, "Décima conferencia de cardiología intervencionista");
+		popularDiaNoLaboral((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "diaConferencia", _29_DE_OCTUBRE_DEL_2014, "Décima conferencia de cardiología intervencionista");
 	}
 	
 	/*------------------------------------- Populadores ------------------------------------*/
@@ -160,7 +170,15 @@ public class PopuladorDeDatos {
 		Ciudad ciudad = new Ciudad(nombre, codigoPostal, provincia);
 
 		sharedService.save(ciudad);
-		storedObjects.put(nombre, ciudad);
+		storedObjects.put("ciudad - " + nombre, ciudad);
+	}
+
+	private void popularBarrio(String nombre, Ciudad ciudad) {
+
+		Barrio barrio = new Barrio(nombre, ciudad);
+
+		sharedService.save(barrio);
+		storedObjects.put("barrio - " + nombre, barrio);
 	}
 
 	private void popularUsuario(String nombre, String email, String password) throws ExcepcionDeReglaDelNegocio {
@@ -169,12 +187,12 @@ public class PopuladorDeDatos {
 		usuario.agregarRol(new Cliente());
 
 		sharedService.save(usuario);
-		storedObjects.put(nombre, usuario);
+		storedObjects.put("usuario - " + nombre, usuario);
 	}
 	
 	private void asignarRolAdmin(String nombreDeUsuario) throws ExcepcionDeReglaDelNegocio {
 		
-		Usuario usuario = (Usuario) storedObjects.get(nombreDeUsuario);
+		Usuario usuario = (Usuario) storedObjects.get("usuario - " + nombreDeUsuario);
 		usuario.agregarRol(new AdministradorDeAgenda());
 
 		sharedService.update(usuario);
@@ -185,16 +203,16 @@ public class PopuladorDeDatos {
 		Rubro rubro = new Rubro(nombre);
 
 		sharedService.save(rubro);
-		storedObjects.put(nombre, rubro);
+		storedObjects.put("rubro - " + nombre, rubro);
 	}
 
-	private void popularPrestador(String nombre, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
+	private void popularPrestador(String nombre, Ubicacion ubicacion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
 
-		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, telefono, imagen);
+		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, ubicacion, telefono, imagen);
 		rubro.agregarPrestadorDeServicios(prestador);
 
 		sharedService.save(prestador);
-		storedObjects.put(nombre, prestador);
+		storedObjects.put("prestador - " + nombre, prestador);
 	}
 	
 	private void popularAgenda(PrestadorDeServicios prestadorDeServicios, String nombre, Period antelacionMaxima, List<Usuario> administradores) throws ExcepcionDeReglaDelNegocio {
@@ -210,7 +228,7 @@ public class PopuladorDeDatos {
 			sharedService.update(usuario);
 		}
 		
-		storedObjects.put(nombre, agenda);
+		storedObjects.put("agenda - " + nombre, agenda);
 	}
 
 	private void popularServicio(PrestadorDeServicios prestadorDeServicios, String nombre, List<Agenda> agendas) {
@@ -223,7 +241,7 @@ public class PopuladorDeDatos {
 		prestadorDeServicios.agregarServicio(servicio);
 
 		sharedService.save(servicio);
-		storedObjects.put(nombre, servicio);
+		storedObjects.put("servicio - " + nombre, servicio);
 	}
 	
 	private void popularJornadaHabitual(Agenda agenda, String nombre, DayOfWeekTime diaYHoraDeInicio, DayOfWeekTime diaYHoraDeFin,
@@ -233,7 +251,7 @@ public class PopuladorDeDatos {
 		agenda.agregarJornadaLaboralHabitual(jornadaHabitual);
 
 		sharedService.update(agenda);
-		storedObjects.put(nombre, jornadaHabitual);
+		storedObjects.put("jhabitual - " + nombre, jornadaHabitual);
 	}	
 	
 	private void popularDiaNoLaboral(Agenda agenda, String nombre, LocalDate fecha, String motivo) throws ExcepcionDeReglaDelNegocio {
@@ -242,7 +260,7 @@ public class PopuladorDeDatos {
 		agenda.agregarDiaNoLaboral(diaNoLaboral);
 
 		sharedService.save(diaNoLaboral);
-		storedObjects.put(nombre, diaNoLaboral);
+		storedObjects.put("dnl - " + nombre, diaNoLaboral);
 	}
 	
 	/*--------------------------------------------------------------------------------------*/

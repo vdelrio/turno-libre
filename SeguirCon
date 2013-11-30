@@ -1,3 +1,2 @@
 
- - Correr los data generators y actualizar los scripts de inicialización (ver si agregar ciudades, barrios y ubicaciones a los data generators)
- - Agragar Ciudad al Cliente
+ - Agragar Ciudad al Cliente (y actualizar populador de datos y scripts)

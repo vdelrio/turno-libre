@@ -85,9 +85,9 @@
 
     <beans profile="dev">
 
-		<!--<jdbc:initialize-database data-source="dataSource">-->
-			<!--<jdbc:script location="classpath:environments/dev/initialize-database.sql"/>-->
-		<!--</jdbc:initialize-database>-->
+		<jdbc:initialize-database data-source="dataSource">
+			<jdbc:script location="classpath:environments/dev/initialize-database.sql"/>
+		</jdbc:initialize-database>
 
         <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
             <property name="locations">

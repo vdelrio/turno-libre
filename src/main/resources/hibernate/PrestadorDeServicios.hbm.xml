@@ -19,9 +19,9 @@
 		<property name="acercaDe" column="acerca_de" />
 
 		<component name="ubicacion" class="com.turnolibre.business.ubicacion.Ubicacion">
-			<many-to-one name="ciudad" column="ciudad_id" class="com.turnolibre.business.ubicacion.Ciudad" unique-key="UBICACION_BUSINESS_KEY" not-null="true" foreign-key="FK_UBICACION_CIUDAD" insert="false" update="false" />
+			<many-to-one name="ciudad" column="ciudad_id" class="com.turnolibre.business.ubicacion.Ciudad" unique-key="UBICACION_BUSINESS_KEY" not-null="true" foreign-key="FK_UBICACION_CIUDAD" />
 			<property name="direccion" unique-key="UBICACION_BUSINESS_KEY" not-null="true"/>
-			<many-to-one name="barrio" column="barrio_id" class="com.turnolibre.business.ubicacion.Barrio" foreign-key="FK_UBICACION_BARRIO" insert="false" update="false" />
+			<many-to-one name="barrio" column="barrio_id" class="com.turnolibre.business.ubicacion.Barrio" foreign-key="FK_UBICACION_BARRIO" />
 		</component>
 
 		<set name="agendas" cascade="all,delete-orphan" inverse="true">

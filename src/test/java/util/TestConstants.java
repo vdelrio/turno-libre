@@ -35,7 +35,7 @@ public class TestConstants {
 	public static final LocalDate _1_DE_MAYO_DEL_2012 = new LocalDate(2012, 5, 1);
 	public static final LocalDate _25_DE_MAYO_DEL_2012 = new LocalDate(2012, 5, 25);
 	public static final LocalDate _9_DE_JULIO_DEL_2012 = new LocalDate(2012, 7, 9);
-	public static final LocalDate _29_DE_OCTUBRE_DEL_2013 = new LocalDate(2013, 10, 29);
+	public static final LocalDate _29_DE_OCTUBRE_DEL_2014 = new LocalDate(2014, 10, 29);
 	public static final LocalDate _31_DE_DICIEMBRE_DEL_2012 = new LocalDate(2012, 12, 31);
 
 	public static final DayOfWeekTime LUNES_A_LAS_09 = new DayOfWeekTime(DateTimeConstants.MONDAY, 9, 0);
