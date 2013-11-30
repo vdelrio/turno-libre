@@ -1,43 +1,32 @@
 package util;
 
 import com.turnolibre.business.agenda.Agenda;
-import com.turnolibre.business.agenda.DiaNoLaboral;
-import com.turnolibre.business.agenda.JornadaLaboralHabitual;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
-import com.turnolibre.business.joda.time.DayOfWeekTime;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
-import com.turnolibre.business.prestador.Servicio;
 import com.turnolibre.business.ubicacion.Barrio;
 import com.turnolibre.business.ubicacion.Ciudad;
 import com.turnolibre.business.ubicacion.Ubicacion;
-import com.turnolibre.business.usuario.AdministradorDeAgenda;
-import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
-import com.turnolibre.service.SharedService;
-import org.joda.time.*;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.DateTimeUtils;
+import org.joda.time.LocalDate;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static util.TestConstants.*;
 
 
-public class PopuladorDeDatos {
+public class PopuladorDeDatos extends Populador {
 
 	private static final String APPLICATION_CONTEXT = "classpath:spring/business-config.xml";
 	private static final String SECURITY_CONTEXT = "classpath:spring/security-config.xml";
 
-	private Map<String, Object> storedObjects = new HashMap<String, Object>();
-	private SharedService sharedService;
-	private PasswordEncoder passwordEncoder;
 
-	
+	private PopuladorDeDatos() {
+		super(APPLICATION_CONTEXT, SECURITY_CONTEXT);
+	}
+
 	public static void main(String[] args) throws ExcepcionDeReglaDelNegocio {
 		
 		DateTimeUtils.setCurrentMillisFixed(LocalDate.now().withDayOfWeek(DateTimeConstants.MONDAY).toDateTimeAtStartOfDay().getMillis());
@@ -50,8 +39,6 @@ public class PopuladorDeDatos {
 	
 	private void ejecutar() throws ExcepcionDeReglaDelNegocio {
 		
-		inicializarDaos(APPLICATION_CONTEXT, SECURITY_CONTEXT);
-
 		popularCiudades();
 		popularBarrios();
 
@@ -66,13 +53,6 @@ public class PopuladorDeDatos {
 
 		popularJornadasHabituales();
 		popularDiasNoLaborales();
-	}
-	
-	private void inicializarDaos(String... contexts) {
-		
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(contexts);
-		sharedService = (SharedService) ctx.getBean("sharedServiceImpl");
-		passwordEncoder = (PasswordEncoder) ctx.getBean("passwordEncoder");
 	}
 
 	private void popularCiudades() {
@@ -89,12 +69,15 @@ public class PopuladorDeDatos {
 	
 	private void popularUsuarios() throws ExcepcionDeReglaDelNegocio {
 		
-		popularUsuario("Victor Del Rio",   "victor.delrio@gmail.com",    "123456");
-		popularUsuario("Manuel Rodriguez", "manuel.rodriguez@gmail.com", "123456");
-		popularUsuario("Juan Sanchez",     "juan.sanchez@gmail.com",     "123456");
-		popularUsuario("Carlos Del Rio",   "carlos.delrio@gmail.com",    "123456");
-		popularUsuario("German Ramirez",   "german.rodriguez@gmail.com", "123456");
-		popularUsuario("Alejandra Lopez",  "alejandra.lopez@gmail.com",  "123456");
+		Ciudad caba = (Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES");
+		Ciudad onceSept = (Ciudad) storedObjects.get("ciudad - 11 DE SEPTIEMBRE");
+
+		popularUsuario("Victor Del Rio",   "victor.delrio@gmail.com",    "123456", caba);
+		popularUsuario("Manuel Rodriguez", "manuel.rodriguez@gmail.com", "123456", caba);
+		popularUsuario("Juan Sanchez",     "juan.sanchez@gmail.com",     "123456", caba);
+		popularUsuario("Carlos Del Rio",   "carlos.delrio@gmail.com",    "123456", caba);
+		popularUsuario("German Ramirez",   "german.rodriguez@gmail.com", "123456", onceSept);
+		popularUsuario("Alejandra Lopez",  "alejandra.lopez@gmail.com",  "123456", onceSept);
 	}
 	
 	private void asignarRolesAdmin() throws ExcepcionDeReglaDelNegocio {
@@ -162,107 +145,5 @@ public class PopuladorDeDatos {
 	private void popularDiasNoLaborales() throws ExcepcionDeReglaDelNegocio {
 		popularDiaNoLaboral((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "diaConferencia", _29_DE_OCTUBRE_DEL_2014, "Décima conferencia de cardiología intervencionista");
 	}
-	
-	/*------------------------------------- Populadores ------------------------------------*/
 
-	private void popularCiudad(String nombre, String codigoPostal, String provincia) {
-
-		Ciudad ciudad = new Ciudad(nombre, codigoPostal, provincia);
-
-		sharedService.save(ciudad);
-		storedObjects.put("ciudad - " + nombre, ciudad);
-	}
-
-	private void popularBarrio(String nombre, Ciudad ciudad) {
-
-		Barrio barrio = new Barrio(nombre, ciudad);
-
-		sharedService.save(barrio);
-		storedObjects.put("barrio - " + nombre, barrio);
-	}
-
-	private void popularUsuario(String nombre, String email, String password) throws ExcepcionDeReglaDelNegocio {
-		
-		Usuario usuario = new Usuario(nombre, email, passwordEncoder.encode(password));
-		usuario.agregarRol(new Cliente());
-
-		sharedService.save(usuario);
-		storedObjects.put("usuario - " + nombre, usuario);
-	}
-	
-	private void asignarRolAdmin(String nombreDeUsuario) throws ExcepcionDeReglaDelNegocio {
-		
-		Usuario usuario = (Usuario) storedObjects.get("usuario - " + nombreDeUsuario);
-		usuario.agregarRol(new AdministradorDeAgenda());
-
-		sharedService.update(usuario);
-	}
-
-	private void popularRubro(String nombre) {
-
-		Rubro rubro = new Rubro(nombre);
-
-		sharedService.save(rubro);
-		storedObjects.put("rubro - " + nombre, rubro);
-	}
-
-	private void popularPrestador(String nombre, Ubicacion ubicacion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
-
-		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, ubicacion, telefono, imagen);
-		rubro.agregarPrestadorDeServicios(prestador);
-
-		sharedService.save(prestador);
-		storedObjects.put("prestador - " + nombre, prestador);
-	}
-	
-	private void popularAgenda(PrestadorDeServicios prestadorDeServicios, String nombre, Period antelacionMaxima, List<Usuario> administradores) throws ExcepcionDeReglaDelNegocio {
-		
-		Agenda agenda = new Agenda(nombre, antelacionMaxima);
-		prestadorDeServicios.agregarAgenda(agenda);
-
-		sharedService.save(agenda);
-
-		for (Usuario usuario : administradores) {
-			
-			((AdministradorDeAgenda) usuario.getRol(AdministradorDeAgenda.NOMBRE_DE_ROL)).getAgendas().add(agenda);
-			sharedService.update(usuario);
-		}
-		
-		storedObjects.put("agenda - " + nombre, agenda);
-	}
-
-	private void popularServicio(PrestadorDeServicios prestadorDeServicios, String nombre, List<Agenda> agendas) {
-
-		Servicio servicio = new Servicio(nombre);
-
-		for (Agenda agenda : agendas)
-			servicio.getAgendas().add(agenda);
-
-		prestadorDeServicios.agregarServicio(servicio);
-
-		sharedService.save(servicio);
-		storedObjects.put("servicio - " + nombre, servicio);
-	}
-	
-	private void popularJornadaHabitual(Agenda agenda, String nombre, DayOfWeekTime diaYHoraDeInicio, DayOfWeekTime diaYHoraDeFin,
-			Duration duracionDeLosTurnos, Integer vacantesPorTurno) throws ExcepcionDeReglaDelNegocio {
-		
-		JornadaLaboralHabitual jornadaHabitual = new JornadaLaboralHabitual(diaYHoraDeInicio, diaYHoraDeFin, duracionDeLosTurnos, vacantesPorTurno);
-		agenda.agregarJornadaLaboralHabitual(jornadaHabitual);
-
-		sharedService.update(agenda);
-		storedObjects.put("jhabitual - " + nombre, jornadaHabitual);
-	}	
-	
-	private void popularDiaNoLaboral(Agenda agenda, String nombre, LocalDate fecha, String motivo) throws ExcepcionDeReglaDelNegocio {
-		
-		DiaNoLaboral diaNoLaboral = new DiaNoLaboral(fecha, motivo);
-		agenda.agregarDiaNoLaboral(diaNoLaboral);
-
-		sharedService.save(diaNoLaboral);
-		storedObjects.put("dnl - " + nombre, diaNoLaboral);
-	}
-	
-	/*--------------------------------------------------------------------------------------*/
-	
 }
