@@ -1,2 +1,27 @@
 
- - Agragar Ciudad al Cliente (y actualizar populador de datos y scripts)
+ - Agragar las ciudades que faltan (dejar menos en dev que en prod)
+
+
+
+
+
+
+
+
+
+
+
+- Reemplazos ciudades
+
+\{"id":"(\d*)","nombre":" --> '
+","cp":" --> ', '
+"\}, --> ', 'BUENOS AIRES'\n
+, --> ;
+
+guardarlo como csv, abrirlo con el excel y agregar los ids
+guardar nuevamente y abrir con sublime
+
+;  --> ;
+; --> ,
+
+Nota: siempre tener cuidado con los caracteres '\ufffd' que representan una Ñ, reemplazarlos. Y estar atento a otros caracteres raros.

@@ -69,7 +69,7 @@
     <beans profile="test">
 
 		<jdbc:initialize-database data-source="dataSource">
-			<jdbc:script location="classpath:environments/test/initialize-database.sql"/>
+			<jdbc:script location="classpath:environments/test/initialize-database.sql" encoding="UTF-8"/>
 		</jdbc:initialize-database>
 
         <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -86,7 +86,7 @@
     <beans profile="dev">
 
 		<jdbc:initialize-database data-source="dataSource">
-			<jdbc:script location="classpath:environments/dev/initialize-database.sql"/>
+			<jdbc:script location="classpath:environments/dev/initialize-database.sql" encoding="UTF-8"/>
 		</jdbc:initialize-database>
 
         <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -116,7 +116,7 @@
     <beans profile="prod">
 
         <jdbc:initialize-database data-source="dataSource">
-            <jdbc:script location="classpath:environments/prod/initialize-database.sql"/>
+            <jdbc:script location="classpath:environments/prod/initialize-database.sql" encoding="UTF-8"/>
         </jdbc:initialize-database>
 
         <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
