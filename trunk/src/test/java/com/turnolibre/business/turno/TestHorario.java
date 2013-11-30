@@ -19,7 +19,7 @@ import static util.TestConstants.*;
 
 public class TestHorario {
 
-	private static final PrestadorDeServicios PRESTADOR = new PrestadorDeServicios("Tito papi", "Aguilar 3456", "45259865");
+	private static final PrestadorDeServicios PRESTADOR = new PrestadorDeServicios("Tito papi");
 	private static final Agenda AGENDA = new Agenda("", Period.years(10));
 	
 	private static Cliente clienteJuancito;

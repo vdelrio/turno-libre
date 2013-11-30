@@ -14,8 +14,9 @@ public class Cliente extends Rol {
 
 	public static String NOMBRE_DE_ROL = "cliente";
 	
+//	private Ciudad ciudad;
 	private SortedSet<Turno> turnos = new TreeSet<Turno>();
-	
+
 	@Override
 	public String getNombreDeRol() {
 		return NOMBRE_DE_ROL;
