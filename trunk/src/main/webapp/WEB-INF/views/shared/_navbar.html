@@ -17,7 +17,7 @@
 
 		<div th:unless="${#authorization.expression('isAuthenticated()')}" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<!--<li><a th:href="@{/test}"><strong>TEST</strong></a></li>-->
+				<li><a th:href="@{/test}"><strong>TEST</strong></a></li>
 				<li><a th:href="@{/user/login}" th:text="#{iniciar.sesion}">Iniciar sessión</a></li>
 			</ul>
 		</div>
