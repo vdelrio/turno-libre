@@ -2,6 +2,8 @@ package com.turnolibre.presentation.controller;
 
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.i18n.MensajeLocalizable;
+import com.turnolibre.business.ubicacion.Ciudad;
+import com.turnolibre.service.SharedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -17,6 +20,8 @@ public class TestController {
 
 	@Autowired
 	private MessageSource messageSource;
+	@Autowired
+	private SharedService sharedService;
 
 
 	@RequestMapping
@@ -32,6 +37,11 @@ public class TestController {
 		}
 
 
+	}
+
+	@ModelAttribute("allCities")
+	public List<Ciudad> populateCities() {
+		return this.sharedService.findAll(Ciudad.class);
 	}
 
 	@ExceptionHandler(ExcepcionDeReglaDelNegocio.class)
