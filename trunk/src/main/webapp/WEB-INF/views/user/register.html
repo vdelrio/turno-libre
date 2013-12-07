@@ -3,6 +3,8 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<title th:text="#{titulo.pagina.registracion}">Crear una cuenta</title>
+	<link rel="stylesheet" th:href="@{/resources/chosen/chosen.css}">
+	<link rel="stylesheet" th:href="@{/resources/chosen/chosen-bootstrap.css}">
 </head>
 <body>
 
@@ -27,6 +29,12 @@
 						<input type="email" th:field="*{email}" class="form-control" required>
 					</div>
 					<div class="form-group">
+						<label for="ciudad" th:text="#{ciudad}">Ciudad</label>
+						<select id="ciudad" name="ciudad" class="form-control" required>
+							<option th:each="city : ${allCities}" th:value="${city.id}" th:text="${city}">Necochea</option>
+						</select>
+					</div>
+					<div class="form-group">
 						<label for="password" th:text="#{contraseña}">Contraseña</label>
 						<input type="password" th:field="*{password}" class="form-control" required>
 					</div>
@@ -40,6 +48,7 @@
 		</div>
 	</div>
 
+	<script th:src="@{/resources/chosen/chosen.jquery.js}"></script>
 	<script th:src="@{/resources/application/js/register.js}"></script>
 
 </div>

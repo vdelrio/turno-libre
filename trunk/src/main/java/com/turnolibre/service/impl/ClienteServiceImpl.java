@@ -21,6 +21,11 @@ public class ClienteServiceImpl implements ClienteService {
 	/*------------------------------------ Public methods ----------------------------------*/
 
 	@Override
+	public Cliente findByUsuario(Long usuarioId) {
+		return null;  //To change body of implemented methods use File | Settings | File Templates.
+	}
+
+	@Override
 	@Transactional(readOnly = true)
 	public SortedSet<Turno> findTurnos(Long clienteId) {
 

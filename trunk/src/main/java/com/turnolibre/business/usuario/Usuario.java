@@ -1,6 +1,6 @@
 package com.turnolibre.business.usuario;
 
-import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.turnolibre.util.CollectionUtils;
 import org.joda.time.DateTime;
 
@@ -63,8 +63,8 @@ public class Usuario {
 		rol.setUsuario(null);
 	}
 
-	public Rol getRol(String nombreDelRol) {
-		return CollectionUtils.get(this.roles, new NombreDeRolPredicate(nombreDelRol));
+	public <T extends Rol> T getRol(Class<T> rolClass) {
+		return (T) CollectionUtils.get(this.roles, Predicates.instanceOf(rolClass));
 	}
 
 	/*--------------------------------------------------------------------------------------*/
@@ -164,23 +164,6 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return this.email;
-	}
-
-	/*--------------------------------------------------------------------------------------*/
-	/*---------------------------------- Internal classes ----------------------------------*/
-
-	private class NombreDeRolPredicate implements Predicate<Rol> {
-
-		private String nombreDeRol;
-
-		public NombreDeRolPredicate(String nombreDeRol) {
-			this.nombreDeRol = nombreDeRol;
-		}
-
-		@Override
-		public boolean apply(Rol rolActual) {
-			return rolActual.getNombreDeRol().equals(this.nombreDeRol);
-		}
 	}
 
 	/*--------------------------------------------------------------------------------------*/

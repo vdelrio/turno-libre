@@ -21,7 +21,7 @@
 		
 		<subclass name="Cliente" discriminator-value="cliente">
 
-			<many-to-one name="ciudad" column="ciudad_id" class="com.turnolibre.business.ubicacion.Ciudad" foreign-key="FK_CLIENTE_CIUDAD" />
+			<many-to-one name="ciudad" column="ciudad_id" class="com.turnolibre.business.ubicacion.Ciudad" lazy="false" foreign-key="FK_CLIENTE_CIUDAD" />
 
 			<set name="turnos" sort="natural" inverse="true">
 				<key column="cliente_id" />

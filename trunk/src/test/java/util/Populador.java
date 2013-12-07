@@ -106,7 +106,7 @@ public class Populador {
 
 		for (Usuario usuario : administradores) {
 
-			((AdministradorDeAgenda) usuario.getRol(AdministradorDeAgenda.NOMBRE_DE_ROL)).getAgendas().add(agenda);
+			usuario.getRol(AdministradorDeAgenda.class).getAgendas().add(agenda);
 			sharedService.update(usuario);
 		}
 

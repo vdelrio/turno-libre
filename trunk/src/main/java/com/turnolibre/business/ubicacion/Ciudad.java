@@ -16,7 +16,7 @@ public class Ciudad {
 
 	/*------------------------------------ Constructors ------------------------------------*/
 
-	protected Ciudad() {
+	public Ciudad() {
 		super();
 	}
 

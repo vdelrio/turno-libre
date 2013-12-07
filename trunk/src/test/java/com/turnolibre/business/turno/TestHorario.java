@@ -42,8 +42,8 @@ public class TestHorario {
         Usuario victor = new Usuario("Victor Del Rio","victor@gmail.com", "123456");
         juancito.agregarRol(new Cliente());
         victor.agregarRol(new Cliente());
-        clienteJuancito = (Cliente) juancito.getRol(Cliente.NOMBRE_DE_ROL);
-        clienteVictor = (Cliente) victor.getRol(Cliente.NOMBRE_DE_ROL);
+        clienteJuancito = juancito.getRol(Cliente.class);
+        clienteVictor = victor.getRol(Cliente.class);
     }
 
     @AfterClass

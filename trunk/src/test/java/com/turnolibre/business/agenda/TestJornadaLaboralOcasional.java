@@ -34,7 +34,7 @@ public class TestJornadaLaboralOcasional {
 	public void setUp() throws Exception {
 		Usuario juan = new Usuario("Juan Lopez","juan@gmail.com", "123");
 		juan.agregarRol(new Cliente());
-		clienteJuan = (Cliente) juan.getRol(Cliente.NOMBRE_DE_ROL);
+		clienteJuan = juan.getRol(Cliente.class);
 	}
 	
 	@AfterClass

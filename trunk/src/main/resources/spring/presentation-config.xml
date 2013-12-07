@@ -11,7 +11,7 @@
 	<context:component-scan base-package="com.turnolibre.presentation.controller" />
 
 	<!-- Configures the @Controller programming model -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService" />
 
 	<!-- Configures Handler Interceptors -->
 	<mvc:interceptors>
@@ -34,6 +34,15 @@
         <property name="defaultEncoding" value="UTF-8"/>
 		<!--TODO cambiar este valor por 3600 en prod-->
 		<property name="cacheSeconds" value="0" />
+	</bean>
+
+	<!-- Standard Spring formatting-enabled implementation -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="com.turnolibre.presentation.conversion.CiudadFormatter" />
+			</set>
+		</property>
 	</bean>
 
 	<!-- Thymeleaf configuration -->

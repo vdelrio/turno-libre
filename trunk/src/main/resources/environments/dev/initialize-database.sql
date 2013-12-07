@@ -386,7 +386,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'cliente',1,1),(2,'cliente',2,1),(3,'cliente',3,1),(4,'cliente',4,1),(5,'cliente',5,2),(6,'cliente',6,2),(7,'adm-agenda',5,NULL),(8,'adm-agenda',6,NULL),(9,'adm-agenda',4,NULL),(10,'adm-agenda',1,NULL);
+INSERT INTO `roles` VALUES (1,'cliente',1,1485),(2,'cliente',2,1),(3,'cliente',3,1),(4,'cliente',4,1),(5,'cliente',5,2),(6,'cliente',6,2),(7,'adm-agenda',5,NULL),(8,'adm-agenda',6,NULL),(9,'adm-agenda',4,NULL),(10,'adm-agenda',1,NULL);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 

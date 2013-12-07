@@ -6,6 +6,8 @@
 
 $(document).ready(function() {
 
+	$("#ciudad").chosen();
+
 	$(".register-form").submit(function(event) {
 
 		var $form = $(this);

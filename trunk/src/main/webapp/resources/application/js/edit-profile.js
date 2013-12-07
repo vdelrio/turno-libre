@@ -6,6 +6,8 @@
 
 $(document).ready(function() {
 
+	$(".ciudad").chosen();
+
 	bindFormToFeedback("edit-profile-form");
 
 });
