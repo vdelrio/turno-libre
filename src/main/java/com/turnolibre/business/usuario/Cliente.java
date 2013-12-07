@@ -21,7 +21,6 @@ public class Cliente extends Rol {
 
 	/*------------------------------------ Constructors ------------------------------------*/
 
-	// TODO pasar a protected
 	public Cliente() {
 		super();
 	}

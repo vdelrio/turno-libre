@@ -1,9 +1,6 @@
 
+ - Hacer andar la edición de perfil con las ciudades y revisar todos, incluyendo la registración
  - Agragar las ciudades que faltan (dejar menos en dev que en prod)
- - Agregar el chosen de ciudades al formulario de registración de usuarios
-	* Crear el servicio que recibe las letras y devuelve la lista
-	* Armar un template que sepa llamar a un servicio y actualize los options del select por jquery y después llame a $("#form_field").trigger("chosen:updated");
-
 
 
 

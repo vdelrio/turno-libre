@@ -130,8 +130,8 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void sacarTurnos() throws ExcepcionDeReglaDelNegocio {
 
-		sacarTurno((Cliente)((Usuario)storedObjects.get("usuario - Victor Del Rio")).getRol(Cliente.NOMBRE_DE_ROL), (Agenda)storedObjects.get("agenda - Dra. Lopez"), INTERVALO_EN_JORNADA_HABITUAL);
-		sacarTurno((Cliente)((Usuario)storedObjects.get("usuario - Manuel Rodriguez")).getRol(Cliente.NOMBRE_DE_ROL), (Agenda)storedObjects.get("agenda - Dra. Lopez"), INTERVALO_EN_JORNADA_HABITUAL);
+		sacarTurno(((Usuario)storedObjects.get("usuario - Victor Del Rio")).getRol(Cliente.class), (Agenda)storedObjects.get("agenda - Dra. Lopez"), INTERVALO_EN_JORNADA_HABITUAL);
+		sacarTurno(((Usuario)storedObjects.get("usuario - Manuel Rodriguez")).getRol(Cliente.class), (Agenda)storedObjects.get("agenda - Dra. Lopez"), INTERVALO_EN_JORNADA_HABITUAL);
 	}
 
 }

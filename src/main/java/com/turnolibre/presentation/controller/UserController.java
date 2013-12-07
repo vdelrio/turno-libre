@@ -2,6 +2,8 @@ package com.turnolibre.presentation.controller;
 
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.i18n.MensajeLocalizable;
+import com.turnolibre.business.ubicacion.Ciudad;
+import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
 import com.turnolibre.security.UsuarioDeSesion;
 import com.turnolibre.service.SharedService;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -51,9 +54,9 @@ public class UserController {
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	@ResponseBody
-	public String register(Usuario usuario, SessionStatus sessionStatus) throws ExcepcionDeReglaDelNegocio {
+	public String register(Usuario usuario, @RequestParam("ciudad") Ciudad ciudad, SessionStatus sessionStatus) throws ExcepcionDeReglaDelNegocio {
 
-		this.usuarioService.registrarUsuario(usuario);
+		this.usuarioService.registrarUsuario(usuario, ciudad);
 		sessionStatus.setComplete();
 
 		return "/";
@@ -62,13 +65,18 @@ public class UserController {
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String initProfile(Model model) {
 
-		model.addAttribute("usuario", sharedService.get(Usuario.class, getUsuarioDeSesion().getId()));
+		Usuario usuario = sharedService.get(Usuario.class, getUsuarioDeSesion().getId());
+		Cliente cliente = sharedService.get(Cliente.class, usuario.getRol(Cliente.class).getId());
+
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("selectedCity", cliente.getCiudad());
+
 		return "user/profile";
 	}
 
 	@RequestMapping(value = "update-profile", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateProfile(Usuario usuario, SessionStatus sessionStatus, Locale locale) {
+	public String updateProfile(Usuario usuario, @RequestParam("ciudad") Ciudad ciudad, SessionStatus sessionStatus, Locale locale) {
 
 		this.sharedService.update(usuario);
 		sessionStatus.setComplete();
@@ -89,6 +97,11 @@ public class UserController {
 		usuarioService.changePassword(getUsuarioDeSesion().getId(), currentPassword, newPassword);
 
 		return messageSource.getMessage("modificacion.contraseña.exitosa", null, locale);
+	}
+
+	@ModelAttribute("allCities")
+	public List<Ciudad> populateCities() {
+		return this.sharedService.findAll(Ciudad.class);
 	}
 
 	@ExceptionHandler(ExcepcionDeReglaDelNegocio.class)
