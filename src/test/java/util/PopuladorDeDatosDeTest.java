@@ -61,17 +61,19 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void popularProvincias() {
 
+		popularProvincia("CIUDAD AUTONOMA DE BUENOS AIRES");
 		popularProvincia("BUENOS AIRES");
 	}
 
 	private void popularCiudades() {
 
 		Provincia buenosAires = (Provincia) storedObjects.get("provincia - BUENOS AIRES");
+		Provincia caba = (Provincia) storedObjects.get("provincia - CIUDAD AUTONOMA DE BUENOS AIRES");
 
-		popularCiudad("CIUDAD AUTONOMA DE BUENOS AIRES", null, null);
-		popularCiudad("11 DE SEPTIEMBRE", "1657", buenosAires);
-		popularCiudad("12 DE AGOSTO", "2701", buenosAires);
-		popularCiudad("12 DE OCTUBRE", "6501", buenosAires);
+		popularCiudad("CIUDAD AUTONOMA DE BUENOS AIRES", caba, null);
+		popularCiudad("11 DE SEPTIEMBRE", buenosAires, "1657");
+		popularCiudad("12 DE AGOSTO", buenosAires, "2701");
+		popularCiudad("12 DE OCTUBRE", buenosAires, "6501");
 	}
 
 	private void popularBarrios() {

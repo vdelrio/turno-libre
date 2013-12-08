@@ -3,9 +3,11 @@ package com.turnolibre.presentation.controller;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.i18n.MensajeLocalizable;
 import com.turnolibre.business.ubicacion.Ciudad;
+import com.turnolibre.business.ubicacion.Provincia;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
 import com.turnolibre.security.UsuarioDeSesion;
+import com.turnolibre.service.CiudadService;
 import com.turnolibre.service.SharedService;
 import com.turnolibre.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class UserController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private CiudadService ciudadService;
 	@Autowired
 	private SharedService sharedService;
 	@Autowired
@@ -99,9 +103,15 @@ public class UserController {
 		return messageSource.getMessage("modificacion.contraseña.exitosa", null, locale);
 	}
 
-	@ModelAttribute("allCities")
-	public List<Ciudad> populateCities() {
-		return this.sharedService.findAll(Ciudad.class);
+	@ModelAttribute("allProvincias")
+	public List<Provincia> populateCities() {
+		return this.sharedService.findAll(Provincia.class);
+	}
+
+	@RequestMapping(value = "list-cities", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Ciudad> listCities(Long provinciaId) {
+		return this.ciudadService.findByProvincia(provinciaId);
 	}
 
 	@ExceptionHandler(ExcepcionDeReglaDelNegocio.class)

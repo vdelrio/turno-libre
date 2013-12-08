@@ -11,7 +11,8 @@
 			<generator class="native" />
 		</id>
 
-		<property name="nombre" unique-key="PROVINCIA_BUSINESS_KEY" not-null="true" />
+		<!-- No tiene unique-key porque sino los ordena alfabeticamente y no es lo que se quiere -->
+		<property name="nombre" not-null="true" />
 
 	</class>
 
