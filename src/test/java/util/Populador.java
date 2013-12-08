@@ -13,6 +13,7 @@ import com.turnolibre.business.prestador.Servicio;
 import com.turnolibre.business.turno.Horario;
 import com.turnolibre.business.ubicacion.Barrio;
 import com.turnolibre.business.ubicacion.Ciudad;
+import com.turnolibre.business.ubicacion.Provincia;
 import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.business.usuario.Cliente;
@@ -47,7 +48,15 @@ public class Populador {
     /*--------------------------------------------------------------------------------------*/
     /*------------------------------------ Public methods ----------------------------------*/
 
-	public void popularCiudad(String nombre, String codigoPostal, String provincia) {
+	public void popularProvincia(String nombre) {
+
+		Provincia provincia = new Provincia(nombre);
+
+		sharedService.save(provincia);
+		storedObjects.put("provincia - " + nombre, provincia);
+	}
+
+	public void popularCiudad(String nombre, String codigoPostal, Provincia provincia) {
 
 		Ciudad ciudad = new Ciudad(nombre, codigoPostal, provincia);
 

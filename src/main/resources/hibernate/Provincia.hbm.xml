@@ -5,16 +5,13 @@
 
 <hibernate-mapping package="com.turnolibre.business.ubicacion" default-access="field">
 
-	<class name="Ciudad" table="ciudades">
+	<class name="Provincia" table="provincias">
 
 		<id name="id">
 			<generator class="native" />
 		</id>
 
-		<many-to-one name="provincia" column="provincia_id" class="Provincia" foreign-key="FK_CIUDAD_PROVINCIA" update="false" />
-
-		<property name="nombre" not-null="true" />
-		<property name="codigoPostal" column="codigo_postal" />
+		<property name="nombre" unique-key="PROVINCIA_BUSINESS_KEY" not-null="true" />
 
 	</class>
 

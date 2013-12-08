@@ -39,6 +39,7 @@
                 <value>hibernate/Noticia.hbm.xml</value>
                 <value>hibernate/Notificacion.hbm.xml</value>
                 <value>hibernate/PrestadorDeServicios.hbm.xml</value>
+                <value>hibernate/Provincia.hbm.xml</value>
                 <value>hibernate/Rol.hbm.xml</value>
                 <value>hibernate/Rubro.hbm.xml</value>
                 <value>hibernate/Servicio.hbm.xml</value>

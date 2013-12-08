@@ -8,10 +8,10 @@ package com.turnolibre.business.ubicacion;
 public class Ciudad {
 
 	private Long id;
+	private Provincia provincia;
 
 	private String nombre;
 	private String codigoPostal;
-	private String provincia;
 
 
 	/*------------------------------------ Constructors ------------------------------------*/
@@ -24,7 +24,7 @@ public class Ciudad {
 		this.nombre = nombre;
 	}
 
-	public Ciudad(String nombre, String codigoPostal, String provincia) {
+	public Ciudad(String nombre, String codigoPostal, Provincia provincia) {
 
 		this.nombre = nombre;
 		this.codigoPostal = codigoPostal;
@@ -36,6 +36,14 @@ public class Ciudad {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	public String getNombre() {
@@ -52,14 +60,6 @@ public class Ciudad {
 
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
-	}
-
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
 	}
 
     /*--------------------------------------------------------------------------------------*/
@@ -102,12 +102,6 @@ public class Ciudad {
 			sbuilder.append(" (");
 			sbuilder.append(this.getCodigoPostal());
 			sbuilder.append(")");
-		}
-
-		if (this.getProvincia() != null) {
-
-			sbuilder.append(" - ");
-			sbuilder.append(this.getProvincia());
 		}
 
 		return sbuilder.toString();
