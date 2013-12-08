@@ -1,5 +1,7 @@
 package com.turnolibre.business.ubicacion;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * Representa la ciudad en la que se encuentra un prestador de servicios o donde vive un cliente.
  *
@@ -20,15 +22,16 @@ public class Ciudad {
 		super();
 	}
 
-	public Ciudad(String nombre) {
+	public Ciudad(String nombre, Provincia provincia) {
+
 		this.nombre = nombre;
+		this.provincia = provincia;
 	}
 
-	public Ciudad(String nombre, String codigoPostal, Provincia provincia) {
+	public Ciudad(String nombre, Provincia provincia, String codigoPostal) {
 
-		this.nombre = nombre;
+		this(nombre, provincia);
 		this.codigoPostal = codigoPostal;
-		this.provincia = provincia;
 	}
 
 	/*--------------------------------------------------------------------------------------*/
@@ -38,6 +41,7 @@ public class Ciudad {
 		return id;
 	}
 
+	@JsonIgnore
 	public Provincia getProvincia() {
 		return provincia;
 	}
@@ -67,28 +71,22 @@ public class Ciudad {
 
 	@Override
 	public boolean equals(Object o) {
-
 		if (this == o) return true;
 		if (o == null || !(o instanceof Ciudad)) return false;
 
-		Ciudad otraCiudad = (Ciudad) o;
+		Ciudad ciudad = (Ciudad) o;
 
-		if (!this.getNombre().equals(otraCiudad.getNombre())) return false;
-		if (this.getCodigoPostal() != null ? !this.getCodigoPostal().equals(otraCiudad.getCodigoPostal()) : otraCiudad.getCodigoPostal() != null) return false;
-		if (this.getProvincia() != null ? !this.getProvincia().equals(otraCiudad.getProvincia()) : otraCiudad.getProvincia() != null) return false;
+		if (!id.equals(ciudad.id)) return false;
 
 		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = this.getNombre().hashCode();
-		result = 31 * result + (this.getCodigoPostal() != null ? this.getCodigoPostal().hashCode() : 0);
-		result = 31 * result + (this.getProvincia() != null ? this.getProvincia().hashCode() : 0);
-		return result;
+		return id.hashCode();
 	}
 
-    /*--------------------------------------------------------------------------------------*/
+	/*--------------------------------------------------------------------------------------*/
     /*-------------------------------------- Overrides -------------------------------------*/
 
 	@Override

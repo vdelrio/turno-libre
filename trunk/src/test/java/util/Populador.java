@@ -56,9 +56,9 @@ public class Populador {
 		storedObjects.put("provincia - " + nombre, provincia);
 	}
 
-	public void popularCiudad(String nombre, String codigoPostal, Provincia provincia) {
+	public void popularCiudad(String nombre, Provincia provincia, String codigoPostal) {
 
-		Ciudad ciudad = new Ciudad(nombre, codigoPostal, provincia);
+		Ciudad ciudad = new Ciudad(nombre, provincia, codigoPostal);
 
 		sharedService.save(ciudad);
 		storedObjects.put("ciudad - " + nombre, ciudad);

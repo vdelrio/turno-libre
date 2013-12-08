@@ -11,7 +11,7 @@
 			<generator class="native" />
 		</id>
 
-		<many-to-one name="provincia" column="provincia_id" class="Provincia" lazy="false" foreign-key="FK_CIUDAD_PROVINCIA" update="false" />
+		<many-to-one name="provincia" column="provincia_id" class="Provincia" not-null="true" foreign-key="FK_CIUDAD_PROVINCIA" update="false" />
 
 		<property name="nombre" not-null="true" />
 		<property name="codigoPostal" column="codigo_postal" />

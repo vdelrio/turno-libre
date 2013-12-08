@@ -6,6 +6,7 @@
 
 $(document).ready(function() {
 
+	$("#provincia").chosen();
 	$("#ciudad").chosen();
 
 	$(".register-form").submit(function(event) {
