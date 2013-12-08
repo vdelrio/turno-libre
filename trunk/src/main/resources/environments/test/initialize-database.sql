@@ -1,5 +1,6 @@
 
-INSERT INTO `ciudades` VALUES (1,'CIUDAD AUTONOMA DE BUENOS AIRES',NULL,NULL),(2,'11 DE SEPTIEMBRE','1657','BUENOS AIRES'),(3,'12 DE AGOSTO','2701','BUENOS AIRES'),(4,'12 DE OCTUBRE','6501','BUENOS AIRES');
+INSERT INTO `provincias` VALUES (1,'BUENOS AIRES');
+INSERT INTO `ciudades` VALUES (1,NULL,'CIUDAD AUTONOMA DE BUENOS AIRES',NULL),(2,1,'11 DE SEPTIEMBRE','1657'),(3,1,'12 DE AGOSTO','2701'),(4,1,'12 DE OCTUBRE','6501');
 INSERT INTO `barrios` VALUES (1,1,'Colegiales');
 INSERT INTO `usuarios` VALUES (1,'Victor Del Rio','victor@gmail.com','459541563e1412b64f7212e7dcffd867bc91dff28ff68cfc288057bfb2ecb4706df2acabcb39a207',NULL,1,NULL),(2,'Manuel Rodriguez','manuel@gmail.com','129df461903588998336610f863aec9786f5d00b209f67ba2af05020102ec455a5aadc403bd8705e',NULL,1,NULL),(3,'Juan Sanchez','juan@gmail.com','9e520b69fec31fede862ef312f5c0764ce1ee44539c626c835c2ee856d5df7a3960594bae8eaf60b',NULL,1,NULL),(4,'Carlos Del Rio','carlos@gmail.com','fe31b2f6d0279f323c5b627c6f3ee14b47a0c881d60fa818f776061b3d8e7e604b5b16a3fcc4bc2f',NULL,1,NULL),(5,'Admin Agenda1','admin1@gmail.com','b406dd6210e9fcd26657ea0fb69a8f2c2bb556647c97251759300f3c3b48a9a701b1d6289b08578b',NULL,1,NULL),(6,'Admin Agenda2','admin2@gmail.com','26e93cd4f995a09a342bc57a4e9e727d9394a032c67cc5e8fe3696f019959fbd233c48bb40f0ae9b',NULL,1,NULL);
 INSERT INTO `roles` VALUES (1,'cliente',1,1),(2,'cliente',2,1),(3,'cliente',3,1),(4,'cliente',4,1),(5,'cliente',5,2),(6,'cliente',6,2),(7,'adm-agenda',5,NULL),(8,'adm-agenda',6,NULL);

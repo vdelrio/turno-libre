@@ -6,6 +6,7 @@ import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
 import com.turnolibre.business.ubicacion.Barrio;
 import com.turnolibre.business.ubicacion.Ciudad;
+import com.turnolibre.business.ubicacion.Provincia;
 import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
@@ -38,6 +39,7 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void ejecutar() throws ExcepcionDeReglaDelNegocio {
 
+		popularProvincias();
 		popularCiudades();
 		popularBarrios();
 
@@ -57,12 +59,19 @@ public class PopuladorDeDatosDeTest extends Populador {
 		sacarTurnos();
 	}
 
+	private void popularProvincias() {
+
+		popularProvincia("BUENOS AIRES");
+	}
+
 	private void popularCiudades() {
 
+		Provincia buenosAires = (Provincia) storedObjects.get("provincia - BUENOS AIRES");
+
 		popularCiudad("CIUDAD AUTONOMA DE BUENOS AIRES", null, null);
-		popularCiudad("11 DE SEPTIEMBRE", "1657", "BUENOS AIRES");
-		popularCiudad("12 DE AGOSTO", "2701", "BUENOS AIRES");
-		popularCiudad("12 DE OCTUBRE", "6501", "BUENOS AIRES");
+		popularCiudad("11 DE SEPTIEMBRE", "1657", buenosAires);
+		popularCiudad("12 DE AGOSTO", "2701", buenosAires);
+		popularCiudad("12 DE OCTUBRE", "6501", buenosAires);
 	}
 
 	private void popularBarrios() {
