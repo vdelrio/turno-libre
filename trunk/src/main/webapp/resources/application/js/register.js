@@ -6,18 +6,32 @@
 
 $(document).ready(function() {
 
-	$("#provincia").chosen();
-	$("#ciudad").chosen();
+	var provincia = $("#provincia");
+    var ciudad = $("#ciudad");
 
-	$("#provincia").change(function() {
+    provincia.chosen();
+	ciudad.chosen();
 
-		// TODO llamada ajax de las ciudades dada la provincia seleccionada
+    provincia.chosen().change(function() {
 
-		$.each(result, function() {
-			// TODO ver si hay una forma de mandar el toString para no concatenar strings
-			$("#ciudad").append($("<option />").val(this.id).text(this.nombre + " (" + this.codigoPostal + ")"));
-		});
+        var provinciaId = $(this).val();
 
+        $.ajax({
+            type: "GET",
+            url: "/user/list-cities",
+            data: {provinciaId: provinciaId},
+            success: function(data, textStatus) {
+
+                ciudad.empty();
+
+                $.each(data, function() {
+                    // TODO ver si hay una forma de mandar el toString para no concatenar strings
+                    ciudad.append($("<option />").val(this.id).text(this.nombre + " (" + this.codigoPostal + ")"));
+                    ciudad.prop("disabled", false);
+                    ciudad.trigger("chosen:updated");
+                });
+            }
+        });
 	});
 
 	$(".register-form").submit(function(event) {
