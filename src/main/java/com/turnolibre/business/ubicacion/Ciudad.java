@@ -1,7 +1,5 @@
 package com.turnolibre.business.ubicacion;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 /**
  * Representa la ciudad en la que se encuentra un prestador de servicios o donde vive un cliente.
  *
@@ -41,7 +39,6 @@ public class Ciudad {
 		return id;
 	}
 
-	@JsonIgnore
 	public Provincia getProvincia() {
 		return provincia;
 	}

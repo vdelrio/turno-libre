@@ -23,13 +23,9 @@ $(document).ready(function() {
             success: function(data, textStatus) {
 
                 ciudad.empty();
-
-                $.each(data, function() {
-                    // TODO ver si hay una forma de mandar el toString para no concatenar strings
-                    ciudad.append($("<option />").val(this.id).text(this.nombre + " (" + this.codigoPostal + ")"));
-                    ciudad.prop("disabled", false);
-                    ciudad.trigger("chosen:updated");
-                });
+                ciudad.append(data);
+                ciudad.prop("disabled", false);
+                ciudad.trigger("chosen:updated");
             }
         });
 	});
