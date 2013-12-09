@@ -110,8 +110,8 @@ public class UserController {
 
 	@RequestMapping(value = "list-cities", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Ciudad> listCities(Long provinciaId) {
-		return this.ciudadService.findByProvincia(provinciaId);
+	public String listCities(Long provinciaId) {
+		return this.prepareCitiesOptions(this.ciudadService.findByProvincia(provinciaId));
 	}
 
 	@ExceptionHandler(ExcepcionDeReglaDelNegocio.class)
@@ -121,6 +121,16 @@ public class UserController {
 
 		MensajeLocalizable msjLocalizable = ex.getMensaje();
 		return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos(), locale);
+	}
+
+	private String prepareCitiesOptions(List<Ciudad> ciudades) {
+
+		StringBuilder sbuilder = new StringBuilder();
+
+		for (Ciudad ciudad : ciudades)
+			sbuilder.append("<option value=\"").append(ciudad.getId()).append("\">").append(ciudad.toString()).append("</option>");
+
+		return sbuilder.toString();
 	}
 
 	private UsuarioDeSesion getUsuarioDeSesion() {
