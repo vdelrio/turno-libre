@@ -9,25 +9,13 @@
 
 	<div layout:fragment="child-content" class="row margin-top-20">
 
-	<div class="col-lg-6 col-lg-offset-3">
+        <div class="col-lg-6 col-lg-offset-3">
 
-        <select id="country-select" data-placeholder="Elige una ciudad..." class="form-control">
-            <option th:each="city : ${allCities}" th:value="${city.id}" th:text="${city}">Necochea</option>
-        </select>
+            <select id="country-select" data-placeholder="Elige una ciudad..." class="form-control">
+                <option th:each="city : ${allCities}" th:value="${city.id}" th:text="${city}">Necochea</option>
+            </select>
 
-		<!--<select multiple id="country-select" data-placeholder="Choose a Country..." class="form-control">-->
-			<!--<option value=""></option>-->
-			<!--<option value="United States">United States</option>-->
-			<!--<option value="United Kingdom">United Kingdom</option>-->
-			<!--<option value="Afghanistan">Afghanistan</option>-->
-			<!--<option value="Aland Islands">Aland Islands</option>-->
-			<!--<option value="Albania">Albania</option>-->
-			<!--<option value="Algeria">Algeria</option>-->
-			<!--<option value="American Samoa">American Samoa</option>-->
-		<!--</select>-->
-	</div>
-
-
+        </div>
 
 		<script th:src="@{/resources/chosen/chosen.jquery.js}"></script>
 		<script>
