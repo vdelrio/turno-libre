@@ -1,3 +1,7 @@
 
- - register.js (ajax provincias)
- - Hacer andar la edición de perfil con las ciudades y revisar todos, incluyendo la registración
+ - Hacer un test integral de todo
+ - Ver que voy a hacer con lo de responsive
+ - Revisar i18n, hacer que chosen también lo use
+ - Revisar los javascripts, ver que no haya código duplicado y que todo este en su lugar
+ - Ver el tema de chosen cundo es "required" en los forms (ver si hace falta poner jquery validation)
+

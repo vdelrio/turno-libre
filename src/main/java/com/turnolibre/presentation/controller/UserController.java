@@ -37,6 +37,8 @@ public class UserController {
 	private MessageSource messageSource;
 
 
+    /*---------------------------------------- Login ---------------------------------------*/
+
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String initLogin(Model model) {
 
@@ -50,6 +52,9 @@ public class UserController {
 		model.addAttribute("loginError", true);
 		return "user/login";
 	}
+
+    /*--------------------------------------------------------------------------------------*/
+    /*--------------------------------------- Register -------------------------------------*/
 
 	@RequestMapping(value = "register", method = RequestMethod.GET)
 	public String initRegistration(Usuario usuario) {
@@ -66,14 +71,21 @@ public class UserController {
 		return "/";
 	}
 
+    /*--------------------------------------------------------------------------------------*/
+    /*--------------------------------------- Profile --------------------------------------*/
+
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String initProfile(Model model) {
 
 		Usuario usuario = sharedService.get(Usuario.class, getUsuarioDeSesion().getId());
 		Cliente cliente = sharedService.get(Cliente.class, usuario.getRol(Cliente.class).getId());
 
+        Ciudad selectedCity = cliente.getCiudad();
+
 		model.addAttribute("usuario", usuario);
-		model.addAttribute("selectedCity", cliente.getCiudad());
+		model.addAttribute("selectedProvincia", selectedCity.getProvincia());
+		model.addAttribute("selectedCity", selectedCity);
+		model.addAttribute("allCities", ciudadService.findByProvincia(selectedCity.getProvincia().getId()));
 
 		return "user/profile";
 	}
@@ -82,7 +94,9 @@ public class UserController {
 	@ResponseBody
 	public String updateProfile(Usuario usuario, @RequestParam("ciudad") Ciudad ciudad, SessionStatus sessionStatus, Locale locale) {
 
-		this.sharedService.update(usuario);
+		usuario.getRol(Cliente.class).setCiudad(ciudad);
+
+        this.sharedService.update(usuario);
 		sessionStatus.setComplete();
 
 		return messageSource.getMessage("edicion.perfil.exitosa", null, locale);
@@ -103,6 +117,9 @@ public class UserController {
 		return messageSource.getMessage("modificacion.contraseña.exitosa", null, locale);
 	}
 
+    /*--------------------------------------------------------------------------------------*/
+    /*-------------------------------------- Ciudades --------------------------------------*/
+
 	@ModelAttribute("allProvincias")
 	public List<Provincia> populateCities() {
 		return this.sharedService.findAll(Provincia.class);
@@ -114,27 +131,35 @@ public class UserController {
 		return this.prepareCitiesOptions(this.ciudadService.findByProvincia(provinciaId));
 	}
 
-	@ExceptionHandler(ExcepcionDeReglaDelNegocio.class)
-	@ResponseStatus(value = HttpStatus.PRECONDITION_FAILED)
-	@ResponseBody
-	public String handleExcepcionDeReglaDelNegocio(ExcepcionDeReglaDelNegocio ex, Locale locale) {
+    /*--------------------------------------------------------------------------------------*/
+    /*--------------------------------- Exception Handlers ---------------------------------*/
 
-		MensajeLocalizable msjLocalizable = ex.getMensaje();
-		return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos(), locale);
-	}
+    @ExceptionHandler(ExcepcionDeReglaDelNegocio.class)
+    @ResponseStatus(value = HttpStatus.PRECONDITION_FAILED)
+    @ResponseBody
+    public String handleExcepcionDeReglaDelNegocio(ExcepcionDeReglaDelNegocio ex, Locale locale) {
 
-	private String prepareCitiesOptions(List<Ciudad> ciudades) {
+        MensajeLocalizable msjLocalizable = ex.getMensaje();
+        return messageSource.getMessage(msjLocalizable.getCodigo(), msjLocalizable.getArgumentos(), locale);
+    }
 
-		StringBuilder sbuilder = new StringBuilder();
+    /*--------------------------------------------------------------------------------------*/
+    /*----------------------------------- Private methods ----------------------------------*/
 
-		for (Ciudad ciudad : ciudades)
-			sbuilder.append("<option value=\"").append(ciudad.getId()).append("\">").append(ciudad.toString()).append("</option>");
+    private String prepareCitiesOptions(List<Ciudad> ciudades) {
 
-		return sbuilder.toString();
-	}
+        StringBuilder sbuilder = new StringBuilder();
 
-	private UsuarioDeSesion getUsuarioDeSesion() {
-		return (UsuarioDeSesion) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	}
+        for (Ciudad ciudad : ciudades)
+            sbuilder.append("<option value=\"").append(ciudad.getId()).append("\">").append(ciudad.toString()).append("</option>");
+
+        return sbuilder.toString();
+    }
+
+    private UsuarioDeSesion getUsuarioDeSesion() {
+        return (UsuarioDeSesion) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    /*--------------------------------------------------------------------------------------*/
 
 }
