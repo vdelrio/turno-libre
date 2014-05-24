@@ -1,7 +1,10 @@
 
- - Hacer un test integral de todo
- - Ver que voy a hacer con lo de responsive
+ - Actualizar versiones de las defirentes tecnologías
+ - Leer un poco de thymeleaf
+ - Repasar la forma en la que funcionan los controllers
+ - Sacar responsive
+
+
  - Revisar i18n, hacer que chosen también lo use
  - Revisar los javascripts, ver que no haya código duplicado y que todo este en su lugar
- - Ver el tema de chosen cundo es "required" en los forms (ver si hace falta poner jquery validation)
-
+ - Ver el tema de chosen cunado es "required" en los forms (ver si hace falta poner jquery validation)
