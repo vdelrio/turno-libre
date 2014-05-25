@@ -120,6 +120,7 @@ public class UserController {
     /*--------------------------------------------------------------------------------------*/
     /*-------------------------------------- Ciudades --------------------------------------*/
 
+	// TODO cambiar este metodo porque siempre esta pasando por aca y no es necesario
 	@ModelAttribute("allProvincias")
 	public List<Provincia> populateCities() {
 		return this.sharedService.findAll(Provincia.class);
