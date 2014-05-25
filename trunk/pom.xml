@@ -9,6 +9,7 @@
 	<name>TurnoLibre</name>
 
 	<properties>
+        <!-- Versiones actualizadas al 25 de mayo del 2014 -->
 		<spring.version>4.0.5.RELEASE</spring.version>
 		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 		<jackson.version>1.9.13</jackson.version>
