@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turnolibre.business.ubicacion" default-access="field">
+
+	<class name="Ciudad" table="ciudades">
+
+		<id name="id">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="provincia" column="provincia_id" class="Provincia" not-null="true" lazy="false" foreign-key="FK_CIUDAD_PROVINCIA" update="false" />
+
+		<property name="nombre" not-null="true" />
+		<property name="codigoPostal" column="codigo_postal" />
+
+	</class>
+
+</hibernate-mapping>

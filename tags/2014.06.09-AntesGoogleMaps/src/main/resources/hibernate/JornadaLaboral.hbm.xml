@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turnolibre.business.agenda" default-access="field">
+
+	<class name="JornadaLaboralHabitual" table="jornadas_habituales">
+
+		<id name="id">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="agenda" column="agenda_id" class="Agenda" unique-key="JORNADA_HABITUAL_BUSINESS_KEY" not-null="true" foreign-key="FK_JORNADA_HABITUAL_AGENDA" />
+
+		<property name="duracionDeLosTurnos" column="duracion_de_los_turnos" not-null="true" type="org.jadira.usertype.dateandtime.joda.PersistentDurationAsString" />
+		<property name="vacantesPorTurno" column="vacantes_por_turno" not-null="true" />
+
+		<component name="diaYHoraDeInicio">
+			<property name="dayOfWeek" column="dia_de_inicio" unique-key="JORNADA_HABITUAL_BUSINESS_KEY" not-null="true" />
+			<property name="time" column="hora_de_inicio" unique-key="JORNADA_HABITUAL_BUSINESS_KEY" not-null="true" type="org.jadira.usertype.dateandtime.joda.PersistentLocalTimeAsString" />
+		</component>
+
+		<component name="diaYHoraDeFin">
+			<property name="dayOfWeek" column="dia_de_fin" unique-key="JORNADA_HABITUAL_BUSINESS_KEY" not-null="true" />
+			<property name="time" column="hora_de_fin" unique-key="JORNADA_HABITUAL_BUSINESS_KEY" not-null="true" type="org.jadira.usertype.dateandtime.joda.PersistentLocalTimeAsString" />
+		</component>
+
+	</class>
+
+	<class name="JornadaLaboralOcasional" table="jornadas_ocasionales">
+
+		<id name="id">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="agenda" column="agenda_id" class="Agenda" unique-key="JORNADA_OCASIONAL_BUSINESS_KEY" not-null="true" foreign-key="FK_JORNADA_OCASIONAL_AGENDA" />
+
+		<property name="duracionDeLosTurnos" column="duracion_de_los_turnos" not-null="true" type="org.jadira.usertype.dateandtime.joda.PersistentDurationAsString" />
+		<property name="vacantesPorTurno" column="vacantes_por_turno" not-null="true" />
+
+		<property name="intervalo" type="org.jadira.usertype.dateandtime.joda.PersistentInterval">
+			<column name="inicio_intervalo" unique-key="JORNADA_OCASIONAL_BUSINESS_KEY" not-null="true" />
+			<column name="fin_intervalo" unique-key="JORNADA_OCASIONAL_BUSINESS_KEY" not-null="true" />
+		</property>
+
+	</class>
+    
+</hibernate-mapping>

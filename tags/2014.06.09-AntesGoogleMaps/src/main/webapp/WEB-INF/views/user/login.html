@@ -1,0 +1,90 @@
+<!doctype html>
+<html layout:decorator="layouts/clean-layout" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title th:text="#{titulo.pagina.login}">Iniciar sesión</title>
+</head>
+<body>
+
+<div layout:fragment="child-content" class="row">
+
+	<!-- TODO dejar una sola picture y ver que se alinie bien -->
+	<!-- Picture -->
+	<div class="col-lg-6 col-lg-offset-1 visible-lg">
+		<img src="http://placehold.it/555x476/6BAEAD/ffffff.png&amp;text=Picture" alt="picture" title="picture" class="img-responsive img-thumbnail">
+	</div>
+
+	<div class="col-md-7 visible-md">
+		<img src="http://placehold.it/536x474/6BAEAD/ffffff.png&amp;text=Picture" alt="picture" title="picture" class="img-responsive img-thumbnail">
+	</div>
+
+	<!-- Login panel -->
+	<div class="col-lg-4 col-md-5 col-sm-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-2">
+
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{iniciar.sesion}">
+				Iniciar sesión
+			</div>
+
+			<div class="panel-body">
+
+				<div th:if="${loginError}">
+					<div th:replace="shared/_feedback-panel :: feedback-panel(feedbackType=alert-danger,feedbackMsg=#{error.de.login})"></div>
+				</div>
+
+				<form role="form" th:action="@{/j_spring_security_check}" method="post">
+					<div class="form-group">
+						<input type="email" id="j_username" name="j_username" class="form-control" th:placeholder="#{correo.electronico}" required autofocus>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" id="j_password" name="j_password" class="form-control" th:placeholder="#{contraseña}" required>
+							<span class="input-group-btn">
+							  <button type="submit" class="btn btn-primary" th:text="#{iniciar.sesion}">Iniciar sesión</button>
+							</span>
+						</div>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="_spring_security_remember_me"> <span th:text="#{no.cerrar.sesion}">No cerrar sesión</span>&nbsp;&nbsp;-&nbsp;&nbsp;<a href="#" th:text="#{olvidaste.tu.contraseña}">¿Olvidaste tu contraseña?</a>
+						</label>
+					</div>
+					<div class="visible-sm visible-xs"><span th:text="#{nuevo.en.turno.libre}">¿Eres nuevo en TurnoLibre?</span> <a th:href="@{/user/register}" th:text="#{registrate}">Regístrate</a></div>
+				</form>
+
+			</div>
+		</div>
+
+		<!-- Register panel -->
+		<div class="row hidden-sm hidden-xs">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" th:text="#{nuevo.en.turno.libre.registrate}">
+						¿Eres nuevo en TurnoLibre? Regístrate
+					</div>
+
+					<div class="panel-body">
+
+						<form role="form" th:action="@{/user/register}" th:object="${usuario}" method="get">
+							<div class="form-group">
+								<input type="text" th:field="*{nombre}" class="form-control" th:placeholder="#{nombre.completo}">
+							</div>
+							<div class="form-group">
+								<input type="email" th:field="*{email}" class="form-control" th:placeholder="#{correo.electronico}">
+							</div>
+							<div class="form-group">
+								<input type="password" th:field="*{password}" class="form-control" th:placeholder="#{contraseña}">
+							</div>
+							<button type="submit" class="btn btn-danger pull-right" th:text="#{registrate.en.turno.libre}">Regístrate en TurnoLibre</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

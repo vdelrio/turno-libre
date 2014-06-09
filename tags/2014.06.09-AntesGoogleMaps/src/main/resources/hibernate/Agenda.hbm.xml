@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turnolibre.business.agenda" default-access="field">
+
+	<class name="Agenda" table="agendas">
+
+		<id name="id">
+			<generator class="native" />
+		</id>
+		
+		<property name="nombre" unique-key="AGENDA_BUSINESS_KEY" not-null="true" />
+		<many-to-one name="prestadorDeServicios" column="prestador_de_servicios_id" class="com.turnolibre.business.prestador.PrestadorDeServicios"
+					 unique-key="AGENDA_BUSINESS_KEY" not-null="true" foreign-key="FK_AGENDA_PRESTADOR" />
+
+		<property name="antelacionMaxima" column="antelacion_maxima" not-null="true" type="org.jadira.usertype.dateandtime.joda.PersistentPeriodAsString" />
+
+		<set name="horarios" sort="natural" cascade="all,delete-orphan" inverse="true">
+			<key column="agenda_id" />
+			<one-to-many class="com.turnolibre.business.turno.Horario" />
+		</set>
+
+		<set name="diasNoLaborales" sort="natural" cascade="all,delete-orphan" inverse="true">
+			<key column="agenda_id" />
+			<one-to-many class="DiaNoLaboral" />
+		</set>
+
+		<set name="jornadasLaboralesHabituales" sort="natural" cascade="all,delete-orphan" inverse="true">
+			<key column="agenda_id" />
+			<one-to-many class="JornadaLaboralHabitual" />
+		</set>
+
+		<set name="jornadasLaboralesOcasionales" cascade="all,delete-orphan" inverse="true">
+			<key column="agenda_id" />
+			<one-to-many class="JornadaLaboralOcasional" />
+		</set>
+		
+		<set name="administradores" table="agendas_administradores" inverse="true">
+			<key column="agenda_id" />
+			<many-to-many column="administrador_id" class="com.turnolibre.business.usuario.AdministradorDeAgenda" foreign-key="FK_AGENDA_ADMINISTRADOR_ADMINISTRADOR" />
+		</set>
+		
+	</class>
+	
+</hibernate-mapping>

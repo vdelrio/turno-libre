@@ -1,0 +1,13 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Depende de feedback-panel.js -->
+
+<div th:fragment="feedback-panel" class="feedback-msg-container alert" th:classappend="${feedbackType} ? ${feedbackType} : hidden">
+	<button type="button" class="close close-alert">&times;</button>
+	<span class="feedback-msg" th:text="${feedbackMsg}"></span>
+</div>
+
+</body>
+</html>

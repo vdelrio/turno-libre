@@ -1,0 +1,69 @@
+<!doctype html>
+<html layout:decorator="layouts/clean-layout" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title th:text="#{titulo.pagina.registracion}">Crear una cuenta</title>
+	<!--<link rel="stylesheet" th:href="@{/resources/chosen/chosen.css}">-->
+	<!--<link rel="stylesheet" th:href="@{/resources/chosen/chosen-bootstrap.css}">-->
+</head>
+<body>
+
+<div layout:fragment="child-content" class="row">
+
+	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{nuevo.en.turno.libre.registrate}">
+				¿Eres nuevo en TurnoLibre? Regístrate
+			</div>
+			<div class="panel-body">
+
+				<div th:replace="shared/_feedback-panel :: feedback-panel"></div>
+
+				<form class="register-form" role="form" th:action="@{/user/register}" th:object="${usuario}" method="post">
+					<div class="form-group">
+						<label for="nombre" th:text="#{nombre.completo}">Nombre completo</label>
+						<input type="text" th:field="*{nombre}" class="form-control" required autofocus>
+					</div>
+					<div class="form-group">
+						<label for="email" th:text="#{correo.electronico}">Correo electrónico</label>
+						<input type="email" th:field="*{email}" class="form-control" required>
+					</div>
+                    <div class="form-group">
+                        <label for="ciudad" th:text="#{ciudad}">Ciudad</label>
+                        <input id="ciudad" name="ciudad" type="text" class="form-control" required autofocus>
+                    </div>
+					<!--<div class="form-group">-->
+						<!--<label for="provincia" th:text="#{provincia}">Provincia</label>-->
+						<!--<select id="provincia" name="provincia" data-placeholder="Seleccione una provincia" class="form-control" required>-->
+							<!--<option value=""></option>-->
+							<!--<option th:each="prov : ${allProvincias}" th:value="${prov.id}" th:text="${prov}">JUJUY</option>-->
+						<!--</select>-->
+					<!--</div>-->
+					<!--<div class="form-group">-->
+						<!--<label for="ciudad" th:text="#{ciudad}">Ciudad</label>-->
+						<!--<option value=""></option>-->
+						<!--<select id="ciudad" name="ciudad" data-placeholder="Seleccione una ciudad" class="form-control" required disabled>-->
+						<!--</select>-->
+					<!--</div>-->
+					<div class="form-group">
+						<label for="password" th:text="#{contraseña}">Contraseña</label>
+						<input type="password" th:field="*{password}" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="telefono" th:text="#{telefono}">Teléfono</label>
+						<input type="text" th:field="*{telefono}" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg btn-block" th:text="#{crear.mi.cuenta}">Crear mi cuenta</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--<script th:src="@{/resources/chosen/chosen.jquery.js}"></script>-->
+	<script th:src="@{http://maps.googleapis.com/maps/api/js?key=AIzaSyC76s0wifO-67hjzecktthUdWiiQRB56E8&sensor=false&libraries=places}"></script>
+	<script th:src="@{/resources/application/js/register.js}"></script>
+
+</div>
+
+</body>
+</html>

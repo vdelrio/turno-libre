@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="edit-profile">
+
+	<div th:replace="shared/_feedback-panel :: feedback-panel"></div>
+
+	<form class="edit-profile-form form-horizontal" role="form" th:action="@{/user/update-profile}" th:object="${usuario}" method="post">
+        <div class="form-group">
+            <label for="nombre" class="col-md-3 control-label" th:text="#{nombre.completo}">Nombre completo</label>
+            <div class="col-md-9">
+                <input type="text" th:field="*{nombre}" class="form-control" required autofocus>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.nombre}">Introduce tu nombre real para que los prestadores de servicios te reconozcan.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-md-3 control-label" th:text="#{correo.electronico}">Correo electrónico</label>
+            <div class="col-md-9">
+                <input type="email" th:field="*{email}" class="form-control" required>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.correo.electronico}">Introduce tu correo electrónico para que los prestadores de servicios puedan comunicarse contigo.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="provincia" class="col-md-3 control-label" th:text="#{provincia}">Provincia</label>
+            <div class="col-md-9">
+                <select id="provincia" name="provincia" data-placeholder="Seleccione una provincia" class="provincia form-control" required>
+                    <option value=""></option>
+                    <option th:each="prov : ${allProvincias}" th:value="${prov.id}" th:text="${prov}" th:selected="${selectedProvincia.id == prov.id}">JUJUY</option>
+                </select>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.provincia}">Introduce la provincia para la cual vas a querer encontrar turnos.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ciudad" class="col-md-3 control-label" th:text="#{ciudad}">Ciudad</label>
+            <div class="col-md-9">
+                <select id="ciudad" name="ciudad" data-placeholder="Seleccione una ciudad" class="ciudad form-control" required>
+                    <option value=""></option>
+                    <option th:each="city : ${allCities}" th:value="${city.id}" th:text="${city}" th:selected="${selectedCity.id == city.id}">JUJUY</option>
+                </select>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.ciudad}">Introduce la ciudad para la cual vas a querer encontrar turnos.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono" class="col-md-3 control-label" th:text="#{telefono}">Teléfono</label>
+            <div class="col-md-9">
+                <input type="text" th:field="*{telefono}" class="form-control">
+                <span class="help-block" th:text="#{editar.perfil.ayuda.telefono}">Introduce tu teléfono para que los prestadores de servicios puedan comunicarse contigo.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="hidden-xs btn btn-primary" th:text="#{editar.perfil.guardar.cambios}">Guardar cambios</button>
+                <button type="submit" class="visible-xs btn btn-primary btn-lg btn-block" th:text="#{editar.perfil.guardar.cambios}">Guardar cambios</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

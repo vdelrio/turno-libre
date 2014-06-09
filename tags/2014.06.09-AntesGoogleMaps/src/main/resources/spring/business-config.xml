@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    ">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- Scans the classpath of this application for @Components to deploy as beans -->
+	<context:component-scan base-package="com.turnolibre.service" />
+	<context:component-scan base-package="com.turnolibre.persistence.dao" />
+
+    <!-- Hibernate Configuration -->
+
+    <bean id="dataSource" class = "com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+
+        <!-- C3P0 properties -->
+        <property name="minPoolSize" value="${c3p0.minPoolSize}" />
+        <property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
+        <property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+        <property name="maxStatements" value="${c3p0.maxStatements}" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mappingResources">
+            <list>
+                <value>hibernate/Agenda.hbm.xml</value>
+                <value>hibernate/Barrio.hbm.xml</value>
+                <value>hibernate/Ciudad.hbm.xml</value>
+                <value>hibernate/DiaNoLaboral.hbm.xml</value>
+                <value>hibernate/Horario.hbm.xml</value>
+                <value>hibernate/JornadaLaboral.hbm.xml</value>
+                <value>hibernate/Noticia.hbm.xml</value>
+                <value>hibernate/Notificacion.hbm.xml</value>
+                <value>hibernate/PrestadorDeServicios.hbm.xml</value>
+                <value>hibernate/Provincia.hbm.xml</value>
+                <value>hibernate/Rol.hbm.xml</value>
+                <value>hibernate/Rubro.hbm.xml</value>
+                <value>hibernate/Servicio.hbm.xml</value>
+                <value>hibernate/Turno.hbm.xml</value>
+                <value>hibernate/Usuario.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- Property files -->
+
+    <context:property-placeholder properties-ref="properties"/>
+
+    <beans profile="test">
+
+		<jdbc:initialize-database data-source="dataSource">
+			<jdbc:script location="classpath:environments/test/initialize-database.sql" encoding="UTF-8"/>
+		</jdbc:initialize-database>
+
+        <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+            <property name="locations">
+                <list>
+                    <value>classpath:environments/test/application.properties</value>
+                    <value>classpath:environments/test/persintence.properties</value>
+                </list>
+            </property>
+        </bean>
+
+    </beans>
+
+    <beans profile="dev">
+
+		<jdbc:initialize-database data-source="dataSource">
+			<jdbc:script location="classpath:environments/dev/initialize-database.sql" encoding="UTF-8"/>
+		</jdbc:initialize-database>
+
+        <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+            <property name="locations">
+                <list>
+                    <value>classpath:environments/dev/application.properties</value>
+                    <value>classpath:environments/dev/persintence.properties</value>
+                </list>
+            </property>
+        </bean>
+
+    </beans>
+
+    <beans profile="clean-dev">
+
+        <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+            <property name="locations">
+                <list>
+                    <value>classpath:environments/dev/application.properties</value>
+                    <value>classpath:environments/dev/persintence.properties</value>
+                </list>
+            </property>
+        </bean>
+
+    </beans>
+
+	<beans profile="light-dev">
+
+		<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<property name="locations">
+				<list>
+					<value>classpath:environments/dev/application.properties</value>
+					<value>classpath:environments/test/persintence.properties</value>
+				</list>
+			</property>
+		</bean>
+
+	</beans>
+
+    <beans profile="prod">
+
+        <jdbc:initialize-database data-source="dataSource">
+            <jdbc:script location="classpath:environments/prod/initialize-database.sql" encoding="UTF-8"/>
+        </jdbc:initialize-database>
+
+        <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+            <property name="locations">
+                <list>
+                    <value>classpath:environments/prod/application.properties</value>
+                    <value>classpath:environments/prod/persintence.properties</value>
+                </list>
+            </property>
+        </bean>
+
+    </beans>
+
+</beans>

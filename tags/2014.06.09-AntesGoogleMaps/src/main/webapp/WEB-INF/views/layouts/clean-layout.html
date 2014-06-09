@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" th:content="#{seo.meta.description}">
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/application/img/favicon.ico}">
+
+	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE" th:text="#{nombre.producto}">TurnoLibre</title>
+
+	<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/resources/application/css/style.css}">
+
+	<!-- TODO para que thymeleaf reemplace esto, hay que agregar thymeleaf-extras-conditionalcomments -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script th:src="@{/resources/iesupport/js/html5shiv.js}"></script>
+	<script th:src="@{/resources/iesupport/js/respond.min.js}"></script>
+	<![endif]-->
+
+    <script th:src="@{/resources/jquery/js/jquery-1.11.0.js}"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <div layout:fragment="child-content">
+            <!-- Child page content -->
+        </div>
+
+        <hr>
+
+        <footer>
+            <p>&copy; 2013 <span th:text="#{nombre.producto}">TurnoLibre</span></p>
+        </footer>
+    </div> <!-- /container -->
+
+	<script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
+	<script th:src="@{/resources/application/js/functions.js}"></script>
+	<script th:src="@{/resources/application/js/feedback-panel.js}"></script>
+
+</body>
+</html>
+

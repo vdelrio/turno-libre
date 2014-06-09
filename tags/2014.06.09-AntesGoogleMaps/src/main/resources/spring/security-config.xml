@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+    ">
+
+    <!--<debug />-->
+
+    <global-method-security pre-post-annotations="enabled" />
+
+    <http pattern="/resources/**" security="none"/>
+
+    <http use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/user/profile/**" access="hasRole('cliente')"/>
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/user/login" authentication-failure-url="/user/login/error" authentication-success-handler-ref="customAuthenticationSuccessHandler" />
+        <logout logout-success-url="/" delete-cookies="JSESSIONID"/>
+        <remember-me user-service-ref="usuarioServiceImpl"/>
+        <!--<session-management invalid-session-url="/session-timeout.jsp">-->
+        <session-management invalid-session-url="/">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="false" />
+        </session-management>
+
+    </http>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+	<beans:bean id="customAuthenticationSuccessHandler" class="com.turnolibre.security.CustomAuthenticationSuccessHandler"/>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="usuarioServiceImpl">
+			<password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>
