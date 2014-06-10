@@ -41,15 +41,12 @@
         <property name="mappingResources">
             <list>
                 <value>hibernate/Agenda.hbm.xml</value>
-                <value>hibernate/Barrio.hbm.xml</value>
-                <value>hibernate/Ciudad.hbm.xml</value>
                 <value>hibernate/DiaNoLaboral.hbm.xml</value>
                 <value>hibernate/Horario.hbm.xml</value>
                 <value>hibernate/JornadaLaboral.hbm.xml</value>
                 <value>hibernate/Noticia.hbm.xml</value>
                 <value>hibernate/Notificacion.hbm.xml</value>
                 <value>hibernate/PrestadorDeServicios.hbm.xml</value>
-                <value>hibernate/Provincia.hbm.xml</value>
                 <value>hibernate/Rol.hbm.xml</value>
                 <value>hibernate/Rubro.hbm.xml</value>
                 <value>hibernate/Servicio.hbm.xml</value>
@@ -63,6 +60,9 @@
                 <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="jadira.usertype.autoRegisterUserTypes">true</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
             </props>
         </property>
     </bean>

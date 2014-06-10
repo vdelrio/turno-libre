@@ -45,7 +45,7 @@
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="formatters">
 			<set>
-				<bean class="com.turnolibre.presentation.conversion.CiudadFormatter" />
+				<!-- TODO put the formatters here -->
 			</set>
 		</property>
 	</bean>

@@ -4,10 +4,6 @@ import com.turnolibre.business.agenda.Agenda;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
-import com.turnolibre.business.ubicacion.Barrio;
-import com.turnolibre.business.ubicacion.Ciudad;
-import com.turnolibre.business.ubicacion.Provincia;
-import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
 import org.joda.time.DateTimeUtils;
@@ -39,10 +35,6 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void ejecutar() throws ExcepcionDeReglaDelNegocio {
 
-		popularProvincias();
-		popularCiudades();
-		popularBarrios();
-
 		popularUsuarios();
 		asignarRolesAdmin();
 
@@ -59,38 +51,17 @@ public class PopuladorDeDatosDeTest extends Populador {
 		sacarTurnos();
 	}
 
-	private void popularProvincias() {
-
-		popularProvincia("CIUDAD AUTONOMA DE BUENOS AIRES");
-		popularProvincia("BUENOS AIRES");
-	}
-
-	private void popularCiudades() {
-
-		Provincia buenosAires = (Provincia) storedObjects.get("provincia - BUENOS AIRES");
-		Provincia caba = (Provincia) storedObjects.get("provincia - CIUDAD AUTONOMA DE BUENOS AIRES");
-
-		popularCiudad("CIUDAD AUTONOMA DE BUENOS AIRES", caba, null);
-		popularCiudad("11 DE SEPTIEMBRE", buenosAires, "1657");
-		popularCiudad("12 DE AGOSTO", buenosAires, "2701");
-		popularCiudad("12 DE OCTUBRE", buenosAires, "6501");
-	}
-
-	private void popularBarrios() {
-		popularBarrio("Colegiales", (Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES"));
-	}
-
 	private void popularUsuarios() throws ExcepcionDeReglaDelNegocio {
 
-		Ciudad caba = (Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES");
-		Ciudad onceSept = (Ciudad) storedObjects.get("ciudad - 11 DE SEPTIEMBRE");
+		String direccionCapital = "Aguilar 2547, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		String direccionNecochea = "Calle 61 3476, Necochea, Buenos Aires, Argentina";
 
-		popularUsuario("Victor Del Rio", "victor@gmail.com", "123456", caba);
-		popularUsuario("Manuel Rodriguez","manuel@gmail.com", "123456", caba);
-		popularUsuario("Juan Sanchez", "juan@gmail.com", "123456", caba);
-		popularUsuario("Carlos Del Rio", "carlos@gmail.com", "123456", caba);
-		popularUsuario("Admin Agenda1", "admin1@gmail.com", "123456", onceSept);
-		popularUsuario("Admin Agenda2", "admin2@gmail.com", "123456", onceSept);
+		popularUsuario("Victor Del Rio", "victor@gmail.com", "123456", direccionCapital);
+		popularUsuario("Manuel Rodriguez","manuel@gmail.com", "123456", direccionCapital);
+		popularUsuario("Juan Sanchez", "juan@gmail.com", "123456", direccionCapital);
+		popularUsuario("Carlos Del Rio", "carlos@gmail.com", "123456", direccionCapital);
+		popularUsuario("Admin Agenda1", "admin1@gmail.com", "123456", direccionNecochea);
+		popularUsuario("Admin Agenda2", "admin2@gmail.com", "123456", direccionNecochea);
 	}
 
 	private void asignarRolesAdmin() throws ExcepcionDeReglaDelNegocio {
@@ -106,8 +77,8 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
-		Ubicacion ubicacionPrestador1 = new Ubicacion((Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES"), (Barrio) storedObjects.get("barrio - Colegiales"), "Aguilar 2547");
-		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("rubro - Consultorios medicos"));
+		String direccionPrestador1 = "Av Cabildo 1501, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		popularPrestador("Consultorio medico sur", direccionPrestador1, "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("rubro - Consultorios medicos"));
 	}
 
 	private void popularAgendas() throws ExcepcionDeReglaDelNegocio {

@@ -2,12 +2,8 @@ package com.turnolibre.presentation.controller;
 
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.i18n.MensajeLocalizable;
-import com.turnolibre.business.ubicacion.Ciudad;
-import com.turnolibre.business.ubicacion.Provincia;
-import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
 import com.turnolibre.security.UsuarioDeSesion;
-import com.turnolibre.service.CiudadService;
 import com.turnolibre.service.SharedService;
 import com.turnolibre.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -29,8 +24,6 @@ public class UserController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	@Autowired
-	private CiudadService ciudadService;
 	@Autowired
 	private SharedService sharedService;
 	@Autowired
@@ -63,9 +56,9 @@ public class UserController {
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	@ResponseBody
-	public String register(Usuario usuario, @RequestParam("ciudad") Ciudad ciudad, SessionStatus sessionStatus) throws ExcepcionDeReglaDelNegocio {
+	public String register(Usuario usuario, SessionStatus sessionStatus) throws ExcepcionDeReglaDelNegocio {
 
-		this.usuarioService.registrarUsuario(usuario, ciudad);
+		this.usuarioService.registrarUsuario(usuario);
 		sessionStatus.setComplete();
 
 		return "/";
@@ -77,24 +70,13 @@ public class UserController {
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String initProfile(Model model) {
 
-		Usuario usuario = sharedService.get(Usuario.class, getUsuarioDeSesion().getId());
-		Cliente cliente = sharedService.get(Cliente.class, usuario.getRol(Cliente.class).getId());
-
-        Ciudad selectedCity = cliente.getCiudad();
-
-		model.addAttribute("usuario", usuario);
-		model.addAttribute("selectedProvincia", selectedCity.getProvincia());
-		model.addAttribute("selectedCity", selectedCity);
-		model.addAttribute("allCities", ciudadService.findByProvincia(selectedCity.getProvincia().getId()));
-
+		model.addAttribute("usuario", sharedService.get(Usuario.class, getUsuarioDeSesion().getId()));
 		return "user/profile";
 	}
 
 	@RequestMapping(value = "update-profile", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateProfile(Usuario usuario, @RequestParam("ciudad") Ciudad ciudad, SessionStatus sessionStatus, Locale locale) {
-
-		usuario.getRol(Cliente.class).setCiudad(ciudad);
+	public String updateProfile(Usuario usuario, SessionStatus sessionStatus, Locale locale) {
 
         this.sharedService.update(usuario);
 		sessionStatus.setComplete();
@@ -118,21 +100,6 @@ public class UserController {
 	}
 
     /*--------------------------------------------------------------------------------------*/
-    /*-------------------------------------- Ciudades --------------------------------------*/
-
-	// TODO cambiar este metodo porque siempre esta pasando por aca y no es necesario
-	@ModelAttribute("allProvincias")
-	public List<Provincia> populateCities() {
-		return this.sharedService.findAll(Provincia.class);
-	}
-
-	@RequestMapping(value = "list-cities", method = RequestMethod.GET)
-	@ResponseBody
-	public String listCities(Long provinciaId) {
-		return this.prepareCitiesOptions(this.ciudadService.findByProvincia(provinciaId));
-	}
-
-    /*--------------------------------------------------------------------------------------*/
     /*--------------------------------- Exception Handlers ---------------------------------*/
 
     @ExceptionHandler(ExcepcionDeReglaDelNegocio.class)
@@ -146,16 +113,6 @@ public class UserController {
 
     /*--------------------------------------------------------------------------------------*/
     /*----------------------------------- Private methods ----------------------------------*/
-
-    private String prepareCitiesOptions(List<Ciudad> ciudades) {
-
-        StringBuilder sbuilder = new StringBuilder();
-
-        for (Ciudad ciudad : ciudades)
-            sbuilder.append("<option value=\"").append(ciudad.getId()).append("\">").append(ciudad.toString()).append("</option>");
-
-        return sbuilder.toString();
-    }
 
     private UsuarioDeSesion getUsuarioDeSesion() {
         return (UsuarioDeSesion) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

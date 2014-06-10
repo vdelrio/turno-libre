@@ -11,10 +11,6 @@ import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
 import com.turnolibre.business.prestador.Servicio;
 import com.turnolibre.business.turno.Horario;
-import com.turnolibre.business.ubicacion.Barrio;
-import com.turnolibre.business.ubicacion.Ciudad;
-import com.turnolibre.business.ubicacion.Provincia;
-import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
@@ -48,34 +44,10 @@ public class Populador {
     /*--------------------------------------------------------------------------------------*/
     /*------------------------------------ Public methods ----------------------------------*/
 
-	public void popularProvincia(String nombre) {
+	public void popularUsuario(String nombre, String email, String password, String direccion) throws ExcepcionDeReglaDelNegocio {
 
-		Provincia provincia = new Provincia(nombre);
-
-		sharedService.save(provincia);
-		storedObjects.put("provincia - " + nombre, provincia);
-	}
-
-	public void popularCiudad(String nombre, Provincia provincia, String codigoPostal) {
-
-		Ciudad ciudad = new Ciudad(nombre, provincia, codigoPostal);
-
-		sharedService.save(ciudad);
-		storedObjects.put("ciudad - " + nombre, ciudad);
-	}
-
-	public void popularBarrio(String nombre, Ciudad ciudad) {
-
-		Barrio barrio = new Barrio(nombre, ciudad);
-
-		sharedService.save(barrio);
-		storedObjects.put("barrio - " + nombre, barrio);
-	}
-
-	public void popularUsuario(String nombre, String email, String password, Ciudad ciudad) throws ExcepcionDeReglaDelNegocio {
-
-		Usuario usuario = new Usuario(nombre, email, passwordEncoder.encode(password));
-		usuario.agregarRol(new Cliente(ciudad));
+		Usuario usuario = new Usuario(nombre, email, passwordEncoder.encode(password), direccion);
+		usuario.agregarRol(new Cliente());
 
 		sharedService.save(usuario);
 		storedObjects.put("usuario - " + nombre, usuario);
@@ -97,9 +69,9 @@ public class Populador {
 		storedObjects.put("rubro - " + nombre, rubro);
 	}
 
-	public void popularPrestador(String nombre, Ubicacion ubicacion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
+	public void popularPrestador(String nombre, String direccion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
 
-		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, ubicacion, telefono, imagen);
+		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, direccion, telefono, imagen);
 		rubro.agregarPrestadorDeServicios(prestador);
 
 		sharedService.save(prestador);

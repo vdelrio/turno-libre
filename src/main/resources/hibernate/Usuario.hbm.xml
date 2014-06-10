@@ -14,8 +14,9 @@
 		<property name="nombre" not-null="true" />
         <property name="email" unique-key="USUARIO_BUSINESS_KEY" not-null="true" />
 		<property name="password" not-null="true" />
+        <property name="direccion" not-null="true" />
 		<property name="telefono" />
-        <property name="habilitado" not-null="true" />
+        <property name="habilitado" type="org.hibernate.type.NumericBooleanType" not-null="true" />
 		<property name="ultimoLogueo" column="ultimo_logueo" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime" />
 
 		<set name="notificaciones" cascade="all,delete-orphan" sort="natural">

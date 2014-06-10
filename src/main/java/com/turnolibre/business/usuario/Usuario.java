@@ -21,6 +21,7 @@ public class Usuario {
 	private String nombre;
 	private String email;
 	private String password;
+	private String direccion;
 	private String telefono;
 
     private boolean habilitado = true;
@@ -42,9 +43,14 @@ public class Usuario {
 		this.email = email;
 		this.password = password;
 	}
-	
-	public Usuario(String nombre, String email, String password, String telefono) {
+
+	public Usuario(String nombre, String email, String password, String direccion) {
 		this(nombre, email, password);
+		this.direccion = direccion;
+	}
+	
+	public Usuario(String nombre, String email, String password, String direccion, String telefono) {
+		this(nombre, email, password, direccion);
 		this.telefono = telefono;
 	}
 	
@@ -97,7 +103,15 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	public String getTelefono() {
 		return telefono;
 	}
