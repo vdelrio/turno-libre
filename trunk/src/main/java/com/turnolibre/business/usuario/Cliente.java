@@ -1,7 +1,6 @@
 package com.turnolibre.business.usuario;
 
 import com.turnolibre.business.turno.Turno;
-import com.turnolibre.business.ubicacion.Ciudad;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -15,22 +14,9 @@ public class Cliente extends Rol {
 
 	public static String NOMBRE_DE_ROL = "cliente";
 	
-	private Ciudad ciudad;
 	private SortedSet<Turno> turnos = new TreeSet<Turno>();
 
 
-	/*------------------------------------ Constructors ------------------------------------*/
-
-	public Cliente() {
-		super();
-	}
-
-	public Cliente(Ciudad ciudad) {
-		super();
-		this.ciudad = ciudad;
-	}
-
-    /*--------------------------------------------------------------------------------------*/
 	/*------------------------------------ Public methods ----------------------------------*/
 
 	@Override
@@ -40,14 +26,6 @@ public class Cliente extends Rol {
 
     /*--------------------------------------------------------------------------------------*/
 	/*---------------------------------- Geters and seters ---------------------------------*/
-
-	public Ciudad getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(Ciudad ciudad) {
-		this.ciudad = ciudad;
-	}
 
 	public SortedSet<Turno> getTurnos() {
 		return turnos;

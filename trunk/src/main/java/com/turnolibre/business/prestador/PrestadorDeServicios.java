@@ -1,7 +1,6 @@
 package com.turnolibre.business.prestador;
 
 import com.turnolibre.business.agenda.Agenda;
-import com.turnolibre.business.ubicacion.Ubicacion;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,10 +20,10 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	
 	private String nombre;
 	private String imagen;
+	private String direccion;
 	private String telefono;
 	private String acercaDe;
 
-	private Ubicacion ubicacion;
 
 	private Set<Servicio> servicios = new TreeSet<Servicio>();
 	private Set<Agenda> agendas = new HashSet<Agenda>();
@@ -42,14 +41,14 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		this.nombre = nombre;
 	}
 
-	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono) {
+	public PrestadorDeServicios(String nombre, String direccion, String telefono) {
 		this(nombre);
-		this.ubicacion = ubicacion;
+		this.direccion = direccion;
 		this.telefono = telefono;
 	}
 
-	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono, String imagen) {
-		this(nombre, ubicacion, telefono);
+	public PrestadorDeServicios(String nombre, String direccion, String telefono, String imagen) {
+		this(nombre, direccion, telefono);
 		this.imagen = imagen;
 	}
 
@@ -114,6 +113,14 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		this.imagen = imagen;
 	}
 
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	public String getTelefono() {
 		return telefono;
 	}
@@ -128,14 +135,6 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 
 	public void setAcercaDe(String acercaDe) {
 		this.acercaDe = acercaDe;
-	}
-
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
 	}
 
 	public Set<Servicio> getServicios() {

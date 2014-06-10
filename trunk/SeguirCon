@@ -1,16 +1,8 @@
 
- - Sacar responsive
-
- - Leer un poco de thymeleaf
- - Repasar la forma en la que funcionan los controllers
-
-
-
- - Revisar i18n, hacer que chosen también lo use
- - Revisar los javascripts, ver que no haya código duplicado y que todo este en su lugar
- - Ver el tema de chosen cunado es "required" en los forms (ver si hace falta poner jquery validation)
-
-
+ - Sacar ciudades y poner direcciones de google maps
+ 	* Ver el quilombo que hay con el timezone de los horarios (parece ser eso)
+ 	* Rearmar dump inicial
+ 	* Cambiar la pantalla de edición de perfil
 
 
 

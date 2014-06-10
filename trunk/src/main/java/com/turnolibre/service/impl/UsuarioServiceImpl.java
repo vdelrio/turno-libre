@@ -2,7 +2,6 @@ package com.turnolibre.service.impl;
 
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.i18n.MensajeLocalizable;
-import com.turnolibre.business.ubicacion.Ciudad;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Notificacion;
 import com.turnolibre.business.usuario.Rol;
@@ -77,12 +76,12 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
 	@Override
 	@Transactional
-	public void registrarUsuario(Usuario usuario, Ciudad ciudad) throws ExcepcionDeReglaDelNegocio {
+	public void registrarUsuario(Usuario usuario) throws ExcepcionDeReglaDelNegocio {
 
 		if (usuarioDao.emailExists(usuario.getEmail()))
 			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("excepcion.crear.usuario.email.repetido", usuario.getEmail()));
 
-		usuario.agregarRol(new Cliente(ciudad));
+		usuario.agregarRol(new Cliente());
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		sharedDao.saveOrUpdate(usuario);
 	}

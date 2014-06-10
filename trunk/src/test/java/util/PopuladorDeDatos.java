@@ -4,10 +4,6 @@ import com.turnolibre.business.agenda.Agenda;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
-import com.turnolibre.business.ubicacion.Barrio;
-import com.turnolibre.business.ubicacion.Ciudad;
-import com.turnolibre.business.ubicacion.Provincia;
-import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.Usuario;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeUtils;
@@ -40,10 +36,6 @@ public class PopuladorDeDatos extends Populador {
 	
 	private void ejecutar() throws ExcepcionDeReglaDelNegocio {
 		
-		popularProvincias();
-		popularCiudades();
-		popularBarrios();
-
 		popularUsuarios();
 		asignarRolesAdmin();
 
@@ -57,60 +49,17 @@ public class PopuladorDeDatos extends Populador {
 		popularDiasNoLaborales();
 	}
 
-	private void popularProvincias() {
-
-		popularProvincia("CIUDAD AUTONOMA DE BUENOS AIRES");
-		popularProvincia("BUENOS AIRES");
-		popularProvincia("CATAMARCA");
-		popularProvincia("CHACO");
-		popularProvincia("CHUBUT");
-		popularProvincia("CORDOBA");
-		popularProvincia("CORRIENTES");
-		popularProvincia("ENTRE RIOS");
-		popularProvincia("FORMOSA");
-		popularProvincia("JUJUY");
-		popularProvincia("LA PAMPA");
-		popularProvincia("LA RIOJA");
-		popularProvincia("MENDOZA");
-		popularProvincia("MISIONES");
-		popularProvincia("NEUQUEN");
-		popularProvincia("RIO NEGRO");
-		popularProvincia("SALTA");
-		popularProvincia("SAN JUAN");
-		popularProvincia("SAN LUIS");
-		popularProvincia("SANTA CRUZ");
-		popularProvincia("SANTA FE");
-		popularProvincia("SANTIAGO DEL ESTERO");
-		popularProvincia("TIERRA DEL FUEGO");
-		popularProvincia("TUCUMAN");
-	}
-
-	private void popularCiudades() {
-
-		Provincia buenosAires = (Provincia) storedObjects.get("provincia - BUENOS AIRES");
-		Provincia caba = (Provincia) storedObjects.get("provincia - CIUDAD AUTONOMA DE BUENOS AIRES");
-
-		popularCiudad("CIUDAD AUTONOMA DE BUENOS AIRES", caba, null);
-		popularCiudad("11 DE SEPTIEMBRE", buenosAires, "1657");
-		popularCiudad("12 DE AGOSTO", buenosAires, "2701");
-		popularCiudad("12 DE OCTUBRE", buenosAires, "6501");
-	}
-
-	private void popularBarrios() {
-		popularBarrio("Colegiales", (Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES"));
-	}
-	
 	private void popularUsuarios() throws ExcepcionDeReglaDelNegocio {
-		
-		Ciudad caba = (Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES");
-		Ciudad onceSept = (Ciudad) storedObjects.get("ciudad - 11 DE SEPTIEMBRE");
 
-		popularUsuario("Victor Del Rio",   "victor.delrio@gmail.com",    "123456", caba);
-		popularUsuario("Manuel Rodriguez", "manuel.rodriguez@gmail.com", "123456", caba);
-		popularUsuario("Juan Sanchez",     "juan.sanchez@gmail.com",     "123456", caba);
-		popularUsuario("Carlos Del Rio",   "carlos.delrio@gmail.com",    "123456", caba);
-		popularUsuario("German Ramirez",   "german.rodriguez@gmail.com", "123456", onceSept);
-		popularUsuario("Alejandra Lopez",  "alejandra.lopez@gmail.com",  "123456", onceSept);
+		String direccionCapital = "Aguilar 2547, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		String direccionNecochea = "Calle 61 3476, Necochea, Buenos Aires, Argentina";
+		
+		popularUsuario("Victor Del Rio",   "victor.delrio@gmail.com",    "123456", direccionCapital);
+		popularUsuario("Manuel Rodriguez", "manuel.rodriguez@gmail.com", "123456", direccionCapital);
+		popularUsuario("Juan Sanchez",     "juan.sanchez@gmail.com",     "123456", direccionCapital);
+		popularUsuario("Carlos Del Rio",   "carlos.delrio@gmail.com",    "123456", direccionCapital);
+		popularUsuario("German Ramirez",   "german.rodriguez@gmail.com", "123456", direccionNecochea);
+		popularUsuario("Alejandra Lopez",  "alejandra.lopez@gmail.com",  "123456", direccionNecochea);
 	}
 	
 	private void asignarRolesAdmin() throws ExcepcionDeReglaDelNegocio {
@@ -132,12 +81,12 @@ public class PopuladorDeDatos extends Populador {
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
 		Rubro rubroSalud = (Rubro) storedObjects.get("rubro - Salud");
-		Ubicacion ubicacionPrestador1 = new Ubicacion((Ciudad) storedObjects.get("ciudad - CIUDAD AUTONOMA DE BUENOS AIRES"), (Barrio) storedObjects.get("barrio - Colegiales"), "Aguilar 2547");
-		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
+		String direccionPrestador1 = "Av Cabildo 1501, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		popularPrestador("Consultorio medico sur", direccionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
 
 		Rubro rubroDeportes = (Rubro) storedObjects.get("rubro - Deportes");
-		Ubicacion ubicacionPrestador2 = new Ubicacion((Ciudad) storedObjects.get("ciudad - 11 DE SEPTIEMBRE"), "61 3476");
-		popularPrestador("Futbol 5 Mentarios", ubicacionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
+		String direccionPrestador2 = "Av Cordoba 2345, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		popularPrestador("Futbol 5 Mentarios", direccionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
 	}
 	
 	private void popularAgendas() throws ExcepcionDeReglaDelNegocio {
