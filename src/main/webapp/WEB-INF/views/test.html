@@ -2,8 +2,6 @@
 <html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title th:text="#{titulo.pagina.perfil}">Editar perfil</title>
-	<link rel="stylesheet" th:href="@{/resources/chosen/chosen.css}">
-	<link rel="stylesheet" th:href="@{/resources/chosen/chosen-bootstrap.css}">
 </head>
 <body>
 
@@ -11,18 +9,15 @@
 
         <div class="col-lg-6 col-lg-offset-3">
 
-            <select id="country-select" data-placeholder="Elige una ciudad..." class="form-control">
-                <option th:each="city : ${allCities}" th:value="${city.id}" th:text="${city}">Necochea</option>
-            </select>
+
 
         </div>
 
-		<script th:src="@{/resources/chosen/chosen.jquery.js}"></script>
 		<script>
 
 			$(document).ready(function() {
 
-				$("#country-select").chosen();
+
 
 			});
 
