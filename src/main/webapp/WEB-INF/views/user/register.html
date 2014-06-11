@@ -28,7 +28,7 @@
 					</div>
                     <div class="form-group">
                         <label for="direccion" th:text="#{direccion}">Dirección</label>
-                        <input id="direccion" name="direccion" type="text" class="form-control" required autofocus>
+                        <input type="text" th:field="*{direccion}" class="form-control" required>
                     </div>
 					<div class="form-group">
 						<label for="password" th:text="#{contraseña}">Contraseña</label>

@@ -22,27 +22,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="provincia" class="col-md-3 control-label" th:text="#{provincia}">Provincia</label>
+            <label for="direccion" class="col-md-3 control-label" th:text="#{direccion}">Dirección</label>
             <div class="col-md-9">
-                <select id="provincia" name="provincia" data-placeholder="Seleccione una provincia" class="provincia form-control" required>
-                    <option value=""></option>
-                    <option th:each="prov : ${allProvincias}" th:value="${prov.id}" th:text="${prov}" th:selected="${selectedProvincia.id == prov.id}">JUJUY</option>
-                </select>
-                <span class="help-block" th:text="#{editar.perfil.ayuda.provincia}">Introduce la provincia para la cual vas a querer encontrar turnos.</span>
+                <input type="text" th:field="*{direccion}" class="form-control" required>
+                <span class="help-block" th:text="#{editar.perfil.ayuda.direccion}">Introduce tu dirección para poder sugerirte los prestadores más cercanos.</span>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="ciudad" class="col-md-3 control-label" th:text="#{ciudad}">Ciudad</label>
-            <div class="col-md-9">
-                <select id="ciudad" name="ciudad" data-placeholder="Seleccione una ciudad" class="ciudad form-control" required>
-                    <option value=""></option>
-                    <option th:each="city : ${allCities}" th:value="${city.id}" th:text="${city}" th:selected="${selectedCity.id == city.id}">JUJUY</option>
-                </select>
-                <span class="help-block" th:text="#{editar.perfil.ayuda.ciudad}">Introduce la ciudad para la cual vas a querer encontrar turnos.</span>
-            </div>
-        </div>
-
         <div class="form-group">
             <label for="telefono" class="col-md-3 control-label" th:text="#{telefono}">Teléfono</label>
             <div class="col-md-9">
