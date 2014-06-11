@@ -1,10 +1,5 @@
 
- - Sacar ciudades y poner direcciones de google maps
- 	* Ver el quilombo que hay con el timezone de los horarios (parece ser eso)
- 	* Rearmar dump inicial
- 	* Cambiar la pantalla de edición de perfil
-
-
+ - En edición de perfil, hacer que los 2 componentes (responsive) de dirección sean de google maps
 
 
 mysqldump --user=root --password= --no-create-db --no-create-info --databases turnolibre > dev-dump.sql

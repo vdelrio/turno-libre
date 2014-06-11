@@ -2,8 +2,6 @@
 <html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title th:text="#{titulo.pagina.perfil}">Editar perfil</title>
-	<link rel="stylesheet" th:href="@{/resources/chosen/chosen.css}">
-	<link rel="stylesheet" th:href="@{/resources/chosen/chosen-bootstrap.css}">
 </head>
 <body>
 
@@ -26,7 +24,7 @@
 
 			<!-- Collapse (xs) -->
             <div class="panel-group visible-xs" id="accordion">
-                <div class="panel panel-info">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" th:text="#{perfil}">
@@ -40,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-info">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" th:text="#{contraseña}">
@@ -85,7 +83,7 @@
 			</div>
 		</div>
 
-		<script th:src="@{/resources/chosen/chosen.jquery.js}"></script>
+        <script th:src="@{http://maps.googleapis.com/maps/api/js?key=AIzaSyC76s0wifO-67hjzecktthUdWiiQRB56E8&sensor=false&libraries=places}"></script>
 		<script th:src="@{/resources/application/js/edit-password.js}"></script>
 		<script th:src="@{/resources/application/js/edit-profile.js}"></script>
 		<script>

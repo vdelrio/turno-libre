@@ -51,7 +51,7 @@ public class PopuladorDeDatos extends Populador {
 
 	private void popularUsuarios() throws ExcepcionDeReglaDelNegocio {
 
-		String direccionCapital = "Aguilar 2547, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		String direccionCapital = "Aguilar 2547, Buenos Aires, Argentina";
 		String direccionNecochea = "Calle 61 3476, Necochea, Buenos Aires, Argentina";
 		
 		popularUsuario("Victor Del Rio",   "victor.delrio@gmail.com",    "123456", direccionCapital);
@@ -81,11 +81,11 @@ public class PopuladorDeDatos extends Populador {
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
 		Rubro rubroSalud = (Rubro) storedObjects.get("rubro - Salud");
-		String direccionPrestador1 = "Av Cabildo 1501, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		String direccionPrestador1 = "Av Cabildo 1501, Buenos Aires, Argentina";
 		popularPrestador("Consultorio medico sur", direccionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
 
 		Rubro rubroDeportes = (Rubro) storedObjects.get("rubro - Deportes");
-		String direccionPrestador2 = "Av Cordoba 2345, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina";
+		String direccionPrestador2 = "Av Cordoba 2345, Buenos Aires, Argentina";
 		popularPrestador("Futbol 5 Mentarios", direccionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
 	}
 	

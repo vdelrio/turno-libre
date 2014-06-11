@@ -25,9 +25,7 @@ function initialize() {
 function fillInAddress() {
 
     // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-    alert(place.formatted_address);
-
+//    var place = autocomplete.getPlace();
 
 }
 
