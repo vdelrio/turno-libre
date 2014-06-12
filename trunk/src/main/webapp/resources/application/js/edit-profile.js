@@ -6,18 +6,20 @@
 
 function initialize() {
 
-    // Create the autocomplete object, restricting the search to geographical location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('direccion'),
-        {
-            types: ['geocode'],
-            componentRestrictions: { country: 'ar' }
-        }
-    );
+    $.each($(".direccion"), function( index, value ) {
+        // Create the autocomplete object, restricting the search to geographical location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            $(value)[0],
+            {
+                types: ['geocode'],
+                componentRestrictions: { country: 'ar' }
+            }
+        );
 
-    // When the user selects an address from the dropdown, populate the address fields in the form.
-    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        fillInAddress();
+        // When the user selects an address from the dropdown, populate the address fields in the form.
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            fillInAddress();
+        });
     });
 }
 
