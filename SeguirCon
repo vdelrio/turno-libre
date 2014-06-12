@@ -1,5 +1,4 @@
 
- - En edición de perfil, hacer que los 2 componentes (responsive) de dirección sean de google maps
 
 
 mysqldump --user=root --password= --no-create-db --no-create-info --databases turnolibre > dev-dump.sql
