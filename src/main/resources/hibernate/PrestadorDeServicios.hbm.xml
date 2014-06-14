@@ -15,10 +15,15 @@
 
 		<property name="nombre" unique-key="PRESTADOR_BUSINESS_KEY" not-null="true" />
 		<property name="imagen" />
-		<property name="direccion" not-null="true" />
+
+        <component name="ubicacion" class="com.turnolibre.business.ubicacion.Ubicacion">
+            <property name="direccion" not-null="true" />
+            <property name="latitud" not-null="true" />
+            <property name="longitud" not-null="true" />
+        </component>
+
 		<property name="telefono" not-null="true" />
 		<property name="acercaDe" column="acerca_de" />
-
 
 		<set name="agendas" cascade="all,delete-orphan" inverse="true">
 			<key column="prestador_de_servicios_id" />

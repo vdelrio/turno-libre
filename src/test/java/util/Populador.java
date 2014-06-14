@@ -11,6 +11,7 @@ import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
 import com.turnolibre.business.prestador.Servicio;
 import com.turnolibre.business.turno.Horario;
+import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
@@ -69,9 +70,9 @@ public class Populador {
 		storedObjects.put("rubro - " + nombre, rubro);
 	}
 
-	public void popularPrestador(String nombre, String direccion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
+	public void popularPrestador(String nombre, Ubicacion ubicacion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
 
-		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, direccion, telefono, imagen);
+		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, ubicacion, telefono, imagen);
 		rubro.agregarPrestadorDeServicios(prestador);
 
 		sharedService.save(prestador);
