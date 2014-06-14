@@ -1,6 +1,7 @@
 package com.turnolibre.business.prestador;
 
 import com.turnolibre.business.agenda.Agenda;
+import com.turnolibre.business.ubicacion.Ubicacion;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,7 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	
 	private String nombre;
 	private String imagen;
-	private String direccion;
+	private Ubicacion ubicacion;
 	private String telefono;
 	private String acercaDe;
 
@@ -41,14 +42,14 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		this.nombre = nombre;
 	}
 
-	public PrestadorDeServicios(String nombre, String direccion, String telefono) {
+	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono) {
 		this(nombre);
-		this.direccion = direccion;
+		this.ubicacion = ubicacion;
 		this.telefono = telefono;
 	}
 
-	public PrestadorDeServicios(String nombre, String direccion, String telefono, String imagen) {
-		this(nombre, direccion, telefono);
+	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono, String imagen) {
+		this(nombre, ubicacion, telefono);
 		this.imagen = imagen;
 	}
 
@@ -113,12 +114,12 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		this.imagen = imagen;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public Ubicacion getUbicacion() {
+		return ubicacion;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 	public String getTelefono() {

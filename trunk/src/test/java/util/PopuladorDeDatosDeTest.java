@@ -4,6 +4,7 @@ import com.turnolibre.business.agenda.Agenda;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
+import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.Cliente;
 import com.turnolibre.business.usuario.Usuario;
 import org.joda.time.DateTimeUtils;
@@ -77,8 +78,8 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
-		String direccionPrestador1 = "Av Cabildo 1501, Buenos Aires, Argentina";
-		popularPrestador("Consultorio medico sur", direccionPrestador1, "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("rubro - Consultorios medicos"));
+		Ubicacion ubicacionPrestador1 = new Ubicacion("Av Cabildo 1501, Buenos Aires, Argentina", -34.5668907,-58.4507691);
+		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("rubro - Consultorios medicos"));
 	}
 
 	private void popularAgendas() throws ExcepcionDeReglaDelNegocio {

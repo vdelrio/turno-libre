@@ -4,6 +4,7 @@ import com.turnolibre.business.agenda.Agenda;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Rubro;
+import com.turnolibre.business.ubicacion.Ubicacion;
 import com.turnolibre.business.usuario.Usuario;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeUtils;
@@ -81,12 +82,12 @@ public class PopuladorDeDatos extends Populador {
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
 		Rubro rubroSalud = (Rubro) storedObjects.get("rubro - Salud");
-		String direccionPrestador1 = "Av Cabildo 1501, Buenos Aires, Argentina";
-		popularPrestador("Consultorio medico sur", direccionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
+		Ubicacion ubicacionPrestador1 = new Ubicacion("Av Cabildo 1501, Buenos Aires, Argentina", -34.5668907,-58.4507691);
+		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
 
 		Rubro rubroDeportes = (Rubro) storedObjects.get("rubro - Deportes");
-		String direccionPrestador2 = "Av Cordoba 2345, Buenos Aires, Argentina";
-		popularPrestador("Futbol 5 Mentarios", direccionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
+		Ubicacion ubicacionPrestador2 = new Ubicacion("Av Cordoba 2345, Buenos Aires, Argentina", -34.5995209,-58.4006015);
+		popularPrestador("Futbol 5 Mentarios", ubicacionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
 	}
 	
 	private void popularAgendas() throws ExcepcionDeReglaDelNegocio {
