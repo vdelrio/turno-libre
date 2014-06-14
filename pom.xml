@@ -10,9 +10,10 @@
 
 	<properties>
         <!-- Versiones actualizadas al 25 de mayo del 2014 -->
+		<jvm.version>1.6</jvm.version>
 		<spring.version>4.0.5.RELEASE</spring.version>
 		<spring.security.version>3.2.4.RELEASE</spring.security.version>
-		<jackson.version>1.9.13</jackson.version>
+		<jackson.version>2.4.0</jackson.version>
 		<thymeleaf.version>2.1.3.RELEASE</thymeleaf.version>
 		<thymeleaf.security.version>2.1.1.RELEASE</thymeleaf.security.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
@@ -85,13 +86,33 @@
 		</dependency>
 
 		<!-- Jackson JSON Mapper -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate4</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
-		<!-- Spring Security Dependencies -->
+        <!-- Spring Security Dependencies -->
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -119,6 +140,14 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+
+        <!-- Me Parece que para servlet 3 se necesita java 7 -->
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>javax.servlet-api</artifactId>-->
+            <!--<version>3.1.0</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -225,8 +254,8 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${jvm.version}</source>
+					<target>${jvm.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>

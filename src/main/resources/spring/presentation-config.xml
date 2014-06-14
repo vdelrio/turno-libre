@@ -16,7 +16,15 @@
 	<context:component-scan base-package="com.turnolibre.presentation.controller" />
 
 	<!-- Configures the @Controller programming model -->
-	<mvc:annotation-driven conversion-service="conversionService" />
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.turnolibre.presentation.conversion.CustomJacksonObjectMapper" />
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
 	<!-- Configures Handler Interceptors -->
 	<mvc:interceptors>
