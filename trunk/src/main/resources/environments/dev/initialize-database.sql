@@ -104,7 +104,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `prestadores_de_servicios` WRITE;
 ALTER TABLE `prestadores_de_servicios` DISABLE KEYS;
-INSERT INTO `prestadores_de_servicios` VALUES (1,1,'Consultorio medico sur','/images/prestadores/prestador1.jpg','Av Cabildo 1501, Buenos Aires, Argentina','4785-0055',NULL),(2,2,'Futbol 5 Mentarios','/images/prestadores/prestador2.jpg','Av Cordoba 2345, Buenos Aires, Argentina','4867-7455',NULL);
+INSERT INTO `prestadores_de_servicios` VALUES (1,1,'Consultorio medico sur','/images/prestadores/prestador1.jpg','Av Cabildo 1501, Buenos Aires, Argentina',-34.5668907,-58.4507691,'4785-0055',NULL),(2,2,'Futbol 5 Mentarios','/images/prestadores/prestador2.jpg','Av Cordoba 2345, Buenos Aires, Argentina',-34.5995209,-58.4006015,'4867-7455',NULL);
 ALTER TABLE `prestadores_de_servicios` ENABLE KEYS;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `usuarios` WRITE;
 ALTER TABLE `usuarios` DISABLE KEYS;
-INSERT INTO `usuarios` VALUES (1,'Victor Del Rio','victor.delrio@gmail.com','e799164375419d8304b75d125f12bacbbbac5a391054e9e189a6d1497190453ab76c166002161a5a','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(2,'Manuel Rodriguez','manuel.rodriguez@gmail.com','fd894830e7ab52ff844db496466dd2f195960f14f871f9bf137fe9624b8a2fbb03d628a953179caf','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(3,'Juan Sanchez','juan.sanchez@gmail.com','3d49aa332d4cbf36b4f305f6a5cc579d86391435be54f2eef9460db8aacf25208d01632fcdc27064','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(4,'Carlos Del Rio','carlos.delrio@gmail.com','df27c02317b9c0b52a3ec031d666cb316c0f9a6167effb7040c764b85ee797930c0e64330c178aef','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(5,'German Ramirez','german.rodriguez@gmail.com','2df30ec51d5f0d816424fa18de300be13170da9033c3fdce67842dd5bb2b71cfbe414092d058f601','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL),(6,'Alejandra Lopez','alejandra.lopez@gmail.com','3dabbc394a570bae386d71ff6ce62eb178cd8147cc5b507bf3a77de48a7f3728ce6d36324f98e33a','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL);
+INSERT INTO `usuarios` VALUES (1,'Victor Del Rio','victor.delrio@gmail.com','5a475643025d83b22d790e54807557b42fe7159290702bade9380c40f9820c770cecf735845249c5','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(2,'Manuel Rodriguez','manuel.rodriguez@gmail.com','977b45a0ee3918f785a76e2df34fd19426310574307be5db688d799c514edfd8238108e9ba03f986','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(3,'Juan Sanchez','juan.sanchez@gmail.com','1593a733b15f7a4a6c4d5d70d78d756d2ffffca79a971c6206fba2e3f9dba929506b1b20a9c4d036','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(4,'Carlos Del Rio','carlos.delrio@gmail.com','a4ce582c19ddb3f75161b195ce0e9532d287a62b176240e52c97a310b74b297878b1ea3b1133fad8','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(5,'German Ramirez','german.rodriguez@gmail.com','0d49203d24b9d686b258252a640e8ed29bfb29da2010f488baf5243032ab28713885118c8770aec6','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL),(6,'Alejandra Lopez','alejandra.lopez@gmail.com','67ea8ea0b0f70035b537f342634eebc9db129bc460222259ce309bc9249573a22a43c05c3a4410cd','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL);
 ALTER TABLE `usuarios` ENABLE KEYS;
 UNLOCK TABLES;
 SET TIME_ZONE=@OLD_TIME_ZONE;
@@ -177,4 +177,4 @@ SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS;
 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION;
 SET SQL_NOTES=@OLD_SQL_NOTES;
 
--- Dump completed on 2014-06-09 20:34:34
+-- Dump completed on 2014-06-14 19:12:39
