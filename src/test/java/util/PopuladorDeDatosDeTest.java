@@ -78,7 +78,7 @@ public class PopuladorDeDatosDeTest extends Populador {
 
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
-		Ubicacion ubicacionPrestador1 = new Ubicacion("Av Cabildo 1501, Buenos Aires, Argentina", -34.5668907,-58.4507691);
+		Ubicacion ubicacionPrestador1 = new Ubicacion("Buenos Aires", "Av Cabildo 1501, Buenos Aires, Argentina", -34.5668907,-58.4507691);
 		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "47850055", "/images/prestadores/prestador1.jpg", (Rubro) storedObjects.get("rubro - Consultorios medicos"));
 	}
 

@@ -17,6 +17,7 @@
 		<property name="imagen" />
 
         <component name="ubicacion" class="com.turnolibre.business.ubicacion.Ubicacion">
+            <property name="ciudad" not-null="true" />
             <property name="direccion" not-null="true" />
             <property name="latitud" not-null="true" />
             <property name="longitud" not-null="true" />

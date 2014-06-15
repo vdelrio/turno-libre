@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface PrestadorDeServiciosService {
 
-	List<PrestadorDeServicios> findByCloseness(String serviceName, String address);
+	List<PrestadorDeServicios> findByCloseness(String service, String city);
 
 	Set<Agenda> findAgendas(Long prestadorDeServiciosId);
 
