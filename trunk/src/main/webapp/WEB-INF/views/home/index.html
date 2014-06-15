@@ -9,7 +9,7 @@
 
 		<!--<div th:replace="shared/_pagina-construccion :: pagina-construccion"></div>-->
 
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-offset-2 col-md-8">
 
             <input class="form-control" id="direccion" type="text">
             <div id="map-canvas" class="google-map">
@@ -39,15 +39,18 @@
 
             function fillInAddress() {
 
+
                 var place = autocomplete.getPlace();
                 var myLatlng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
 
                 var mapOptions = {
-                    zoom: 16,
+                    zoom: 15,
                     center: myLatlng,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                $("#map-canvas").css("visibility", "visible");
 
                 var marker = new google.maps.Marker({
                     position: myLatlng,
@@ -58,6 +61,10 @@
                 $.ajax({
                     type: "get",
                     url: "/find-by-closeness",
+                    data: {
+                        service: "oftalmologia",
+                        city: place.address_components[3].long_name
+                    },
                     success: function(data, textStatus) {
 
                         $.each(data, function( index, value ) {
@@ -72,7 +79,7 @@
                                     animation: google.maps.Animation.DROP
                                 });
 
-                            }, index * 150);
+                            }, index * 200);
                         });
                     }
                 });

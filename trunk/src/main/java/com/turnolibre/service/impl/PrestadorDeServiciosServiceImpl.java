@@ -25,13 +25,13 @@ public class PrestadorDeServiciosServiceImpl implements PrestadorDeServiciosServ
 	/*------------------------------------ Public methods ----------------------------------*/
 
 	@Override
-	public List<PrestadorDeServicios> findByCloseness(String serviceName, String address) {
+	public List<PrestadorDeServicios> findByCloseness(String service, String city) {
 		// TODO desharcodear esta lista
 		return Arrays.asList(
-				new PrestadorDeServicios("Prestador 1", new Ubicacion("Aguilar 2345, Buenos Aires", -34.5685359,-58.4467496), "12345"),
-				new PrestadorDeServicios("Prestador 2", new Ubicacion("Ciudad de la Paz 1032, Buenos Aires", -34.5700622,-58.4485296), "12345"),
-				new PrestadorDeServicios("Prestador 3", new Ubicacion("Av Cabildo 1112, Buenos Aires", -34.5688308,-58.4471497), "12345"),
-				new PrestadorDeServicios("Prestador 4", new Ubicacion("Palpa 2653, Buenos Aires", -34.5716346,-58.4484501), "12345")
+				new PrestadorDeServicios("Prestador 1", new Ubicacion("Buenos Aires", "Aguilar 2345, Buenos Aires", -34.5685359,-58.4467496), "12345"),
+				new PrestadorDeServicios("Prestador 2", new Ubicacion("Buenos Aires", "Ciudad de la Paz 1032, Buenos Aires", -34.5700622,-58.4485296), "12345"),
+				new PrestadorDeServicios("Prestador 3", new Ubicacion("Buenos Aires", "Av Cabildo 1112, Buenos Aires", -34.5688308,-58.4471497), "12345"),
+				new PrestadorDeServicios("Prestador 4", new Ubicacion("Buenos Aires", "Palpa 2653, Buenos Aires", -34.5716346,-58.4484501), "12345")
 		);
 	}
 

@@ -7,6 +7,7 @@ package com.turnolibre.business.ubicacion;
  */
 public class Ubicacion {
 
+	private String ciudad;
 	private String direccion;
 	private double latitud;
 	private double longitud;
@@ -15,10 +16,19 @@ public class Ubicacion {
 	public Ubicacion() {
 	}
 
-	public Ubicacion(String direccion, double latitud, double longitud) {
+	public Ubicacion(String ciudad, String direccion, double latitud, double longitud) {
+		this.ciudad = ciudad;
 		this.direccion = direccion;
 		this.latitud = latitud;
 		this.longitud = longitud;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 	public String getDireccion() {

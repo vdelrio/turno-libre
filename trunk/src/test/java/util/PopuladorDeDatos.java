@@ -82,11 +82,11 @@ public class PopuladorDeDatos extends Populador {
 	private void popularPrestadores() throws ExcepcionDeReglaDelNegocio {
 
 		Rubro rubroSalud = (Rubro) storedObjects.get("rubro - Salud");
-		Ubicacion ubicacionPrestador1 = new Ubicacion("Av Cabildo 1501, Buenos Aires, Argentina", -34.5668907,-58.4507691);
+		Ubicacion ubicacionPrestador1 = new Ubicacion("Buenos Aires", "Av Cabildo 1501, Buenos Aires, Argentina", -34.5668907,-58.4507691);
 		popularPrestador("Consultorio medico sur", ubicacionPrestador1, "4785-0055", "/images/prestadores/prestador1.jpg", rubroSalud);
 
 		Rubro rubroDeportes = (Rubro) storedObjects.get("rubro - Deportes");
-		Ubicacion ubicacionPrestador2 = new Ubicacion("Av Cordoba 2345, Buenos Aires, Argentina", -34.5995209,-58.4006015);
+		Ubicacion ubicacionPrestador2 = new Ubicacion("Buenos Aires", "Av Cordoba 2345, Buenos Aires, Argentina", -34.5995209,-58.4006015);
 		popularPrestador("Futbol 5 Mentarios", ubicacionPrestador2, "4867-7455", "/images/prestadores/prestador2.jpg", rubroDeportes);
 	}
 	
