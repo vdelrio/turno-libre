@@ -7,7 +7,82 @@
 
 	<div layout:fragment="child-content" class="row margin-top-20">
 
-		<div th:replace="shared/_pagina-construccion :: pagina-construccion"></div>
+		<!--<div th:replace="shared/_pagina-construccion :: pagina-construccion"></div>-->
+
+        <div class="col-md-offset-3 col-md-6">
+
+            <input class="form-control" id="direccion" type="text">
+            <div id="map-canvas" class="google-map">
+                <!-- Acá va el mapa -->
+            </div>
+        </div>
+
+        <script th:src="@{http://maps.googleapis.com/maps/api/js?key=AIzaSyC76s0wifO-67hjzecktthUdWiiQRB56E8&sensor=false&libraries=places}"></script>
+        <script>
+
+            function initialize() {
+
+                // Create the autocomplete object, restricting the search to geographical location types.
+                autocomplete = new google.maps.places.Autocomplete(
+                        document.getElementById('direccion'),
+                        {
+                            types: ['geocode'],
+                            componentRestrictions: { country: 'ar' }
+                        }
+                );
+
+                // When the user selects an address from the dropdown, populate the address fields in the form.
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    fillInAddress();
+                });
+            }
+
+            function fillInAddress() {
+
+                var place = autocomplete.getPlace();
+                var myLatlng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+
+                var mapOptions = {
+                    zoom: 16,
+                    center: myLatlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: 'Tu dirección'
+                });
+
+                $.ajax({
+                    type: "get",
+                    url: "/find-by-closeness",
+                    success: function(data, textStatus) {
+
+                        $.each(data, function( index, value ) {
+
+                            setTimeout(function() {
+
+                                var myLatlng = new google.maps.LatLng(value.ubicacion.latitud, value.ubicacion.longitud);
+                                var marker = new google.maps.Marker({
+                                    position: myLatlng,
+                                    map: map,
+                                    title: value.nombre,
+                                    animation: google.maps.Animation.DROP
+                                });
+
+                            }, index * 150);
+                        });
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                initialize();
+            });
+
+        </script>
 
 	</div>
 

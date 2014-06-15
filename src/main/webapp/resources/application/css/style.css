@@ -12,3 +12,11 @@ body {
 .margin-top-20 {
 	margin-top: 20px;
 }
+
+.google-map {
+    height: 400px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 5px;
+}
