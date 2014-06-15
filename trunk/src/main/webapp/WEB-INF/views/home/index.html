@@ -71,12 +71,22 @@
 
                             setTimeout(function() {
 
+                                var contentString = '<div><div><b>' + value.nombre + '</b></div><div><a href="/">Ir a la página del prestador</a></div></div>';
+
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: contentString,
+                                    maxWidth: 200
+                                });
+
                                 var myLatlng = new google.maps.LatLng(value.ubicacion.latitud, value.ubicacion.longitud);
                                 var marker = new google.maps.Marker({
                                     position: myLatlng,
                                     map: map,
                                     title: value.nombre,
                                     animation: google.maps.Animation.DROP
+                                });
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    infowindow.open(map, marker);
                                 });
 
                             }, index * 200);
