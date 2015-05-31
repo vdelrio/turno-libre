@@ -1,0 +1,13 @@
+# Java class files
+target/
+*.class
+
+# Log Files
+*.log
+
+# Intellij Idea files
+.idea
+*.iml
+
+# Mac OS X Files
+.DS_Store
