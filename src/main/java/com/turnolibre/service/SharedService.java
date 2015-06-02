@@ -91,6 +91,6 @@ public interface SharedService {
 	 *
 	 * @return all persistence instances of the given entity class
 	 */
-	public <T> List<T> findAll(Class<T> entityClass);
+	<T> List<T> findAll(Class<T> entityClass);
 
 }
