@@ -1,5 +1,6 @@
 
 Poner servlet 3
+Errores de thymeleaf
 
 
 mysqldump --user=root --password= --no-create-db --no-create-info --databases turnolibre > dev-dump.sql
