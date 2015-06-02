@@ -74,7 +74,7 @@ public class Notificacion implements Comparable<Notificacion> {
 
 	@Override
 	public int compareTo(Notificacion otra) {
-		return this.getId().compareTo(otra.getId());
+		return this.getFecha().compareTo(otra.getFecha());
 	}
 
 	/*--------------------------------------------------------------------------------------*/
