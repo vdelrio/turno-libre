@@ -10,7 +10,7 @@
 
 	<properties>
         <!-- Versiones actualizadas al 25 de mayo del 2014 -->
-		<jvm.version>1.6</jvm.version>
+		<jvm.version>1.7</jvm.version>
 		<spring.version>4.1.0.RELEASE</spring.version>
 		<spring.security.version>3.2.5.RELEASE</spring.security.version>
 		<jackson.version>2.4.2</jackson.version>
