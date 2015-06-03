@@ -27,8 +27,8 @@ public class Usuario {
     private boolean habilitado = true;
 	private DateTime ultimoLogueo;
 
-	private Set<Rol> roles = new HashSet<Rol>();
-	private SortedSet<Notificacion> notificaciones = new TreeSet<Notificacion>();
+	private Set<Rol> roles = new HashSet<>();
+	private SortedSet<Notificacion> notificaciones = new TreeSet<>();
 
 
 	/*------------------------------------ Constructors ------------------------------------*/

@@ -29,12 +29,7 @@ public class TestController {
 
 	@RequestMapping(value = "ajax", method = RequestMethod.POST)
 	public void ajaxAction() throws ExcepcionDeReglaDelNegocio {
-
-		if (true) {
-			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("notificacion.habilitacion.por.prestador", "lunes 10 de octubre", "Futbol 5 mentarios", "Cancha 2"));
-		}
-
-
+		throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("notificacion.habilitacion.por.prestador", "lunes 10 de octubre", "Futbol 5 mentarios", "Cancha 2"));
 	}
 
 	@ExceptionHandler(ExcepcionDeReglaDelNegocio.class)

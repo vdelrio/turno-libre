@@ -26,9 +26,9 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	private String acercaDe;
 
 
-	private Set<Servicio> servicios = new TreeSet<Servicio>();
-	private Set<Agenda> agendas = new HashSet<Agenda>();
-	private SortedSet<Noticia> noticias = new TreeSet<Noticia>();
+	private Set<Servicio> servicios = new TreeSet<>();
+	private Set<Agenda> agendas = new HashSet<>();
+	private SortedSet<Noticia> noticias = new TreeSet<>();
 
 	
 	/*------------------------------------ Constructors ------------------------------------*/

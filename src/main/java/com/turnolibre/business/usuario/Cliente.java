@@ -14,7 +14,7 @@ public class Cliente extends Rol {
 
 	public static String NOMBRE_DE_ROL = "cliente";
 	
-	private SortedSet<Turno> turnos = new TreeSet<Turno>();
+	private SortedSet<Turno> turnos = new TreeSet<>();
 
 
 	/*------------------------------------ Public methods ----------------------------------*/

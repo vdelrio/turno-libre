@@ -25,7 +25,7 @@ public class FiltroDeHorarios {
 	
 	public static SortedSet<Horario> ejecutar(SortedSet<Horario> horarios, Interval intervalo) {
 		
-		SortedSet<Horario> horariosFiltrados = new TreeSet<Horario>();
+		SortedSet<Horario> horariosFiltrados = new TreeSet<>();
 		
 		if ( !horarios.isEmpty() ) {
 			
@@ -52,7 +52,7 @@ public class FiltroDeHorarios {
 	
 	public static SortedSet<Horario> ejecutar(SortedSet<Horario> horarios, Set<Interval> intervalos) {
 		
-		SortedSet<Horario> horariosFiltrados = new TreeSet<Horario>();
+		SortedSet<Horario> horariosFiltrados = new TreeSet<>();
 
 		for (Interval intervalo : intervalos)
 			horariosFiltrados.addAll(ejecutar(horarios, intervalo));

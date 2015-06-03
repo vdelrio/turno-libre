@@ -26,7 +26,7 @@ public class Horario implements Comparable<Horario> {
 	
 	private Interval intervalo;
 	private String comentarioDelEstado;           // Usado como tooltip
-	private SortedSet<Turno> turnos = new TreeSet<Turno>();
+	private SortedSet<Turno> turnos = new TreeSet<>();
 
 
 	/*------------------------------------ Static methods ----------------------------------*/
@@ -108,7 +108,7 @@ public class Horario implements Comparable<Horario> {
 
 		validarCantidadIncorrecta(cantidadAQuitar);
 
-		SortedSet<Turno> turnosAQuitar = new TreeSet<Turno>();
+		SortedSet<Turno> turnosAQuitar = new TreeSet<>();
 
 		turnosAQuitar.addAll(this.getTurnosAQuitar(EstadoDeTurno.DESHABILITADO, cantidadAQuitar, motivo));
 		turnosAQuitar.addAll(this.getTurnosAQuitar(EstadoDeTurno.LIBRE, cantidadAQuitar - turnosAQuitar.size(), motivo));
@@ -124,7 +124,7 @@ public class Horario implements Comparable<Horario> {
 
 	public SortedSet<Turno> getTurnos(EstadoDeTurno estado) {
 
-		SortedSet<Turno> turnosConEstado = new TreeSet<Turno>();
+		SortedSet<Turno> turnosConEstado = new TreeSet<>();
 
 		for (Turno turno : this.turnos) {
 			if ( turno.getEstado().equals(estado) )
@@ -174,7 +174,7 @@ public class Horario implements Comparable<Horario> {
 
 	public List<Cliente> getClientes() {
 
-		List<Cliente> clientes = new ArrayList<Cliente>();
+		List<Cliente> clientes = new ArrayList<>();
 
 		for (Turno turno : this.turnos) {
 			if (turno.getCliente() != null)
@@ -223,7 +223,7 @@ public class Horario implements Comparable<Horario> {
 
 	private SortedSet<Turno> getTurnosAQuitar(EstadoDeTurno estado, int cantidadAQuitar, String motivo) {
 
-		SortedSet<Turno> turnosAQuitar = new TreeSet<Turno>();
+		SortedSet<Turno> turnosAQuitar = new TreeSet<>();
 
 		// Hago una copia en un list para poder iterarlo en sentido contrario de modo que se
 		// si se elimina un turno de un cliente, sea del cliente que lo saco hace menos tiempo
@@ -252,7 +252,7 @@ public class Horario implements Comparable<Horario> {
 
 	private void validarDuracionMenorALaPermitida(Interval intervaloDelHorario) throws ExcepcionDeReglaDelNegocio {
 
-		if (intervaloDelHorario.toDuration().isShorterThan(this.getDuracionMinima()))
+		if (intervaloDelHorario.toDuration().isShorterThan(getDuracionMinima()))
 			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("excepcion.crear.horario.duracion.menor.a.la.permitida"));
 	}
 

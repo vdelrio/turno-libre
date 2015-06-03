@@ -13,7 +13,7 @@ public class TestCollectionUtils {
 	@Test
 	public void shouldPreserveOrder() {
 		
-		Set<Integer> integerSet = new TreeSet<Integer>();
+		Set<Integer> integerSet = new TreeSet<>();
 		integerSet.add(1);
 		integerSet.add(2);
 		integerSet.add(3);

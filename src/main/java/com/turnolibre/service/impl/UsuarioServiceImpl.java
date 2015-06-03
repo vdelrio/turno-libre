@@ -42,8 +42,8 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	/**
 	 * Metodo llamado por spring security cuando se loguea un usuario.
 	 *
-	 * @param username
-	 * @return
+	 * @param username el nombre de usuario
+	 * @return retorna los detalles del usuario
 	 * @throws UsernameNotFoundException
 	 */
 	@Override
@@ -103,7 +103,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
 	private Collection<SimpleGrantedAuthority> collectAuthorities(Collection<Rol> roles) {
 
-		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
 		for (Rol rol : roles)
 			authorities.add(new SimpleGrantedAuthority(rol.getNombreDeRol()));

@@ -58,7 +58,7 @@ public class JornadaLaboralHabitual extends JornadaLaboral implements Comparable
 		if (this.estaLigada())
 			return FiltroDeHorarios.ejecutar(this.agenda.getHorarios(), this.getIntervalos());
 		else
-			return new TreeSet<Horario>();
+			return new TreeSet<>();
 	}
 
 	public void modificarIntervalos(DayOfWeekTime nuevoDiaYHoraDeInicio, DayOfWeekTime nuevoDiaYHoraDeFin, String motivo) throws ExcepcionDeReglaDelNegocio {
@@ -154,7 +154,7 @@ public class JornadaLaboralHabitual extends JornadaLaboral implements Comparable
 
 	private SortedSet<Horario> getHorariosNoEnComun(JornadaLaboralHabitual otraJornada) {
 
-		SortedSet<Horario> horariosNoEnComun = new TreeSet<Horario>();
+		SortedSet<Horario> horariosNoEnComun = new TreeSet<>();
 
 		Set<Interval> intervalosDeLaOtraJornada = otraJornada.generarIntervalos(this.agenda.getAntelacionMaxima());
 		SortedSet<Horario> horariosDeLaOtraJornada = FiltroDeHorarios.ejecutar(agenda.getHorarios(), intervalosDeLaOtraJornada);
@@ -170,7 +170,7 @@ public class JornadaLaboralHabitual extends JornadaLaboral implements Comparable
 	// Genera los intervalos para el periodo comenzando desde la fecha actual
 	private Set<Interval> generarIntervalos(Period periodo) {
 
-		Set<Interval> intervalos = new HashSet<Interval>();
+		Set<Interval> intervalos = new HashSet<>();
 		Interval intervalo = JodaTimeUtils.getInstance().getIntervaloEnSemanaActual(this.diaYHoraDeInicio, this.diaYHoraDeFin);
 
 		do {

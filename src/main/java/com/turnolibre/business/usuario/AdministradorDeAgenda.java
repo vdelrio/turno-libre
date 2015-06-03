@@ -15,7 +15,7 @@ public class AdministradorDeAgenda extends Rol {
 
 	public static String NOMBRE_DE_ROL = "adm-agenda";
 	
-	private Set<Agenda> agendas = new HashSet<Agenda>();
+	private Set<Agenda> agendas = new HashSet<>();
 	
 	@Override
 	public String getNombreDeRol() {

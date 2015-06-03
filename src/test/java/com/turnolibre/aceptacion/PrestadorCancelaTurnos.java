@@ -72,7 +72,7 @@ public class PrestadorCancelaTurnos {
 	public void cancelacionDeTodosConTurnosTomados() {
 		
 		Horario horario = sharedService.load(Horario.class, HORARIO_CON_TURNOS_TOMADOS_ID);
-		List<Turno> turnosDeVictor = new ArrayList<Turno>(clienteService.findTurnos(CLIENTE_VICTOR_ID));
+		List<Turno> turnosDeVictor = new ArrayList<>(clienteService.findTurnos(CLIENTE_VICTOR_ID));
 		Collection<Notificacion> notificacionesDeVictor = usuarioService.findNotificaciones(CLIENTE_VICTOR_ID);
 		
 		assertEquals(EstadoDeTurno.LIBRE, horario.getEstado()); // Porque le quedaba un turno libre
@@ -83,7 +83,7 @@ public class PrestadorCancelaTurnos {
 				
 		horarioService.deshabilitarHorario(HORARIO_CON_TURNOS_TOMADOS_ID, MOTIVO_DE_DESHABILITACION);
 		horario = sharedService.load(Horario.class, HORARIO_CON_TURNOS_TOMADOS_ID);
-		turnosDeVictor = new ArrayList<Turno>(clienteService.findTurnos(CLIENTE_VICTOR_ID));
+		turnosDeVictor = new ArrayList<>(clienteService.findTurnos(CLIENTE_VICTOR_ID));
 		notificacionesDeVictor = usuarioService.findNotificaciones(CLIENTE_VICTOR_ID);
 		
 		assertEquals(EstadoDeTurno.DESHABILITADO, horario.getEstado());

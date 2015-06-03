@@ -30,12 +30,12 @@ public class Agenda {
 	
 	private String nombre;
 	private Period antelacionMaxima;
-	private Set<AdministradorDeAgenda> administradores = new HashSet<AdministradorDeAgenda>();
+	private Set<AdministradorDeAgenda> administradores = new HashSet<>();
 	
-	private SortedSet<Horario> horarios = new TreeSet<Horario>();
-	private SortedSet<DiaNoLaboral> diasNoLaborales = new TreeSet<DiaNoLaboral>();
-	private SortedSet<JornadaLaboralHabitual> jornadasLaboralesHabituales = new TreeSet<JornadaLaboralHabitual>();
-	private Set<JornadaLaboralOcasional> jornadasLaboralesOcasionales = new HashSet<JornadaLaboralOcasional>();
+	private SortedSet<Horario> horarios = new TreeSet<>();
+	private SortedSet<DiaNoLaboral> diasNoLaborales = new TreeSet<>();
+	private SortedSet<JornadaLaboralHabitual> jornadasLaboralesHabituales = new TreeSet<>();
+	private Set<JornadaLaboralOcasional> jornadasLaboralesOcasionales = new HashSet<>();
 	
 
 	/*------------------------------------ Constructors ------------------------------------*/

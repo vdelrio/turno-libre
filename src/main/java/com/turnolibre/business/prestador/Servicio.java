@@ -18,7 +18,7 @@ public class Servicio implements Comparable<Servicio> {
 	private PrestadorDeServicios prestadorDeServicios;
 	private String nombre;
 
-	private Set<Agenda> agendas = new HashSet<Agenda>();
+	private Set<Agenda> agendas = new HashSet<>();
 	
 	
 	/*------------------------------------ Constructors ------------------------------------*/

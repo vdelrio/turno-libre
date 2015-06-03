@@ -30,7 +30,7 @@ public class Populador {
 	private SharedService sharedService;
 	private PasswordEncoder passwordEncoder;
 
-	protected Map<String, Object> storedObjects = new HashMap<String, Object>();
+	protected Map<String, Object> storedObjects = new HashMap<>();
 
 
 	/*------------------------------------ Constructors ------------------------------------*/

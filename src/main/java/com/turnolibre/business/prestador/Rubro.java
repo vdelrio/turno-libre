@@ -14,7 +14,7 @@ public class Rubro implements Comparable<Rubro> {
 	private Long id;
 	private String nombre;
 	
-	private Set<PrestadorDeServicios> prestadoresDeServicio = new TreeSet<PrestadorDeServicios>();
+	private Set<PrestadorDeServicios> prestadoresDeServicio = new TreeSet<>();
 	
 	
 	/*------------------------------------ Constructors ------------------------------------*/

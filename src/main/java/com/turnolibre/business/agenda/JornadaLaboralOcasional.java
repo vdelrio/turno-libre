@@ -55,7 +55,7 @@ public class JornadaLaboralOcasional extends JornadaLaboral {
 		if (this.estaLigada())
 			return FiltroDeHorarios.ejecutar(this.agenda.getHorarios(), intervalo);
 		else
-			return new TreeSet<Horario>();
+			return new TreeSet<>();
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class JornadaLaboralOcasional extends JornadaLaboral {
 
 	private SortedSet<Horario> getHorariosNoEnComun(JornadaLaboralOcasional otraJornada) {
 
-		SortedSet<Horario> horariosNoEnComun = new TreeSet<Horario>();
+		SortedSet<Horario> horariosNoEnComun = new TreeSet<>();
 		SortedSet<Horario> horariosDeLaOtraJornada = FiltroDeHorarios.ejecutar(agenda.getHorarios(), otraJornada.getIntervalo());
 
 		for (Horario horario : this.getHorarios()) {

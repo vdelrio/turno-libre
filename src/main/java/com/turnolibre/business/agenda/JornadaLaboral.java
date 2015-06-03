@@ -46,7 +46,7 @@ public abstract class JornadaLaboral {
 	
 	public SortedSet<Turno> getTurnos(EstadoDeTurno estado) {
 
-		SortedSet<Turno> turnos = new TreeSet<Turno>();
+		SortedSet<Turno> turnos = new TreeSet<>();
 
 		for (Horario horario : this.getHorarios()) {
 			turnos.addAll(horario.getTurnos(estado));
@@ -187,7 +187,7 @@ public abstract class JornadaLaboral {
 
 	private Map<DateTime, List<Cliente>> salvarTurnosActules() {
 
-		Map<DateTime, List<Cliente>> clientes = new TreeMap<DateTime, List<Cliente>>();
+		Map<DateTime, List<Cliente>> clientes = new TreeMap<>();
 
 		for (Horario horario : this.getHorarios()) {
 
