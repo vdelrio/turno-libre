@@ -42,8 +42,8 @@
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
 
 	<!-- Application Message Bundle -->
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages/messages" />
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages/messages" />
         <property name="defaultEncoding" value="UTF-8"/>
 		<!--TODO cambiar este valor por 3600 en prod-->
 		<property name="cacheSeconds" value="0" />
