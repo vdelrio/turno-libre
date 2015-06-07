@@ -25,7 +25,7 @@ public class PrestadorDeServiciosServiceImpl implements PrestadorDeServiciosServ
 	/*------------------------------------ Public methods ----------------------------------*/
 
 	@Override
-	public List<PrestadorDeServicios> findByCloseness(String service, String city) {
+	public List<PrestadorDeServicios> buscarPorCercania(String servicio, String ciudad) {
 		// TODO desharcodear esta lista
 		return Arrays.asList(
 				new PrestadorDeServicios("Prestador 1", new Ubicacion("Buenos Aires", "Aguilar 2345, Buenos Aires", -34.5685359,-58.4467496), "12345"),

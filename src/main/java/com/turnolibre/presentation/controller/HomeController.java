@@ -24,8 +24,8 @@ public class HomeController {
 
 	@RequestMapping(value = "find-by-closeness", method = RequestMethod.GET)
 	@ResponseBody
-	public List<PrestadorDeServicios> findByCloseness(String service, String city) {
-		return prestadorDeServiciosService.findByCloseness(service, city);
+	public List<PrestadorDeServicios> findByCloseness(String servicio, String ciudad) {
+		return prestadorDeServiciosService.buscarPorCercania(servicio, ciudad);
 	}
 
 }
