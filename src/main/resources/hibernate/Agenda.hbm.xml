@@ -41,6 +41,11 @@
 			<key column="agenda_id" />
 			<many-to-many column="administrador_id" class="com.turnolibre.business.usuario.AdministradorDeAgenda" foreign-key="FK_AGENDA_ADMINISTRADOR_ADMINISTRADOR" />
 		</set>
+
+		<set name="servicios" table="agendas_servicios">
+			<key column="agenda_id" foreign-key="FK_AGENDA_SERVICIO_AGENDA" />
+			<many-to-many column="servicio_id" class="com.turnolibre.business.prestador.Servicio" foreign-key="FK_AGENDA_SERVICIO_SERVICIO" />
+		</set>
 		
 	</class>
 	

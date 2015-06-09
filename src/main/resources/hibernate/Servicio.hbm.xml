@@ -11,14 +11,13 @@
 			<generator class="native" />
 		</id>
 
-		<many-to-one name="prestadorDeServicios" column="prestador_de_servicios_id" class="PrestadorDeServicios" unique-key="SERVICIO_BUSINESS_KEY" not-null="true" foreign-key="FK_SERVICIO_PRESTADOR" />
 		<property name="nombre" unique-key="SERVICIO_BUSINESS_KEY" not-null="true" />
 
-		<set name="agendas" table="servicios_agendas">
-			<key column="servicio_id" foreign-key="FK_SERVICIO_AGENDA_SERVICIO" />
-			<many-to-many column="agenda_id" class="com.turnolibre.business.agenda.Agenda" foreign-key="FK_SERVICIO_AGENDA_AGENDA" />
+		<set name="prestadoresDeServicios" table="servicios_prestadores">
+			<key column="servicio_id" foreign-key="FK_SERVICIO_PRESTADOR_SERVICIO" />
+			<many-to-many column="prestador_id" class="com.turnolibre.business.prestador.PrestadorDeServicios" foreign-key="FK_SERVICIO_PRESTADOR_PRESTADOR" />
 		</set>
-        
+
     </class>
     
 </hibernate-mapping>

@@ -1,8 +1,7 @@
 package com.turnolibre.service.impl;
 
-import com.turnolibre.business.agenda.Agenda;
-import com.turnolibre.business.prestador.Servicio;
-import com.turnolibre.persistence.dao.impl.SharedDao;
+import com.turnolibre.business.prestador.PrestadorDeServicios;
+import com.turnolibre.persistence.dao.impl.ServicioDao;
 import com.turnolibre.service.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +14,15 @@ import java.util.Set;
 public class ServicioServiceImpl implements ServicioService {
 
 	@Autowired
-	private SharedDao sharedDao;
+	private ServicioDao servicioDao;
 
 
 	/*------------------------------------ Public methods ----------------------------------*/
 
 	@Override
 	@Transactional(readOnly = true)
-	public Set<Agenda> findAgendas(Long servicioId) {
-
-		Servicio servicio = sharedDao.load(Servicio.class, servicioId);
-		return servicio.getAgendas();
+	public Set<PrestadorDeServicios> buscarPrestadoresPorCiudad(String nombreServicio, String ciudad) {
+		return null;
 	}
 
 	/*--------------------------------------------------------------------------------------*/

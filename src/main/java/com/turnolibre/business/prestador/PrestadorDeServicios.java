@@ -59,13 +59,15 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	public void agregarServicio(Servicio servicio) {
 
 		this.servicios.add(servicio);
-		servicio.setPrestadorDeServicios(this);
+		servicio.getPrestadoresDeServicios().add(this);
 	}
 
 	public void quitarServicio(Servicio servicio) {
 
 		this.servicios.remove(servicio);
-		servicio.setPrestadorDeServicios(null);
+		servicio.getPrestadoresDeServicios().remove(this);
+
+		// TODO ver que hacer con las agendas del prestador que brindan este servicio
 	}
 
 	public void agregarAgenda(Agenda agenda) {
@@ -79,7 +81,7 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		this.agendas.remove(agenda);
 		agenda.setPrestadorDeServicios(null);
 	}
-	
+
 	// TODO agregar servicio para agregar dia no laboral a todas las agendas del prestador
 	// public void agregarDiaNoLaboral(DiaNoLaboral diaNoLaboral)
 	

@@ -4,6 +4,7 @@ import com.turnolibre.Configuration;
 import com.turnolibre.business.excepcion.ExcepcionDeReglaDelNegocio;
 import com.turnolibre.business.i18n.MensajeLocalizable;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
+import com.turnolibre.business.prestador.Servicio;
 import com.turnolibre.business.turno.Horario;
 import com.turnolibre.business.usuario.AdministradorDeAgenda;
 import com.turnolibre.util.CollectionUtils;
@@ -36,7 +37,8 @@ public class Agenda {
 	private SortedSet<DiaNoLaboral> diasNoLaborales = new TreeSet<>();
 	private SortedSet<JornadaLaboralHabitual> jornadasLaboralesHabituales = new TreeSet<>();
 	private Set<JornadaLaboralOcasional> jornadasLaboralesOcasionales = new HashSet<>();
-	
+	private Set<Servicio> servicios = new HashSet<>();
+
 
 	/*------------------------------------ Constructors ------------------------------------*/
 
@@ -135,6 +137,16 @@ public class Agenda {
 	public DateTime getFechaLimiteParaSacarTurno() {
 		return new DateTime().plus(this.getAntelacionMaxima()).withTimeAtStartOfDay();
 	}
+
+	public void agregarServicio(Servicio servicio) throws ExcepcionDeReglaDelNegocio {
+
+		validarServicioPrestadoPorPrestador(servicio);
+		this.getServicios().add(servicio);
+	}
+
+	public void quitarServicio(Servicio servicio) {
+		this.getServicios().remove(servicio);
+	}
 	
 	/*--------------------------------------------------------------------------------------*/
 	/*---------------------------------- Protected methods ---------------------------------*/
@@ -192,6 +204,10 @@ public class Agenda {
 		return jornadasLaboralesOcasionales;
 	}
 
+	public Set<Servicio> getServicios() {
+		return servicios;
+	}
+
 	/*--------------------------------------------------------------------------------------*/
 	/*----------------------------------- Business rules -----------------------------------*/
 
@@ -237,6 +253,12 @@ public class Agenda {
 
 		if (!this.diasNoLaborales.contains(diaNoLaboral))
 			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("excepcion.quitar.dia.no.laboral.agenda.no.contiene.al.dia"));
+	}
+
+	private void validarServicioPrestadoPorPrestador(Servicio servicio) throws ExcepcionDeReglaDelNegocio {
+
+		if (!this.getPrestadorDeServicios().getServicios().contains(servicio))
+			throw new ExcepcionDeReglaDelNegocio(new MensajeLocalizable("excepcion.agregar.servicio.no.prestado.por.prestador"));
 	}
 
 	/*--------------------------------------------------------------------------------------*/

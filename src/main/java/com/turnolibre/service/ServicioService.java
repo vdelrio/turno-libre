@@ -1,12 +1,12 @@
 package com.turnolibre.service;
 
-import com.turnolibre.business.agenda.Agenda;
+import com.turnolibre.business.prestador.PrestadorDeServicios;
 
 import java.util.Set;
 
 
 public interface ServicioService {
 
-	Set<Agenda> findAgendas(Long servicioId);
+	Set<PrestadorDeServicios> buscarPrestadoresPorCiudad(String nombreServicio, String ciudad);
 
 }

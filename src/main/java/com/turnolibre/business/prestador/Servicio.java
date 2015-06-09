@@ -1,7 +1,5 @@
 package com.turnolibre.business.prestador;
 
-import com.turnolibre.business.agenda.Agenda;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,13 +12,11 @@ import java.util.Set;
 public class Servicio implements Comparable<Servicio> {
 
 	private Long id;
-	
-	private PrestadorDeServicios prestadorDeServicios;
-	private String nombre;
 
-	private Set<Agenda> agendas = new HashSet<>();
-	
-	
+	private String nombre;
+	private Set<PrestadorDeServicios> prestadoresDeServicios = new HashSet<>();
+
+
 	/*------------------------------------ Constructors ------------------------------------*/
 
 	protected Servicio() {
@@ -46,50 +42,36 @@ public class Servicio implements Comparable<Servicio> {
 		this.nombre = nombre;
 	}
 
-	public PrestadorDeServicios getPrestadorDeServicios() {
-		return prestadorDeServicios;
-	}
-	
-	protected void setPrestadorDeServicios(PrestadorDeServicios prestadorDeServicios) {
-		this.prestadorDeServicios = prestadorDeServicios;
+	public Set<PrestadorDeServicios> getPrestadoresDeServicios() {
+		return prestadoresDeServicios;
 	}
 
-	public Set<Agenda> getAgendas() {
-		return agendas;
+	public void setPrestadoresDeServicios(Set<PrestadorDeServicios> prestadoresDeServicios) {
+		this.prestadoresDeServicios = prestadoresDeServicios;
 	}
 
 	/*--------------------------------------------------------------------------------------*/
 	/*-------------------------------- Hash code and equals --------------------------------*/
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((getNombre() == null) ? 0 : getNombre().hashCode());
-		result = prime * result	+ ((getPrestadorDeServicios() == null) ? 0 : getPrestadorDeServicios().hashCode());
-		return result;
+	public boolean equals(Object obj) {
+
+		if (this == obj)
+			return true;
+		if (obj == null || !(obj instanceof Servicio))
+			return false;
+
+		Servicio servicio = (Servicio) obj;
+
+		if (this.getNombre() != null)
+			return this.getNombre().equals(servicio.getNombre());
+		else
+			return servicio.getNombre() == null;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Servicio))
-			return false;
-		Servicio other = (Servicio) obj;
-		if (getNombre() == null) {
-			if (other.getNombre() != null)
-				return false;
-		} else if (!getNombre().equals(other.getNombre()))
-			return false;
-		if (getPrestadorDeServicios() == null) {
-			if (other.getPrestadorDeServicios() != null)
-				return false;
-		} else if (!getPrestadorDeServicios().equals(other.getPrestadorDeServicios()))
-			return false;
-		return true;
+	public int hashCode() {
+		return this.getNombre() != null ? this.getNombre().hashCode() : 0;
 	}
 
 	@Override
