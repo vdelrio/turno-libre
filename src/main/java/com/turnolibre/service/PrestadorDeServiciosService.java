@@ -10,10 +10,10 @@ import java.util.Set;
 
 public interface PrestadorDeServiciosService {
 
-	List<PrestadorDeServicios> buscarPorCercania(String servicio, String ciudad);
+	List<PrestadorDeServicios> buscarPorServicioYCiudad(String servicio, String ciudad);
 
-	Set<Agenda> findAgendas(Long prestadorDeServiciosId);
+	Set<Servicio> buscarServicios(Long prestadorId);
 
-	Set<Servicio> findServicios(Long prestadorDeServiciosId);
-	
+	Set<Agenda> buscarAgendasPorServicio(Long prestadorId, Long servicioId);
+
 }

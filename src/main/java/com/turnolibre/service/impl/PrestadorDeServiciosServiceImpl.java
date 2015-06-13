@@ -3,14 +3,14 @@ package com.turnolibre.service.impl;
 import com.turnolibre.business.agenda.Agenda;
 import com.turnolibre.business.prestador.PrestadorDeServicios;
 import com.turnolibre.business.prestador.Servicio;
-import com.turnolibre.business.ubicacion.Ubicacion;
+import com.turnolibre.persistence.dao.impl.PrestadorDeServiciosDao;
+import com.turnolibre.persistence.dao.impl.ServicioDao;
 import com.turnolibre.persistence.dao.impl.SharedDao;
 import com.turnolibre.service.PrestadorDeServiciosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -20,35 +20,38 @@ public class PrestadorDeServiciosServiceImpl implements PrestadorDeServiciosServ
 
 	@Autowired
 	private SharedDao sharedDao;
+	@Autowired
+	private ServicioDao servicioDao;
+	@Autowired
+	private PrestadorDeServiciosDao prestadorDeServiciosDao;
 
 
 	/*------------------------------------ Public methods ----------------------------------*/
 
 	@Override
-	public List<PrestadorDeServicios> buscarPorCercania(String servicio, String ciudad) {
-		// TODO desharcodear esta lista
-		return Arrays.asList(
-				new PrestadorDeServicios("Prestador 1", new Ubicacion("Buenos Aires", "Aguilar 2345, Buenos Aires", -34.5685359,-58.4467496), "12345"),
-				new PrestadorDeServicios("Prestador 2", new Ubicacion("Buenos Aires", "Ciudad de la Paz 1032, Buenos Aires", -34.5700622,-58.4485296), "12345"),
-				new PrestadorDeServicios("Prestador 3", new Ubicacion("Buenos Aires", "Av Cabildo 1112, Buenos Aires", -34.5688308,-58.4471497), "12345"),
-				new PrestadorDeServicios("Prestador 4", new Ubicacion("Buenos Aires", "Palpa 2653, Buenos Aires", -34.5716346,-58.4484501), "12345")
-		);
+	@Transactional(readOnly = true)
+	public List<PrestadorDeServicios> buscarPorServicioYCiudad(String nombreServicio, String ciudad) {
+
+		Servicio servicio = servicioDao.buscarPorNombre(nombreServicio);
+		return prestadorDeServiciosDao.buscarPorServicioYCiudad(servicio, ciudad);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Set<Agenda> findAgendas(Long prestadorDeServiciosId) {
+	public Set<Servicio> buscarServicios(Long prestadorId) {
 
-		PrestadorDeServicios prestadorDeServicios = sharedDao.load(PrestadorDeServicios.class, prestadorDeServiciosId);
-		return prestadorDeServicios.getAgendas();
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Set<Servicio> findServicios(Long prestadorDeServiciosId) {
-
-		PrestadorDeServicios prestadorDeServicios = sharedDao.load(PrestadorDeServicios.class, prestadorDeServiciosId);
+		PrestadorDeServicios prestadorDeServicios = sharedDao.load(PrestadorDeServicios.class, prestadorId);
 		return prestadorDeServicios.getServicios();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Set<Agenda> buscarAgendasPorServicio(Long prestadorId, Long servicioId) {
+
+		PrestadorDeServicios prestador = sharedDao.load(PrestadorDeServicios.class, prestadorId);
+		Servicio servicio = sharedDao.load(Servicio.class, servicioId);
+
+		return prestador.getAgendas(servicio);
 	}
 
 	/*--------------------------------------------------------------------------------------*/

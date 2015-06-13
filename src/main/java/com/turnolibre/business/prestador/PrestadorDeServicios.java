@@ -82,6 +82,20 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		agenda.setPrestadorDeServicios(null);
 	}
 
+	public Set<Agenda> getAgendas(Servicio servicio) {
+
+		Set<Agenda> agendas = new HashSet<>();
+
+		for (Agenda agenda : agendas) {
+
+			if (agenda.getServicios().contains(servicio)) {
+				agendas.add(agenda);
+			}
+		}
+
+		return agendas;
+	}
+
 	// TODO agregar servicio para agregar dia no laboral a todas las agendas del prestador
 	// public void agregarDiaNoLaboral(DiaNoLaboral diaNoLaboral)
 	

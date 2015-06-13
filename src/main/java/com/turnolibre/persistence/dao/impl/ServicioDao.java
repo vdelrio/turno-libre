@@ -1,13 +1,11 @@
 package com.turnolibre.persistence.dao.impl;
 
-import com.turnolibre.business.prestador.PrestadorDeServicios;
+import com.turnolibre.business.prestador.Servicio;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class ServicioDao {
@@ -16,13 +14,12 @@ public class ServicioDao {
     private SessionFactory sessionFactory;
 
 
-    public List<PrestadorDeServicios> buscarPrestadoresPorCiudad(String nombreServicio, String ciudad) {
+    public Servicio buscarPorNombre(String nombre) {
 
-        Query query = getCurrentSession().createQuery("from PrestadorDeServicios as ps where ps.ubicacion.ciudad = :ciudad");
-        query.setParameter("ciudad", ciudad);
+        Query query = getCurrentSession().createQuery("from Servicio as s where s.nombre = :nombre");
+        query.setParameter("nombre", nombre);
 
-        // TODO armar la query
-        return query.list();
+        return (Servicio) query.uniqueResult();
     }
 
     private Session getCurrentSession() {

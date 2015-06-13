@@ -98,10 +98,6 @@ public class Populador {
 	public void popularServicio(PrestadorDeServicios prestadorDeServicios, String nombre, List<Agenda> agendas) {
 
 		Servicio servicio = new Servicio(nombre);
-
-		for (Agenda agenda : agendas)
-			servicio.getAgendas().add(agenda);
-
 		prestadorDeServicios.agregarServicio(servicio);
 
 		sharedService.save(servicio);

@@ -1,12 +1,10 @@
 package com.turnolibre.service;
 
-import com.turnolibre.business.prestador.PrestadorDeServicios;
-
-import java.util.Set;
+import com.turnolibre.business.prestador.Servicio;
 
 
 public interface ServicioService {
 
-	Set<PrestadorDeServicios> buscarPrestadoresPorCiudad(String nombreServicio, String ciudad);
+	Servicio buscarPorNombre(String nombre);
 
 }

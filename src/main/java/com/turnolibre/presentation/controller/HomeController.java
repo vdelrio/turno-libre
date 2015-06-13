@@ -22,10 +22,10 @@ public class HomeController {
 		return "home/index";
 	}
 
-	@RequestMapping(value = "find-by-closeness", method = RequestMethod.GET)
+	@RequestMapping(value = "buscar-por-servicio-ciudad", method = RequestMethod.GET)
 	@ResponseBody
-	public List<PrestadorDeServicios> findByCloseness(String servicio, String ciudad) {
-		return prestadorDeServiciosService.buscarPorCercania(servicio, ciudad);
+	public List<PrestadorDeServicios> buscarPorServicioYCiudad(String servicio, String ciudad) {
+		return prestadorDeServiciosService.buscarPorServicioYCiudad(servicio, ciudad);
 	}
 
 }
