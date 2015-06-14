@@ -36,6 +36,11 @@
 			<one-to-many class="Noticia" />
 		</set>
 
+		<set name="servicios" table="servicios_prestadores" inverse="true">
+			<key column="prestador_id" />
+			<many-to-many column="servicio_id" class="Servicio" />
+		</set>
+
 	</class>
 	
 </hibernate-mapping>

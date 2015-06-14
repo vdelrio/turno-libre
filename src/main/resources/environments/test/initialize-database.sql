@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
+-- MySQL dump 10.13  Distrib 5.6.22, for osx10.8 (x86_64)
 --
 -- Host: localhost    Database: tltest
 -- ------------------------------------------------------
@@ -47,6 +47,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `agendas_servicios` WRITE;
 ALTER TABLE `agendas_servicios` DISABLE KEYS;
+INSERT INTO `agendas_servicios` VALUES (1,1),(2,1);
 ALTER TABLE `agendas_servicios` ENABLE KEYS;
 UNLOCK TABLES;
 
@@ -144,7 +145,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `servicios` WRITE;
 ALTER TABLE `servicios` DISABLE KEYS;
-INSERT INTO `servicios` VALUES (1,'Oftalmología',NULL);
+INSERT INTO `servicios` VALUES (1,'Oftalmología');
 ALTER TABLE `servicios` ENABLE KEYS;
 UNLOCK TABLES;
 
@@ -174,7 +175,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `usuarios` WRITE;
 ALTER TABLE `usuarios` DISABLE KEYS;
-INSERT INTO `usuarios` VALUES (1,'Victor Del Rio','victor@gmail.com','b48fe9e2f3b0abfdfefc03b49c542cc8cc27c5a871a6e47d0f289271140a3af11955325d0b5d4bfa','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(2,'Manuel Rodriguez','manuel@gmail.com','e9f4f31cf22e521bf0f40ef13a89f96c27712bbeaaab65eaf7da1b84d057e8d8f4de4ae45505d432','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(3,'Juan Sanchez','juan@gmail.com','e76c920f4114ed3fcfbb60e2fc25cddcbdcd582e3f9f3fce2c14e90b47c3188041b0c2413b4ab068','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(4,'Carlos Del Rio','carlos@gmail.com','e7af2e4c264c7d17a1d9171cb9c028be9067e2ff75f38d982677a1dcaf9c0a88984f5c7bf7883ee5','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(5,'Admin Agenda1','admin1@gmail.com','750c2e202f19eb45a74fdde79617960d692dc88ce41bb3a6abc7e52479cea86463bb19bf344f116a','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL),(6,'Admin Agenda2','admin2@gmail.com','5b5f7034c766fe5fc9c136f0d400b5563d88eb481b96293712675d71fa7f68c89914a4c82fc055a3','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL);
+INSERT INTO `usuarios` VALUES (1,'Victor Del Rio','victor@gmail.com','6285b91f53d5c6c2a53fea78d6cfd0acaf021157736f07c9cd13941752b07e0dd6664b111839218e','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(2,'Manuel Rodriguez','manuel@gmail.com','17d2666fc4f241b4f385be328f15718f643a09c468af5582d5da2cf9e4964f43ac3dfbc9f93c960b','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(3,'Juan Sanchez','juan@gmail.com','d15c990f29cdececbb654a0927bba930e47779ec515ed05d09479f57f9425c1e3b90398d672b3087','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(4,'Carlos Del Rio','carlos@gmail.com','e40fdefde22b92c340ac0593394961e036fb07043d5e21341a628a43ecd6b20870e39f1d79d2978d','Aguilar 2547, Buenos Aires, Argentina',NULL,1,NULL),(5,'Admin Agenda1','admin1@gmail.com','991cd509a22ccddd7fa4e8606af037a177dc3cd9adff7ea8ebc03496375497ae0ab1240c3952e3d8','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL),(6,'Admin Agenda2','admin2@gmail.com','f62ac91133584e3e53755aa857a02e0eafcdf2eb26ed8292cc5ccddbefc303649985a6f30d234386','Calle 61 3476, Necochea, Buenos Aires, Argentina',NULL,1,NULL);
 ALTER TABLE `usuarios` ENABLE KEYS;
 UNLOCK TABLES;
 SET TIME_ZONE=@OLD_TIME_ZONE;
@@ -187,4 +188,4 @@ SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS;
 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION;
 SET SQL_NOTES=@OLD_SQL_NOTES;
 
--- Dump completed on 2015-06-13 17:06:52
+-- Dump completed on 2015-06-14 12:56:47

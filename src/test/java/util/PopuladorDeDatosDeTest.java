@@ -88,7 +88,7 @@ public class PopuladorDeDatosDeTest extends Populador {
 		popularAgenda((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Dra. Lopez", ANTELACION_2_MESES, Arrays.asList((Usuario) storedObjects.get("usuario - Admin Agenda2")));
 	}
 
-	private void popularServicios() {
+	private void popularServicios() throws ExcepcionDeReglaDelNegocio {
 
 		popularServicio((PrestadorDeServicios) storedObjects.get("prestador - Consultorio medico sur"), "Oftalmología", Arrays.asList((Agenda)storedObjects.get("agenda - Dr. Ramirez"), (Agenda)storedObjects.get("agenda - Dra. Lopez")));
 	}

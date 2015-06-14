@@ -16,7 +16,7 @@
 
         <property name="estado" not-null="true">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.turnolibre.business.turno.EstadoDeTurno</param>
+                <param name="enumClass">EstadoDeTurno</param>
             </type>
         </property>
 

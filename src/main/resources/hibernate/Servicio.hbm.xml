@@ -15,7 +15,7 @@
 
 		<set name="prestadoresDeServicios" table="servicios_prestadores">
 			<key column="servicio_id" foreign-key="FK_SERVICIO_PRESTADOR_SERVICIO" />
-			<many-to-many column="prestador_id" class="com.turnolibre.business.prestador.PrestadorDeServicios" foreign-key="FK_SERVICIO_PRESTADOR_PRESTADOR" />
+			<many-to-many column="prestador_id" class="PrestadorDeServicios" foreign-key="FK_SERVICIO_PRESTADOR_PRESTADOR" />
 		</set>
 
     </class>
