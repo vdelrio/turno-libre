@@ -126,7 +126,7 @@ public class PopuladorDeDatos extends Populador {
 	}
 	
 	private void popularDiasNoLaborales() throws ExcepcionDeReglaDelNegocio {
-		popularDiaNoLaboral((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "diaConferencia", _29_DE_OCTUBRE_DEL_2014, "Décima conferencia de cardiología intervencionista");
+		popularDiaNoLaboral((Agenda)storedObjects.get("agenda - Dr. Del Rio"), "diaConferencia", _29_DE_OCTUBRE_DEL_2021, "Décima conferencia de cardiología intervencionista");
 	}
 
 }

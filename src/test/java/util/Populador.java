@@ -95,10 +95,14 @@ public class Populador {
 		storedObjects.put("agenda - " + nombre, agenda);
 	}
 
-	public void popularServicio(PrestadorDeServicios prestadorDeServicios, String nombre, List<Agenda> agendas) {
+	public void popularServicio(PrestadorDeServicios prestadorDeServicios, String nombre, List<Agenda> agendas) throws ExcepcionDeReglaDelNegocio {
 
 		Servicio servicio = new Servicio(nombre);
 		prestadorDeServicios.agregarServicio(servicio);
+
+		for (Agenda agenda : agendas) {
+			agenda.agregarServicio(servicio);
+		}
 
 		sharedService.save(servicio);
 		storedObjects.put("servicio - " + nombre, servicio);

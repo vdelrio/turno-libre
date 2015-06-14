@@ -16,7 +16,7 @@ public class UsuarioDao {
 
 	public Usuario findByUsername(String username) {
 
-		Query query = getCurrentSession().createQuery("from Usuario as usuario where usuario.email = :email");
+		Query query = getCurrentSession().createQuery("from Usuario usuario where usuario.email = :email");
 		query.setParameter("email", username);
 
 		return (Usuario) query.uniqueResult();

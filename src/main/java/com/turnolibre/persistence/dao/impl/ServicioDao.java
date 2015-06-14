@@ -16,7 +16,7 @@ public class ServicioDao {
 
     public Servicio buscarPorNombre(String nombre) {
 
-        Query query = getCurrentSession().createQuery("from Servicio as s where s.nombre = :nombre");
+        Query query = getCurrentSession().createQuery("from Servicio s where s.nombre = :nombre");
         query.setParameter("nombre", nombre);
 
         return (Servicio) query.uniqueResult();

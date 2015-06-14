@@ -1,6 +1,6 @@
 
-Refactor de servicio
+Regenerar los dumps de dev y test porque saqué una relación de hibernta
 
 
 mysqldump --user=root --password= --no-create-db --no-create-info --databases turnolibre > dev-dump.sql
-y despues reemplazar todos los conditional comments (/*!)
+y despues reemplazar todos los conditional comments. Regex: "\/\*!\d* "
