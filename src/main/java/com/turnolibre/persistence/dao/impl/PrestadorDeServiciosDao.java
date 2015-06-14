@@ -19,12 +19,11 @@ public class PrestadorDeServiciosDao {
 
     public List<PrestadorDeServicios> buscarPorServicioYCiudad(Servicio servicio, String ciudad) {
 
-        Query query = getCurrentSession().createQuery("from PrestadorDeServicios as ps where ps.ubicacion.ciudad = :ciudad and :servicio in ps.servicios");
+        Query query = getCurrentSession().createQuery("select ps from PrestadorDeServicios ps join ps.servicios s where ps.ubicacion.ciudad = :ciudad and s.id = :servicioId");
         query.setParameter("ciudad", ciudad);
-        query.setParameter("servicio", servicio);
+        query.setParameter("servicioId", servicio.getId());
 
         return query.list();
-
     }
 
 
