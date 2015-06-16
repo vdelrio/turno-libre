@@ -1,6 +1,17 @@
 
-Regenerar los dumps de dev y test porque saqué una relación de hibernta
+Seguir con
 
+Leer lo que ofrece bootstrap
+Buscar themes de bootstrap
+
+
+
+
+
+
+
+
+Sacar dump
 
 mysqldump --user=root --password= --no-create-db --no-create-info --databases turnolibre > dev-dump.sql
 y despues reemplazar todos los conditional comments. Regex: "\/\*!\d* "
