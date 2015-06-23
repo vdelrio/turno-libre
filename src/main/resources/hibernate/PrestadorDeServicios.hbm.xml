@@ -13,7 +13,8 @@
 		
 		<many-to-one name="rubro" column="rubro_id" class="Rubro" not-null="true" foreign-key="FK_PRESTADOR_RUBRO" />
 
-		<property name="nombre" unique-key="PRESTADOR_BUSINESS_KEY" not-null="true" />
+		<property name="nombre" unique-key="PRESTADOR_NOMBRE_BUSINESS_KEY" not-null="true" />
+		<property name="url" unique-key="PRESTADOR_URL_BUSINESS_KEY" not-null="true" />
 		<property name="imagen" />
 
         <component name="ubicacion" class="com.turnolibre.business.ubicacion.Ubicacion">

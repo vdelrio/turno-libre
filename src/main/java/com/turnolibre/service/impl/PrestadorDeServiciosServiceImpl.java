@@ -37,6 +37,11 @@ public class PrestadorDeServiciosServiceImpl implements PrestadorDeServiciosServ
 	}
 
 	@Override
+	public PrestadorDeServicios buscarPorUrl(String url) {
+		return prestadorDeServiciosDao.buscarPorUrl(url);
+	}
+
+	@Override
 	@Transactional(readOnly = true)
 	public Set<Servicio> buscarServicios(Long prestadorId) {
 

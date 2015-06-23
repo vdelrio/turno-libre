@@ -193,7 +193,7 @@ public class TestJornadaLaboralHabitual {
 	@Test
 	public void debeBorrarLosHorariosYLosTurnosConTurnosTomados() throws ExcepcionDeReglaDelNegocio {
 		
-		PrestadorDeServicios prestador = new PrestadorDeServicios("Prestador");
+		PrestadorDeServicios prestador = new PrestadorDeServicios("Prestador", "prestador");
 		Agenda agenda = new Agenda("Agenda", ANTELACION_1_MES);
 		prestador.agregarAgenda(agenda);
 		
@@ -225,7 +225,7 @@ public class TestJornadaLaboralHabitual {
 	@Test
 	public void debeModificarIntervalosQuitandoTurnos() throws ExcepcionDeReglaDelNegocio {
 		
-		PrestadorDeServicios prestador = new PrestadorDeServicios("Prestador");
+		PrestadorDeServicios prestador = new PrestadorDeServicios("Prestador", "prestador");
 		Agenda agenda = new Agenda("Agenda", ANTELACION_1_MES);
 		prestador.agregarAgenda(agenda);
 		
@@ -257,7 +257,7 @@ public class TestJornadaLaboralHabitual {
 	@Test
 	public void debeModificarIntervalosAgregandoTurnos() throws ExcepcionDeReglaDelNegocio {
 		
-		PrestadorDeServicios prestador = new PrestadorDeServicios("Prestador");
+		PrestadorDeServicios prestador = new PrestadorDeServicios("Prestador", "prestador");
 		Agenda agenda = new Agenda("Agenda", ANTELACION_1_MES);
 		prestador.agregarAgenda(agenda);
 		

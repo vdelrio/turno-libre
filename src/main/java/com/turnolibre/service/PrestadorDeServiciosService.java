@@ -12,6 +12,8 @@ public interface PrestadorDeServiciosService {
 
 	List<PrestadorDeServicios> buscarPorServicioYCiudad(String servicio, String ciudad);
 
+	PrestadorDeServicios buscarPorUrl(String url);
+
 	Set<Servicio> buscarServicios(Long prestadorId);
 
 	Set<Agenda> buscarAgendasPorServicio(Long prestadorId, Long servicioId);

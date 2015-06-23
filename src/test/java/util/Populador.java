@@ -70,9 +70,9 @@ public class Populador {
 		storedObjects.put("rubro - " + nombre, rubro);
 	}
 
-	public void popularPrestador(String nombre, Ubicacion ubicacion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
+	public void popularPrestador(String nombre, String url, Ubicacion ubicacion, String telefono, String imagen, Rubro rubro) throws ExcepcionDeReglaDelNegocio {
 
-		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, ubicacion, telefono, imagen);
+		PrestadorDeServicios prestador = new PrestadorDeServicios(nombre, url, ubicacion, telefono, imagen);
 		rubro.agregarPrestadorDeServicios(prestador);
 
 		sharedService.save(prestador);

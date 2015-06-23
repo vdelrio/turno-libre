@@ -114,7 +114,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `prestadores_de_servicios` WRITE;
 ALTER TABLE `prestadores_de_servicios` DISABLE KEYS;
-INSERT INTO `prestadores_de_servicios` VALUES (1,1,'Consultorio medico sur','/images/prestadores/prestador1.jpg','Buenos Aires','Av Cabildo 1501, Buenos Aires, Argentina',-34.5668907,-58.4507691,'4785-0055',NULL),(2,2,'Futbol 5 Mentarios','/images/prestadores/prestador2.jpg','Buenos Aires','Av Cordoba 2345, Buenos Aires, Argentina',-34.5995209,-58.4006015,'4867-7455',NULL);
+INSERT INTO `prestadores_de_servicios` VALUES (1,1,'Consultorio medico sur', 'consultorio-medico-sur','/images/prestadores/prestador1.jpg','Buenos Aires','Av Cabildo 1501, Buenos Aires, Argentina',-34.5668907,-58.4507691,'4785-0055',NULL),(2,2,'Futbol 5 Mentarios', 'futbol-5-mentarios','/images/prestadores/prestador2.jpg','Buenos Aires','Av Cordoba 2345, Buenos Aires, Argentina',-34.5995209,-58.4006015,'4867-7455',NULL);
 ALTER TABLE `prestadores_de_servicios` ENABLE KEYS;
 UNLOCK TABLES;
 

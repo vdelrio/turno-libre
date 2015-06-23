@@ -26,6 +26,14 @@ public class PrestadorDeServiciosDao {
         return query.list();
     }
 
+    public PrestadorDeServicios buscarPorUrl(String url) {
+
+        Query query = getCurrentSession().createQuery("select ps from PrestadorDeServicios ps where ps.url = :url");
+        query.setParameter("url", url);
+
+        return (PrestadorDeServicios) query.uniqueResult();
+    }
+
 
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();

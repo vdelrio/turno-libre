@@ -1,0 +1,19 @@
+<!doctype html>
+<html layout:decorator="layouts/main-layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="#{titulo.pagina.inicio}">Inicio</title>
+</head>
+<body>
+
+	<div layout:fragment="child-content" class="row margin-top-20">
+
+        <div class="col-md-offset-2 col-md-8">
+
+            <h1>Prestador: [[${prestador.nombre}]]</h1>
+
+        </div>
+
+	</div>
+
+</body>
+</html>

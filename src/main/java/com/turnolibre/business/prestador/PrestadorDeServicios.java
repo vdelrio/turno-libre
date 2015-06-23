@@ -20,6 +20,7 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	private Rubro rubro;
 	
 	private String nombre;
+	private String url;
 	private String imagen;
 	private Ubicacion ubicacion;
 	private String telefono;
@@ -37,19 +38,20 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 		super();
 	}
 	
-	public PrestadorDeServicios(String nombre) {
+	public PrestadorDeServicios(String nombre, String url) {
 		super();
 		this.nombre = nombre;
+		this.url = url;
 	}
 
-	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono) {
-		this(nombre);
+	public PrestadorDeServicios(String nombre, String url, Ubicacion ubicacion, String telefono) {
+		this(nombre, url);
 		this.ubicacion = ubicacion;
 		this.telefono = telefono;
 	}
 
-	public PrestadorDeServicios(String nombre, Ubicacion ubicacion, String telefono, String imagen) {
-		this(nombre, ubicacion, telefono);
+	public PrestadorDeServicios(String nombre, String url, Ubicacion ubicacion, String telefono, String imagen) {
+		this(nombre, url, ubicacion, telefono);
 		this.imagen = imagen;
 	}
 
@@ -121,7 +123,15 @@ public class PrestadorDeServicios implements Comparable<PrestadorDeServicios> {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public String getImagen() {
 		return imagen;
 	}
