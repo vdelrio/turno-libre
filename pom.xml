@@ -9,13 +9,15 @@
 	<name>TurnoLibre</name>
 
 	<properties>
-		<!-- Versiones actualizadas al 31 de mayo del 2015 -->
+		<!-- Versiones actualizadas al 12 de noviembre del 2015 -->
 		<jvm.version>1.7</jvm.version>
 		<spring.version>4.2.2.RELEASE</spring.version>
+		<!-- TODO cambiar a spring security 4 (bastante trabajo) -->
 		<spring.security.version>3.2.9.RELEASE</spring.security.version>
 		<jackson.version>2.6.3</jackson.version>
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
 		<thymeleaf.security.version>2.1.2.RELEASE</thymeleaf.security.version>
+		<!-- TODO cambiar a hibernate 5 (cuando este mas maduro) -->
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<slf4j.version>1.7.13</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
