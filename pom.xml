@@ -10,7 +10,7 @@
 
 	<properties>
 		<!-- Versiones actualizadas al 12 de noviembre del 2015 -->
-		<jvm.version>1.7</jvm.version>
+		<jvm.version>1.8</jvm.version>
 		<spring.version>4.2.2.RELEASE</spring.version>
 		<!-- TODO cambiar a spring security 4 (bastante trabajo) -->
 		<spring.security.version>3.2.9.RELEASE</spring.security.version>
