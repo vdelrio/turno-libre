@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <script th:src="@{http://maps.googleapis.com/maps/api/js?key=AIzaSyC76s0wifO-67hjzecktthUdWiiQRB56E8&sensor=false&libraries=places}"></script>
+        <script th:src="@{//maps.googleapis.com/maps/api/js?key=AIzaSyC76s0wifO-67hjzecktthUdWiiQRB56E8&sensor=false&libraries=places}"></script>
         <script>
 
             function initialize() {
@@ -71,7 +71,7 @@
 
                             setTimeout(function() {
 
-                                var contentString = '<div><div><b>' + value.nombre + '</b></div><div><a href="/">Ir a la página del prestador</a></div></div>';
+                                var contentString = '<div><div><b>' + value.nombre + '</b></div><div><a href="/prestador/' + value.url + '/turnos?servicio=oftalmologia">Ir a la página del prestador</a></div></div>';
 
                                 var infowindow = new google.maps.InfoWindow({
                                     content: contentString,
