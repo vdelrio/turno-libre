@@ -1,0 +1,14 @@
+
+Seguir con ---------------------------------
+Leer sobre templates en thymeleaf para hacer el componente para buscar por servicio
+
+
+Sacar dump  --------------------------------
+
+mysqldump --user=root --password= --no-create-db --no-create-info --databases turnolibre > dev-dump.sql
+y despues reemplazar todos los conditional comments. Regex: "\/\*!\d* "
+
+
+Links --------------------------------------
+
+Java 8: http://winterbe.com/posts/2014/03/16/java-8-tutorial/
